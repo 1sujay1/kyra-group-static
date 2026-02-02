@@ -1,0 +1,1193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kyra Group Real Estate | Premium Projects & Developments</title>
+    <meta name="description" content="Discover premium real estate projects by Kyra Group. Browse luxury apartments, villas, and commercial spaces with top-tier amenities.">
+    <meta name="keywords" content="Real Estate, Kyra Group, Luxury Homes, Apartments, Commercial Property, Buy Property">
+    <meta property="og:title" content="Kyra Group Real Estate Projects">
+    <meta property="og:description" content="Find your dream property with Kyra Group.">
+    <meta property="og:type" content="website">
+
+    <style>
+        /* =========================================
+           1. CSS VARIABLES & RESET
+           ========================================= */
+        :root {
+            /* Green Theme Palette */
+            --primary-green: #105936; /* Deep Forest Green */
+            --secondary-green: #1a8f58; /* Emerald Green */
+            --light-green: #ecfdf5; /* Mint Background */
+            --accent-green: #34d399; /* Bright Accent */
+            --text-dark: #1f2937;
+            --text-gray: #6b7280;
+            --white: #ffffff;
+            --off-white: #f9fafb;
+            --border-color: #e5e7eb;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --transition-speed: 0.3s;
+            --font-main: 'Inter', system-ui, -apple-system, sans-serif;
+            --font-serif: 'Georgia', 'Times New Roman', serif; /* Added for section header */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-main);
+            color: var(--text-dark);
+            background-color: var(--off-white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+        button, select, input { font-family: inherit; }
+
+        /* =========================================
+           2. UTILITIES & ANIMATIONS
+           ========================================= */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.375rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--transition-speed) ease;
+            border: none;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-green);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--secondary-green);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-outline {
+            border: 2px solid var(--primary-green);
+            color: var(--primary-green);
+            background: transparent;
+        }
+
+        .btn-outline:hover {
+            background-color: var(--light-green);
+        }
+
+        .badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .badge-active { background-color: #d1fae5; color: #065f46; }
+        .badge-upcoming { background-color: #ffedd5; color: #9a3412; }
+        .badge-completed { background-color: #e0e7ff; color: #3730a3; }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-fade-in { animation: fadeIn 0.5s ease-out forwards; }
+        .animate-slide-up { animation: slideUp 0.5s ease-out forwards; }
+
+        /* Accessibility: Reduced Motion */
+        @media (prefers-reduced-motion: reduce) {
+            * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+        }
+
+        /* =========================================
+           3. HEADER
+           ========================================= */
+        header {
+            background-color: var(--white);
+            box-shadow: var(--shadow-sm);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary-green);
+            letter-spacing: -0.5px;
+        }
+
+        /* =========================================
+           4. PROJECTS PAGE (GRID VIEW)
+           ========================================= */
+        .filters-section {
+            background-color: var(--white);
+            padding: 2rem 0;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .filter-container {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            align-items: flex-end;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .filter-group label {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .filter-select {
+            padding: 0.75rem;
+            border: 1px solid var(--border-color);
+            border-radius: 0.375rem;
+            background-color: var(--white);
+            color: var(--text-dark);
+            width: 100%;
+            transition: border-color 0.2s;
+        }
+
+        .filter-select:focus {
+            outline: none;
+            border-color: var(--primary-green);
+            box-shadow: 0 0 0 3px rgba(16, 89, 54, 0.1);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 2rem;
+            padding-bottom: 4rem;
+        }
+
+        @media (min-width: 768px) {
+            .projects-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (min-width: 1024px) {
+            .projects-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+
+        .project-card {
+            background: var(--white);
+            border-radius: 0.75rem;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            opacity: 0; /* For animation */
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .card-image-wrapper {
+            position: relative;
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .card-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .project-card:hover .card-image {
+            transform: scale(1.05);
+        }
+
+        .card-overlay {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            z-index: 10;
+        }
+
+        .card-content {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .card-details {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.875rem;
+            color: var(--text-gray);
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .card-footer {
+            margin-top: auto;
+        }
+
+        .no-results {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 4rem 0;
+            color: var(--text-gray);
+            background: var(--white);
+            border-radius: 0.5rem;
+            display: none; /* Hidden by default */
+        }
+
+        /* =========================================
+           5. SINGLE PROJECT PAGE
+           ========================================= */
+        #single-project-view {
+            display: none; /* Hidden initially */
+        }
+
+        .back-nav {
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border-color);
+            background: var(--white);
+        }
+
+        /* Hero Gallery */
+        .hero-gallery {
+            position: relative;
+            width: 100%;
+            height: 60vh;
+            min-height: 400px;
+            overflow: hidden;
+            background: #000;
+        }
+
+        .gallery-slide {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: none;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .gallery-slide.active {
+            display: block;
+            opacity: 1;
+        }
+
+        .gallery-controls {
+            position: absolute;
+            bottom: 2rem;
+            right: 2rem;
+            display: flex;
+            gap: 1rem;
+        }
+
+        .gallery-btn {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .gallery-btn:hover { background: var(--primary-green); border-color: var(--primary-green); }
+
+        /* Project Details Body */
+        .project-body {
+            padding: 4rem 0;
+        }
+
+        .project-header-info {
+            margin-bottom: 3rem;
+        }
+
+        .project-title-large {
+            font-size: 2.5rem;
+            color: var(--primary-green);
+            margin-bottom: 0.5rem;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 60px;
+            height: 3px;
+            background-color: var(--secondary-green);
+        }
+
+        /* Approval Details */
+        .approval-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 0.5rem;
+            border-left: 4px solid var(--secondary-green);
+            margin-bottom: 3rem;
+        }
+
+        .approval-item h4 { font-size: 0.875rem; color: var(--text-gray); }
+        .approval-item p { font-size: 1.125rem; font-weight: 600; color: var(--text-dark); }
+
+        /* Amenities */
+        .amenities-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        @media (min-width: 640px) { .amenities-grid { grid-template-columns: repeat(3, 1fr); } }
+        @media (min-width: 1024px) { .amenities-grid { grid-template-columns: repeat(6, 1fr); } }
+
+        .amenity-card {
+            background: var(--white);
+            padding: 1.5rem;
+            text-align: center;
+            border-radius: 0.5rem;
+            box-shadow: var(--shadow-sm);
+            transition: transform 0.2s;
+        }
+
+        .amenity-card:hover { transform: translateY(-3px); color: var(--primary-green); }
+        .amenity-icon { font-size: 2rem; margin-bottom: 0.5rem; }
+
+        /* Map */
+        .map-container {
+            width: 100%;
+            height: 400px;
+            background: #e5e7eb;
+            margin-bottom: 4rem;
+            border-radius: 0.5rem;
+            overflow: hidden;
+        }
+
+        .map-container iframe { width: 100%; height: 100%; border: 0; }
+
+        /* =========================================
+           6. RELATED KYRA GROUP DETAILS (Updated Layout)
+           ========================================= */
+        .kyra-group-section {
+            background-color: var(--white); /* White background as per image */
+            color: var(--text-dark);
+            padding: 6rem 0;
+            margin-top: 4rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .kyra-details-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 4rem;
+        }
+
+        @media (min-width: 1024px) {
+            .kyra-details-grid {
+                grid-template-columns: 1.2fr 0.8fr;
+                gap: 6rem;
+                align-items: start;
+            }
+        }
+
+        /* Left Column Content */
+        .kyra-text-col h3 {
+            font-family: var(--font-serif);
+            font-size: 2.25rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-green); /* Maintained Green brand color */
+            font-weight: 400;
+        }
+
+        .kyra-text-col p {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: #4b5563;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Right Column Form */
+        .kyra-form-col {
+            background: var(--white);
+            padding: 2.5rem;
+            border: 1px solid #d1d5db; /* Visible border */
+            border-radius: 0;
+            color: var(--text-dark);
+            box-shadow: none;
+        }
+
+        @media (min-width: 1024px) {
+            .kyra-form-col {
+                position: sticky;
+                top: 100px;
+            }
+        }
+
+        .kyra-form-header {
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            color: var(--primary-green);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 2rem;
+            font-weight: 400;
+        }
+
+        .form-group { margin-bottom: 1.5rem; }
+        
+        .form-group label { 
+            display: block; 
+            margin-bottom: 0.25rem; 
+            font-weight: 600; 
+            font-size: 0.8rem; 
+            color: #374151;
+        }
+
+        /* New Line Input Style */
+        .form-line-input {
+            width: 100%;
+            padding: 0.5rem 0;
+            border: none;
+            border-bottom: 1px solid #9ca3af;
+            border-radius: 0;
+            background: transparent;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+            color: var(--text-dark);
+        }
+        
+        .form-line-input:focus {
+            outline: none;
+            border-color: var(--primary-green);
+        }
+        
+        .form-line-input::placeholder {
+            color: #9ca3af;
+            font-weight: 300;
+        }
+
+        .whatsapp-check {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            margin: 1.5rem 0;
+            font-size: 0.85rem;
+            color: #4b5563;
+        }
+        
+        .whatsapp-check input {
+            margin-top: 3px;
+            accent-color: var(--primary-green);
+            transform: scale(1.2);
+        }
+
+        /* OTP Button Style */
+        .btn-otp {
+            width: 100%;
+            background: transparent;
+            border: 1px solid var(--primary-green);
+            color: var(--primary-green);
+            text-transform: uppercase;
+            padding: 1rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .btn-otp:hover {
+            background-color: var(--primary-green);
+            color: white;
+        }
+
+        /* Footer */
+        footer {
+            background: #111827;
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .notification {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--secondary-green);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 0.5rem;
+            box-shadow: var(--shadow-lg);
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.3s;
+            z-index: 2000;
+        }
+        .notification.show { transform: translateY(0); opacity: 1; }
+
+    </style>
+</head>
+<body>
+
+    <!-- Notification Toast -->
+    <div id="toast" class="notification">OTP sent successfully!</div>
+
+    <!-- Header -->
+    <header>
+        <div class="container nav-wrapper">
+            <a href="#" class="logo" onclick="app.showProjects()">KYRA<span style="color:var(--text-dark)">GROUP</span></a>
+            <nav>
+                <button class="btn btn-primary" onclick="document.querySelector('.kyra-form-col').scrollIntoView({behavior: 'smooth'})">Enquire</button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- VIEW 1: PROJECTS GRID -->
+        <div id="projects-view">
+            <!-- Filter Section -->
+            <section class="filters-section">
+                <div class="container">
+                    <div class="filter-container">
+                        <div class="filter-group">
+                            <label for="filter-location">Location</label>
+                            <select id="filter-location" class="filter-select">
+                                <option value="all">All Locations</option>
+                                <option value="Downtown">Downtown</option>
+                                <option value="Suburb">Green Valley Suburb</option>
+                                <option value="Waterfront">Waterfront District</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label for="filter-type">Property Type</label>
+                            <select id="filter-type" class="filter-select">
+                                <option value="all">All Types</option>
+                                <option value="Residential">Residential Apartments</option>
+                                <option value="Villa">Luxury Villas</option>
+                                <option value="Commercial">Commercial/Office</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label for="filter-status">Status</label>
+                            <select id="filter-status" class="filter-select">
+                                <option value="all">All Statuses</option>
+                                <option value="Ready to Move">Ready to Move</option>
+                                <option value="Under Construction">Under Construction</option>
+                                <option value="New Launch">New Launch</option>
+                            </select>
+                        </div>
+                        <div class="filter-group" style="flex: 0; min-width: auto;">
+                            <label>&nbsp;</label>
+                            <button class="btn btn-outline" id="reset-filters">Reset</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Projects Grid -->
+            <section class="container">
+                <div id="projects-grid" class="projects-grid">
+                    <!-- Projects injected via JS -->
+                </div>
+                <div id="no-results" class="no-results">
+                    <h3>No projects found matching your criteria.</h3>
+                    <p>Try adjusting your filters or click reset to view all properties.</p>
+                </div>
+            </section>
+        </div>
+
+        <!-- VIEW 2: SINGLE PROJECT DETAILS -->
+        <article id="single-project-view">
+            <!-- Back Navigation -->
+            <div class="back-nav">
+                <div class="container">
+                    <button class="btn btn-outline" onclick="app.showProjects()">← Back to Projects</button>
+                </div>
+            </div>
+
+            <!-- Hero Gallery -->
+            <div class="hero-gallery" id="project-gallery">
+                <img src="" alt="Project Image 1" class="gallery-slide active">
+                <img src="" alt="Project Image 2" class="gallery-slide">
+                <img src="" alt="Project Image 3" class="gallery-slide">
+                
+                <div class="gallery-controls">
+                    <button class="gallery-btn" onclick="app.galleryPrev()">❮</button>
+                    <button class="gallery-btn" onclick="app.galleryNext()">❯</button>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="container project-body">
+                <div class="project-header-info animate-slide-up">
+                    <span class="badge badge-active" id="detail-status">Status</span>
+                    <h1 class="project-title-large" id="detail-title">Project Name</h1>
+                    <p style="font-size: 1.2rem; color: var(--text-gray);" id="detail-location">Location, City</p>
+                    <p style="margin-top: 0.5rem; font-weight: 700; color: var(--text-dark);" id="detail-price">Starts from $000k</p>
+                    
+                    <div style="margin-top: 1.5rem;">
+                        <a href="#" class="btn btn-primary" onclick="event.preventDefault(); alert('Brochure downloading...');">Download Brochure PDF</a>
+                    </div>
+                </div>
+
+                <!-- Approval Details -->
+                <section class="approval-grid animate-slide-up">
+                    <div class="approval-item">
+                        <h4>RERA Approval</h4>
+                        <p id="detail-rera">KYRA-001-2024</p>
+                    </div>
+                    <div class="approval-item">
+                        <h4>Possession Date</h4>
+                        <p id="detail-possession">Dec 2025</p>
+                    </div>
+                    <div class="approval-item">
+                        <h4>Total Area</h4>
+                        <p id="detail-area">5 Acres</p>
+                    </div>
+                    <div class="approval-item">
+                        <h4>Developer</h4>
+                        <p>Kyra Group</p>
+                    </div>
+                </section>
+
+                <!-- Amenities -->
+                <section class="animate-slide-up">
+                    <h2 class="section-title">World Class Amenities</h2>
+                    <div class="amenities-grid" id="detail-amenities">
+                        <!-- Amenities Injected via JS -->
+                    </div>
+                </section>
+
+                <!-- Map -->
+                <section class="animate-slide-up">
+                    <h2 class="section-title">Location Map</h2>
+                    <div class="map-container">
+                        <!-- Fallback text inside iframe ensures accessibility if it fails to load -->
+                        <iframe 
+                            id="detail-map"
+                            loading="lazy"
+                            allowfullscreen
+                            src="">
+                            <p>Map could not be loaded. Please check Google Maps directly.</p>
+                        </iframe>
+                    </div>
+                </section>
+            </div>
+        </article>
+
+        <!-- Related Kyra Group Details (UPDATED SECTION - Now Global) -->
+        <section class="kyra-group-section">
+            <div class="container kyra-details-grid">
+                <!-- Left Column: Company Background -->
+                <div class="kyra-text-col animate-slide-up">
+                    <h3>Here's why you should call Kyra home!</h3>
+                    <p>
+                        While the spectacular architecture and green-canopied streets reflect the beauty of our developments, Kyra Group is much more than that.
+                    </p>
+                    <p>
+                        Known by a myriad of names—the Green Developer, the Innovation Hub, the Trusted Partner and so on — it is a brand where centuries-old reliability waltzes with cutting-edge technology revealing a unique tapestry of community enveloped in nature. It is a legacy that effortlessly juggles tradition with innovation.
+                    </p>
+                    <p>
+                        In other words, Kyra Group is a unique medley of past, present and future, making it the perfect place to call home. And the real estate sector understands this, offering the finest plots, villas and apartments. A smart choice, Kyra's ever-expanding real estate skyline attracts global investors and luxury seekers fostering growth and innovation in the city.
+                    </p>
+                    <p>
+                        The Kyra Group has been leading the city's real estate development for over 20 years, shaping its skyline with state-of-the-art infrastructure, one iconic landmark after another. Synonymous with innovation and luxury living, in the residential space, Kyra has built a proud community of over 50,000 happy families.
+                    </p>
+                </div>
+
+                <!-- Right Column: Enquiry Form -->
+                <div class="kyra-form-col animate-slide-up">
+                    <h3 class="kyra-form-header">Request a Callback</h3>
+                    <form id="enquiry-form" onsubmit="app.handleFormSubmit(event)">
+                        <div class="form-group">
+                            <label for="name">Your Name*</label>
+                            <input type="text" id="name" class="form-line-input" required placeholder="Enter Your Name">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="mobile">Mobile*</label>
+                            <input type="tel" id="mobile" class="form-line-input" required placeholder="Your Mobile">
+                        </div>
+
+                        <div class="whatsapp-check">
+                            <input type="checkbox" id="whatsapp" name="whatsapp">
+                            <label for="whatsapp" style="font-weight: 400; font-size: 0.85rem; margin-bottom: 0;">Do you have whatsapp activated on this number?</label>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Your Email*</label>
+                            <input type="email" id="email" class="form-line-input" required placeholder="Enter Your Email">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="location-pref">Location</label>
+                            <select id="location-pref" class="form-line-input">
+                                <option value="" disabled selected>Location</option>
+                                <option value="Downtown">Downtown</option>
+                                <option value="Suburb">Suburb</option>
+                                <option value="Waterfront">Waterfront</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="property-pref">Property Type*</label>
+                            <select id="property-pref" class="form-line-input" required>
+                                <option value="" disabled selected>Property Type</option>
+                                <option value="Apartment">Apartment</option>
+                                <option value="Villa">Villa</option>
+                                <option value="Plot">Plot</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="source">Source*</label>
+                            <select id="source" class="form-line-input" required>
+                                <option value="" disabled selected>Source</option>
+                                <option value="Google">Google</option>
+                                <option value="Social Media">Social Media</option>
+                                <option value="Referral">Referral</option>
+                            </select>
+                        </div>
+
+                        <button type="submit" class="btn-otp">Send OTP</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Kyra Group Real Estate. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- =========================================
+       7. JAVASCRIPT LOGIC
+       ========================================= -->
+    <script>
+        const app = (function() {
+            // --- DATA ---
+            const projects = [
+                {
+                    id: 1,
+                    title: "Kyra Emerald Heights",
+                    location: "Downtown",
+                    type: "Residential",
+                    status: "Under Construction",
+                    price: "$450,000",
+                    sqft: "1200 - 1800 sq.ft",
+                    image: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=800&q=80",
+                    gallery: [
+                        "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1200&q=80",
+                        "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=80",
+                        "https://images.unsplash.com/photo-1484154218962-a1c002085d2f?auto=format&fit=crop&w=1200&q=80"
+                    ],
+                    rera: "DT-RES-0045",
+                    possession: "Dec 2025",
+                    amenities: ["Swimming Pool", "Gym", "Roof Garden", "24/7 Security", "Parking", "Smart Home"],
+                    mapQuery: "downtown+new+york"
+                },
+                {
+                    id: 2,
+                    title: "Kyra Green Villas",
+                    location: "Suburb",
+                    type: "Villa",
+                    status: "New Launch",
+                    price: "$1,200,000",
+                    sqft: "3500 sq.ft",
+                    image: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=800&q=80",
+                    gallery: [
+                        "https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1200&q=80",
+                        "https://images.unsplash.com/photo-1580587771525-78b9dba3b91d?auto=format&fit=crop&w=1200&q=80",
+                        "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=1200&q=80"
+                    ],
+                    rera: "SB-VIL-9921",
+                    possession: "Jan 2027",
+                    amenities: ["Private Pool", "Golf Course Access", "Clubhouse", "Gated Community", "Solar Power", "Jogging Track"],
+                    mapQuery: "beverly+hills+california"
+                },
+                {
+                    id: 3,
+                    title: "Kyra Tech Park",
+                    location: "Waterfront",
+                    type: "Commercial",
+                    status: "Ready to Move",
+                    price: "$2,500/mo",
+                    sqft: "500 - 5000 sq.ft",
+                    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80",
+                    gallery: [
+                        "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80",
+                        "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80",
+                        "https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1200&q=80"
+                    ],
+                    rera: "WF-COM-1102",
+                    possession: "Immediate",
+                    amenities: ["Conference Rooms", "High Speed Internet", "Cafeteria", "Lounge", "Parking", "Metro Access"],
+                    mapQuery: "canary+wharf+london"
+                },
+                {
+                    id: 4,
+                    title: "Kyra Skyline Residences",
+                    location: "Downtown",
+                    type: "Residential",
+                    status: "Ready to Move",
+                    price: "$600,000",
+                    sqft: "1500 sq.ft",
+                    image: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=800&q=80",
+                    gallery: [
+                        "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=1200&q=80",
+                        "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=1200&q=80",
+                         "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=1200&q=80"
+                    ],
+                    rera: "DT-RES-8822",
+                    possession: "Immediate",
+                    amenities: ["Sky Lounge", "Infinity Pool", "Concierge", "Gym", "Spa", "Valet"],
+                    mapQuery: "chicago+downtown"
+                },
+                 {
+                    id: 5,
+                    title: "Kyra Lakeside Manor",
+                    location: "Waterfront",
+                    type: "Villa",
+                    status: "Under Construction",
+                    price: "$950,000",
+                    sqft: "2800 sq.ft",
+                    image: "https://images.unsplash.com/photo-1600596542815-e328d4de4bf7?auto=format&fit=crop&w=800&q=80",
+                    gallery: [
+                        "https://images.unsplash.com/photo-1600596542815-e328d4de4bf7?auto=format&fit=crop&w=1200&q=80",
+                        "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80",
+                        "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1200&q=80"
+                    ],
+                    rera: "WF-VIL-3321",
+                    possession: "June 2026",
+                    amenities: ["Private Boat Dock", "Deck", "BBQ Area", "Security", "Smart Lighting", "Garden"],
+                    mapQuery: "lake+como+italy"
+                }
+            ];
+
+            // --- DOM ELEMENTS ---
+            const els = {
+                grid: document.getElementById('projects-grid'),
+                noResults: document.getElementById('no-results'),
+                filters: {
+                    location: document.getElementById('filter-location'),
+                    type: document.getElementById('filter-type'),
+                    status: document.getElementById('filter-status'),
+                    reset: document.getElementById('reset-filters')
+                },
+                views: {
+                    list: document.getElementById('projects-view'),
+                    detail: document.getElementById('single-project-view')
+                },
+                detail: {
+                    title: document.getElementById('detail-title'),
+                    loc: document.getElementById('detail-location'),
+                    price: document.getElementById('detail-price'),
+                    status: document.getElementById('detail-status'),
+                    amenities: document.getElementById('detail-amenities'),
+                    map: document.getElementById('detail-map'),
+                    rera: document.getElementById('detail-rera'),
+                    possession: document.getElementById('detail-possession'),
+                    area: document.getElementById('detail-area'),
+                    galleryContainer: document.getElementById('project-gallery')
+                }
+            };
+
+            let currentGalleryIndex = 0;
+            let currentGalleryImages = [];
+            let galleryInterval;
+
+            // --- FUNCTIONS ---
+
+            // 1. Render Projects Grid
+            function renderProjects(data) {
+                els.grid.innerHTML = '';
+                
+                if (data.length === 0) {
+                    els.noResults.style.display = 'block';
+                    return;
+                } else {
+                    els.noResults.style.display = 'none';
+                }
+
+                data.forEach((p, index) => {
+                    // Determine badge class
+                    let badgeClass = 'badge-active';
+                    if (p.status === 'Under Construction') badgeClass = 'badge-upcoming';
+                    if (p.status === 'Ready to Move') badgeClass = 'badge-completed';
+
+                    const card = document.createElement('div');
+                    card.className = 'project-card animate-slide-up';
+                    card.style.animationDelay = `${index * 100}ms`; // Staggered animation
+                    
+                    card.innerHTML = `
+                        <div class="card-image-wrapper">
+                            <div class="card-overlay">
+                                <span class="badge ${badgeClass}">${p.status}</span>
+                            </div>
+                            <img src="${p.image}" alt="${p.title}" class="card-image" loading="lazy">
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">${p.title}</h3>
+                            <div class="card-details">
+                                <span>${p.location}</span>
+                                <span>${p.sqft}</span>
+                            </div>
+                            <div class="card-footer">
+                                <button class="btn btn-outline" style="width:100%">View Details</button>
+                            </div>
+                        </div>
+                    `;
+                    card.addEventListener('click', () => openProjectDetails(p.id));
+                    els.grid.appendChild(card);
+                });
+            }
+
+            // 2. Filter Logic
+            function filterProjects() {
+                const loc = els.filters.location.value;
+                const type = els.filters.type.value;
+                const status = els.filters.status.value;
+
+                const filtered = projects.filter(p => {
+                    const matchLoc = loc === 'all' || p.location === loc;
+                    const matchType = type === 'all' || p.type === type;
+                    const matchStatus = status === 'all' || p.status === status;
+                    return matchLoc && matchType && matchStatus;
+                });
+
+                renderProjects(filtered);
+            }
+
+            // 3. View Management (SPA)
+            function openProjectDetails(id) {
+                const p = projects.find(item => item.id === id);
+                if (!p) return;
+
+                // Populate Details
+                els.detail.title.textContent = p.title;
+                els.detail.loc.textContent = p.location;
+                els.detail.price.textContent = `Starts from ${p.price}`;
+                els.detail.status.textContent = p.status;
+                els.detail.rera.textContent = p.rera;
+                els.detail.possession.textContent = p.possession;
+                els.detail.area.textContent = p.sqft; // Map sqft to area for this demo
+
+                // Map - Using Google Maps Embed API format (using q= for query)
+                els.detail.map.src = `https://www.google.com/maps/embed/v1/place?key=YOUR_API_KEY&q=${p.mapQuery}`;
+                // Note: Without a real API key, this iframe might show an error or "Development Mode". 
+                // For production demo without key, using basic embed output:
+                els.detail.map.src = `https://maps.google.com/maps?q=${p.mapQuery}&t=&z=13&ie=UTF8&iwloc=&output=embed`;
+
+                // Render Amenities
+                els.detail.amenities.innerHTML = p.amenities.map(item => `
+                    <div class="amenity-card">
+                        <div class="amenity-icon">★</div>
+                        <div class="amenity-name">${item}</div>
+                    </div>
+                `).join('');
+
+                // Setup Gallery
+                setupGallery(p.gallery);
+
+                // Switch Views
+                window.scrollTo(0, 0);
+                els.views.list.style.display = 'none';
+                els.views.detail.style.display = 'block';
+                els.views.detail.classList.add('animate-fade-in');
+            }
+
+            function showProjects() {
+                els.views.detail.style.display = 'none';
+                els.views.list.style.display = 'block';
+                els.views.detail.classList.remove('animate-fade-in');
+            }
+
+            // 4. Gallery Logic
+            function setupGallery(images) {
+                currentGalleryImages = images;
+                currentGalleryIndex = 0;
+                
+                // Clear existing images excluding controls
+                const container = els.detail.galleryContainer;
+                const controls = container.querySelector('.gallery-controls');
+                container.innerHTML = ''; // wipe
+                
+                // Add images
+                images.forEach((imgSrc, index) => {
+                    const img = document.createElement('img');
+                    img.src = imgSrc;
+                    img.className = index === 0 ? 'gallery-slide active' : 'gallery-slide';
+                    container.appendChild(img);
+                });
+
+                // Add controls back
+                container.appendChild(controls);
+
+                // Auto Play
+                if (galleryInterval) clearInterval(galleryInterval);
+                galleryInterval = setInterval(galleryNext, 4000);
+
+                // Pause on hover
+                container.addEventListener('mouseenter', () => clearInterval(galleryInterval));
+                container.addEventListener('mouseleave', () => {
+                    clearInterval(galleryInterval);
+                    galleryInterval = setInterval(galleryNext, 4000);
+                });
+            }
+
+            function updateGallery() {
+                const slides = document.querySelectorAll('.gallery-slide');
+                slides.forEach((slide, index) => {
+                    slide.className = index === currentGalleryIndex ? 'gallery-slide active' : 'gallery-slide';
+                });
+            }
+
+            function galleryNext() {
+                currentGalleryIndex = (currentGalleryIndex + 1) % currentGalleryImages.length;
+                updateGallery();
+            }
+
+            function galleryPrev() {
+                currentGalleryIndex = (currentGalleryIndex - 1 + currentGalleryImages.length) % currentGalleryImages.length;
+                updateGallery();
+            }
+
+            // 5. Form Handling
+            function handleFormSubmit(e) {
+                e.preventDefault();
+                // Simple Validation logic is handled by 'required' attr in HTML
+                
+                // Simulate API call
+                const btn = e.target.querySelector('button');
+                const originalText = btn.textContent;
+                btn.textContent = 'Sending...';
+                btn.disabled = true;
+
+                setTimeout(() => {
+                    const toast = document.getElementById('toast');
+                    toast.textContent = "OTP Sent to your mobile!"; // Updated text
+                    toast.classList.add('show');
+                    
+                    e.target.reset();
+                    btn.textContent = originalText;
+                    btn.disabled = false;
+
+                    setTimeout(() => {
+                        toast.classList.remove('show');
+                    }, 3000);
+                }, 1500);
+            }
+
+            // 6. Initialization
+            function init() {
+                // Initial Render
+                renderProjects(projects);
+
+                // Event Listeners
+                els.filters.location.addEventListener('change', filterProjects);
+                els.filters.type.addEventListener('change', filterProjects);
+                els.filters.status.addEventListener('change', filterProjects);
+                
+                els.filters.reset.addEventListener('click', () => {
+                    els.filters.location.value = 'all';
+                    els.filters.type.value = 'all';
+                    els.filters.status.value = 'all';
+                    filterProjects();
+                });
+
+                // Handle keyboard for gallery
+                document.addEventListener('keydown', (e) => {
+                    if (els.views.detail.style.display === 'block') {
+                        if (e.key === 'ArrowRight') galleryNext();
+                        if (e.key === 'ArrowLeft') galleryPrev();
+                    }
+                });
+            }
+
+            return {
+                init,
+                showProjects,
+                openProjectDetails,
+                galleryNext,
+                galleryPrev,
+                handleFormSubmit
+            };
+        })();
+
+        // Start App
+        document.addEventListener('DOMContentLoaded', app.init);
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Careers at KYRA | Join Our Real Estate Team</title>
+    <meta name="description" content="Discover career opportunities at KYRA. Join a leading real estate firm dedicated to innovation, integrity, and professional growth. View open positions and apply today.">
+    <meta name="keywords" content="KYRA careers, real estate jobs, property management careers, real estate agent jobs, work at KYRA">
+    
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="Join the KYRA Team | Real Estate Careers">
+    <meta property="og:description" content="Build your future with KYRA. Explore our culture and current job openings in the real estate industry.">
+    <meta property="og:type" content="website">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #1a1a1a;
+            --accent: #c5a059; /* Sophisticated Gold */
+            --accent-hover: #b38f4d;
+            --text-main: #333333;
+            --text-light: #666666;
+            --bg-light: #f9f9f9;
+            --white: #ffffff;
+            --error: #dc3545;
+            --success: #28a745;
+            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text-main);
+            background-color: var(--white);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background-color: var(--primary);
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 4px;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.85rem;
+        }
+
+        .btn:hover {
+            background-color: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        /* Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: var(--transition);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Navigation */
+        nav {
+            padding: 1.5rem 0;
+            border-bottom: 1px solid #eee;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            background: rgba(255,255,255,0.95);
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--primary);
+            text-decoration: none;
+            letter-spacing: 2px;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 80vh;
+            min-height: 500px;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=1920') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+            margin-top: 70px;
+        }
+
+        .hero-content h1 {
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 2.5rem;
+            opacity: 0.9;
+        }
+
+        /* Why Work With KYRA */
+        .why-section {
+            padding: 100px 0;
+            background: var(--bg-light);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .value-card {
+            background: var(--white);
+            padding: 3rem 2rem;
+            border-radius: 8px;
+            text-align: center;
+            transition: var(--transition);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+        }
+
+        .value-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+        }
+
+        .value-icon {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .value-card h3 {
+            margin-bottom: 1rem;
+            font-family: 'Inter', sans-serif;
+            font-size: 1.3rem;
+        }
+
+        /* Open Positions - Accordion */
+        .positions-section {
+            padding: 100px 0;
+        }
+
+        .accordion {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .accordion-item {
+            border-bottom: 1px solid #eee;
+        }
+
+        .accordion-header {
+            width: 100%;
+            padding: 1.5rem 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: none;
+            border: none;
+            cursor: pointer;
+            text-align: left;
+            transition: var(--transition);
+        }
+
+        .accordion-header h3 {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.25rem;
+            color: var(--primary);
+        }
+
+        .accordion-header .meta {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-top: 0.25rem;
+        }
+
+        .accordion-icon {
+            width: 20px;
+            height: 20px;
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .accordion-icon::before, .accordion-icon::after {
+            content: '';
+            position: absolute;
+            background: var(--accent);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .accordion-icon::before { width: 100%; height: 2px; }
+        .accordion-icon::after { width: 2px; height: 100%; transition: var(--transition); }
+
+        .accordion-item.active .accordion-icon::after {
+            transform: translate(-50%, -50%) rotate(90deg);
+            opacity: 0;
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
+            background: var(--white);
+        }
+
+        .accordion-content .inner {
+            padding: 1rem 0 2.5rem;
+        }
+
+        .accordion-content p {
+            margin-bottom: 1.5rem;
+            color: var(--text-light);
+        }
+
+        .job-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Apply Form */
+        .apply-section {
+            padding: 100px 0;
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .apply-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .apply-info h2 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+        }
+
+        .form-card {
+            background: var(--white);
+            padding: 3rem;
+            border-radius: 8px;
+            color: var(--text-main);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: inherit;
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(197, 160, 89, 0.1);
+        }
+
+        .error-message {
+            color: var(--error);
+            font-size: 0.8rem;
+            margin-top: 0.25rem;
+            display: none;
+        }
+
+        .file-upload-wrapper {
+            position: relative;
+            border: 2px dashed #ddd;
+            padding: 1.5rem;
+            text-align: center;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .file-upload-wrapper:hover {
+            border-color: var(--accent);
+            background: #fffcf5;
+        }
+
+        .file-upload-wrapper input[type="file"] {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .file-label {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .success-overlay {
+            display: none;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        .success-overlay svg {
+            width: 64px;
+            height: 64px;
+            color: var(--success);
+            margin-bottom: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            padding: 50px 0;
+            text-align: center;
+            border-top: 1px solid #eee;
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .apply-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            .apply-info {
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            .section-header h2 {
+                font-size: 2rem;
+            }
+            .form-card {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="container">
+            <a href="#" class="logo">KYRA</a>
+            <div class="nav-links">
+                <a href="#open-positions" class="btn" style="padding: 0.6rem 1.2rem; font-size: 0.75rem;">View Roles</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container hero-content">
+                <h1 class="reveal">Build the Future of Living.</h1>
+                <p class="reveal">Join a team of visionaries redefining the real estate experience through innovation and excellence.</p>
+                <a href="#open-positions" class="btn reveal">Explore Careers</a>
+            </div>
+        </section>
+
+        <!-- Why KYRA -->
+        <section id="why-kyra" class="why-section">
+            <div class="container">
+                <div class="section-header reveal">
+                    <h2>Why Work With KYRA</h2>
+                    <p>We don't just close deals; we build communities and careers.</p>
+                </div>
+                <div class="values-grid">
+                    <div class="value-card reveal">
+                        <span class="value-icon">✧</span>
+                        <h3>Excellence in Design</h3>
+                        <p>We believe architecture and interiors define a lifestyle. We prioritize aesthetic and functional superiority in every project.</p>
+                    </div>
+                    <div class="value-card reveal">
+                        <span class="value-icon">⌘</span>
+                        <h3>Innovative Growth</h3>
+                        <p>With access to cutting-edge real estate technology and continuous mentorship, your career trajectory knows no bounds.</p>
+                    </div>
+                    <div class="value-card reveal">
+                        <span class="value-icon">⌬</span>
+                        <h3>Inclusive Culture</h3>
+                        <p>A collaborative environment where diverse perspectives are the foundation of our collective success.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Open Positions -->
+        <section id="open-positions" class="positions-section">
+            <div class="container">
+                <div class="section-header reveal">
+                    <h2>Current Openings</h2>
+                    <p>Find your next challenge among our current opportunities.</p>
+                </div>
+
+                <div class="accordion reveal">
+                    <!-- Item 1 -->
+                    <div class="accordion-item">
+                        <button class="accordion-header" aria-expanded="false">
+                            <div>
+                                <h3>Senior Property Manager</h3>
+                                <div class="meta">Full-time • London, UK • Hybrid</div>
+                            </div>
+                            <div class="accordion-icon"></div>
+                        </button>
+                        <div class="accordion-content">
+                            <div class="inner">
+                                <p>We are looking for an experienced Property Manager to oversee a premium portfolio of residential assets. You will be responsible for ensuring operational excellence and tenant satisfaction.</p>
+                                <div class="job-details">
+                                    <div><strong>Key Skills:</strong> Asset Management, CRM, Legal Compliance</div>
+                                    <div><strong>Experience:</strong> 5+ Years</div>
+                                </div>
+                                <a href="#apply" class="btn apply-btn-trigger" data-role="Senior Property Manager">Apply Now</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Item 2 -->
+                    <div class="accordion-item">
+                        <button class="accordion-header" aria-expanded="false">
+                            <div>
+                                <h3>Real Estate Consultant</h3>
+                                <div class="meta">Full-time • Dubai, UAE • On-site</div>
+                            </div>
+                            <div class="accordion-icon"></div>
+                        </button>
+                        <div class="accordion-content">
+                            <div class="inner">
+                                <p>Join our luxury sales division. We need high-energy consultants who understand the nuances of high-net-worth clients and premium real estate markets.</p>
+                                <div class="job-details">
+                                    <div><strong>Key Skills:</strong> Sales Negotiation, Market Analysis</div>
+                                    <div><strong>Experience:</strong> 3+ Years</div>
+                                </div>
+                                <a href="#apply" class="btn apply-btn-trigger" data-role="Real Estate Consultant">Apply Now</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Item 3 -->
+                    <div class="accordion-item">
+                        <button class="accordion-header" aria-expanded="false">
+                            <div>
+                                <h3>Marketing Specialist</h3>
+                                <div class="meta">Full-time • New York, NY • Remote Friendly</div>
+                            </div>
+                            <div class="accordion-icon"></div>
+                        </button>
+                        <div class="accordion-content">
+                            <div class="inner">
+                                <p>Help us tell the story of KYRA. You'll lead digital campaigns, brand storytelling, and property launch events for our global portfolio.</p>
+                                <div class="job-details">
+                                    <div><strong>Key Skills:</strong> Brand Strategy, Digital Marketing, SEO</div>
+                                    <div><strong>Experience:</strong> 4+ Years</div>
+                                </div>
+                                <a href="#apply" class="btn apply-btn-trigger" data-role="Marketing Specialist">Apply Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Apply Form -->
+        <section id="apply" class="apply-section">
+            <div class="container">
+                <div class="apply-grid">
+                    <div class="apply-info reveal">
+                        <h2>Ready to Begin?</h2>
+                        <p>Submit your details and our talent acquisition team will reach out to you within 48 hours.</p>
+                        <div style="margin-top: 2rem; color: var(--accent);">
+                            <p><strong>General Inquiries:</strong></p>
+                            <p>careers@kyra-realestate.com</p>
+                        </div>
+                    </div>
+
+                    <div class="form-card reveal">
+                        <div id="form-success" class="success-overlay">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            <h3>Application Submitted!</h3>
+                            <p>Thank you for your interest in KYRA. We have received your application and resume.</p>
+                            <button class="btn" onclick="resetForm()" style="margin-top: 1.5rem;">Back to form</button>
+                        </div>
+
+                        <form id="career-form">
+                            <div class="form-group">
+                                <label for="name">Full Name *</label>
+                                <input type="text" id="name" name="name" class="form-control" placeholder="John Doe" required>
+                                <div class="error-message">Please enter your full name.</div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">Email Address *</label>
+                                <input type="email" id="email" name="email" class="form-control" placeholder="john@example.com" required>
+                                <div class="error-message">Please enter a valid email address.</div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="phone">Phone Number *</label>
+                                <input type="tel" id="phone" name="phone" class="form-control" placeholder="+1 234 567 890" required>
+                                <div class="error-message">Please enter a valid phone number.</div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="position">Position Applied For *</label>
+                                <select id="position" name="position" class="form-control" required>
+                                    <option value="" disabled selected>Select a position</option>
+                                    <option value="Senior Property Manager">Senior Property Manager</option>
+                                    <option value="Real Estate Consultant">Real Estate Consultant</option>
+                                    <option value="Marketing Specialist">Marketing Specialist</option>
+                                    <option value="General Application">General Application</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Resume/CV (PDF, DOC, DOCX) *</label>
+                                <div class="file-upload-wrapper">
+                                    <span class="file-label" id="file-name-display">Click or drag to upload your CV</span>
+                                    <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" required>
+                                </div>
+                                <div id="file-error" class="error-message">Invalid file type. Only PDF and Word docs are accepted.</div>
+                            </div>
+
+                            <button type="submit" class="btn" style="width: 100%;">Submit Application</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 KYRA Real Estate Holdings. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // 1. Reveal Animations on Scroll
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // 2. Accordion Functionality
+        document.querySelectorAll('.accordion-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const item = header.parentElement;
+                const isActive = item.classList.contains('active');
+                
+                // Close all others
+                document.querySelectorAll('.accordion-item').forEach(otherItem => {
+                    otherItem.classList.remove('active');
+                    otherItem.querySelector('.accordion-content').style.maxHeight = null;
+                    otherItem.querySelector('.accordion-header').setAttribute('aria-expanded', 'false');
+                });
+
+                if (!isActive) {
+                    item.classList.add('active');
+                    header.setAttribute('aria-expanded', 'true');
+                    const content = item.querySelector('.accordion-content');
+                    content.style.maxHeight = content.scrollHeight + "px";
+                }
+            });
+        });
+
+        // 3. Form Application Triggers
+        document.querySelectorAll('.apply-btn-trigger').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const role = btn.getAttribute('data-role');
+                const positionSelect = document.getElementById('position');
+                positionSelect.value = role;
+            });
+        });
+
+        // 4. File Upload Display
+        const fileInput = document.getElementById('resume');
+        const fileNameDisplay = document.getElementById('file-name-display');
+        const fileError = document.getElementById('file-error');
+
+        fileInput.addEventListener('change', (e) => {
+            if (e.target.files.length > 0) {
+                const file = e.target.files[0];
+                const validTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
+                
+                if (validTypes.includes(file.type)) {
+                    fileNameDisplay.textContent = file.name;
+                    fileNameDisplay.style.color = 'var(--accent)';
+                    fileError.style.display = 'none';
+                } else {
+                    fileNameDisplay.textContent = "Click or drag to upload your CV";
+                    fileError.style.display = 'block';
+                    e.target.value = ''; // Reset
+                }
+            }
+        });
+
+        // 5. Form Validation & Submission
+        const form = document.getElementById('career-form');
+        const successOverlay = document.getElementById('form-success');
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            let isValid = true;
+            
+            // Basic validation check (built-in HTML validation does most, but we can add custom logic)
+            const email = document.getElementById('email').value;
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            
+            if (!emailRegex.test(email)) {
+                isValid = false;
+                document.querySelector('#email + .error-message').style.display = 'block';
+            } else {
+                document.querySelector('#email + .error-message').style.display = 'none';
+            }
+
+            if (isValid) {
+                // Simulate API call
+                const submitBtn = form.querySelector('button[type="submit"]');
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Sending...';
+
+                setTimeout(() => {
+                    form.style.display = 'none';
+                    successOverlay.style.display = 'block';
+                }, 1500);
+            }
+        });
+
+        function resetForm() {
+            form.reset();
+            form.style.display = 'block';
+            successOverlay.style.display = 'none';
+            fileNameDisplay.textContent = "Click or drag to upload your CV";
+            fileNameDisplay.style.color = 'var(--text-light)';
+            const submitBtn = form.querySelector('button[type="submit"]');
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Submit Application';
+        }
+    </script>
+</body>
+</html>
