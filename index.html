@@ -274,15 +274,55 @@
       /* --- Hero Section --- */
       .hero {
         height: 100vh;
-        display: flex;
-        align-items: center;
         position: relative;
-        background:
-          linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
-          url("https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&q=80&w=1920")
-            no-repeat center center/cover;
         color: var(--white);
         overflow: hidden;
+      }
+
+      .hero-carousel {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+      }
+
+      .hero-slide {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        transition: opacity 1s ease-in-out;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+      }
+
+      .hero-slide::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45));
+      }
+
+      .hero-slide.active {
+        opacity: 1;
+      }
+
+      .hero-slide:nth-child(1) {
+        background-image: url("https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&q=80&w=1920");
+      }
+
+      .hero-slide:nth-child(2) {
+        background-image: url("https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1920");
+      }
+
+      .hero > .container {
+        position: relative;
+        z-index: 10;
+        height: 100%;
+        display: flex;
+        align-items: center;
       }
 
       .hero-content {
@@ -300,6 +340,35 @@
         font-size: 20px;
         margin-bottom: 40px;
         opacity: 0.9;
+      }
+
+      .hero-indicators {
+        position: absolute;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 12px;
+        z-index: 20;
+      }
+
+      .hero-indicator {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.4);
+        border: none;
+        cursor: pointer;
+        transition: var(--transition);
+      }
+
+      .hero-indicator.active {
+        background: var(--white);
+        transform: scale(1.2);
+      }
+
+      .hero-indicator:hover {
+        background: rgba(255, 255, 255, 0.8);
       }
 
       /* --- About Section --- */
@@ -1223,6 +1292,12 @@
 
     <!-- Hero -->
     <section class="hero">
+      <!-- Carousel Slides -->
+      <div class="hero-carousel">
+        <div class="hero-slide active"></div>
+        <div class="hero-slide"></div>
+      </div>
+
       <div class="container">
         <div class="hero-content">
           <span class="badge">Trusted Real Estate Developer</span>
@@ -1241,6 +1316,12 @@
             >
           </div>
         </div>
+      </div>
+
+      <!-- Carousel Indicators -->
+      <div class="hero-indicators">
+        <button class="hero-indicator active" data-slide="0"></button>
+        <button class="hero-indicator" data-slide="1"></button>
       </div>
     </section>
 
@@ -2145,6 +2226,46 @@
     </div>
 
     <script>
+      // Hero Carousel
+      const heroSlides = document.querySelectorAll(".hero-slide");
+      const heroIndicators = document.querySelectorAll(".hero-indicator");
+      let heroCurrentSlide = 0;
+      let heroAutoPlay;
+
+      function goToHeroSlide(index) {
+        heroSlides[heroCurrentSlide].classList.remove("active");
+        heroIndicators[heroCurrentSlide].classList.remove("active");
+        heroCurrentSlide = index;
+        if (heroCurrentSlide >= heroSlides.length) heroCurrentSlide = 0;
+        if (heroCurrentSlide < 0) heroCurrentSlide = heroSlides.length - 1;
+        heroSlides[heroCurrentSlide].classList.add("active");
+        heroIndicators[heroCurrentSlide].classList.add("active");
+      }
+
+      function nextHeroSlide() {
+        goToHeroSlide(heroCurrentSlide + 1);
+      }
+
+      // Auto-play carousel
+      function startHeroAutoPlay() {
+        heroAutoPlay = setInterval(nextHeroSlide, 5000);
+      }
+
+      function stopHeroAutoPlay() {
+        clearInterval(heroAutoPlay);
+      }
+
+      startHeroAutoPlay();
+
+      // Indicator clicks
+      heroIndicators.forEach((indicator, index) => {
+        indicator.addEventListener("click", () => {
+          stopHeroAutoPlay();
+          goToHeroSlide(index);
+          startHeroAutoPlay();
+        });
+      });
+
       // 1. Header Scroll Effect
       const header = document.getElementById("main-header");
       window.addEventListener("scroll", () => {
