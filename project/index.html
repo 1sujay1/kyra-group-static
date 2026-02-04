@@ -622,7 +622,7 @@
                             <label for="filter-location">Location</label>
                             <select id="filter-location" class="filter-select">
                                 <option value="all">All Locations</option>
-                                <option value="Downtown">Downtown</option>
+                                <option value="Erode">Erode</option>
                                 <option value="Suburb">Green Valley Suburb</option>
                                 <option value="Waterfront">Waterfront District</option>
                             </select>
@@ -631,7 +631,7 @@
                             <label for="filter-type">Property Type</label>
                             <select id="filter-type" class="filter-select">
                                 <option value="all">All Types</option>
-                                <option value="Residential">Residential Apartments</option>
+                                <option value="PLOTS">PLOTS</option>
                                 <option value="Villa">Luxury Villas</option>
                                 <option value="Commercial">Commercial/Office</option>
                             </select>
@@ -639,7 +639,7 @@
                         <div class="filter-group">
                             <label for="filter-status">Status</label>
                             <select id="filter-status" class="filter-select">
-                                <option value="all">All Statuses</option>
+                                <option value="all">All Status</option>
                                 <option value="Ready to Move">Ready to Move</option>
                                 <option value="Under Construction">Under Construction</option>
                                 <option value="New Launch">New Launch</option>
@@ -840,17 +840,17 @@
             const projects = [
                 {
                     id: 1,
-                    title: "Kyra Emerald Heights",
-                    location: "Downtown",
-                    type: "Residential",
-                    status: "Under Construction",
-                    price: "$450,000",
-                    sqft: "1200 - 1800 sq.ft",
-                    image: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=800&q=80",
+                    title: "Siragiri Velavan Nagar",
+                    location: "Erode",
+                    type: "PLOTS",
+                    status: "New Launch",
+                    price: "Ammapettai",
+                    // sqft: "1200 - 1800 sq.ft",
+                    image: "/assets/image/velan nagar 1000.png",
                     gallery: [
-                        "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1200&q=80",
-                        "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=80",
-                        "https://images.unsplash.com/photo-1484154218962-a1c002085d2f?auto=format&fit=crop&w=1200&q=80"
+                        "/assets/image/velan nagar 1000.png",
+                        // "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=80",
+                        // "https://images.unsplash.com/photo-1484154218962-a1c002085d2f?auto=format&fit=crop&w=1200&q=80"
                     ],
                     rera: "DT-RES-0045",
                     possession: "Dec 2025",
@@ -868,8 +868,8 @@
                     image: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=800&q=80",
                     gallery: [
                         "https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1200&q=80",
-                        "https://images.unsplash.com/photo-1580587771525-78b9dba3b91d?auto=format&fit=crop&w=1200&q=80",
-                        "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=1200&q=80"
+                        // "https://images.unsplash.com/photo-1580587771525-78b9dba3b91d?auto=format&fit=crop&w=1200&q=80",
+                        // "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=1200&q=80"
                     ],
                     rera: "SB-VIL-9921",
                     possession: "Jan 2027",
@@ -895,44 +895,44 @@
                     amenities: ["Conference Rooms", "High Speed Internet", "Cafeteria", "Lounge", "Parking", "Metro Access"],
                     mapQuery: "canary+wharf+london"
                 },
-                {
-                    id: 4,
-                    title: "Kyra Skyline Residences",
-                    location: "Downtown",
-                    type: "Residential",
-                    status: "Ready to Move",
-                    price: "$600,000",
-                    sqft: "1500 sq.ft",
-                    image: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=800&q=80",
-                    gallery: [
-                        "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=1200&q=80",
-                        "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=1200&q=80",
-                         "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=1200&q=80"
-                    ],
-                    rera: "DT-RES-8822",
-                    possession: "Immediate",
-                    amenities: ["Sky Lounge", "Infinity Pool", "Concierge", "Gym", "Spa", "Valet"],
-                    mapQuery: "chicago+downtown"
-                },
-                 {
-                    id: 5,
-                    title: "Kyra Lakeside Manor",
-                    location: "Waterfront",
-                    type: "Villa",
-                    status: "Under Construction",
-                    price: "$950,000",
-                    sqft: "2800 sq.ft",
-                    image: "https://images.unsplash.com/photo-1600596542815-e328d4de4bf7?auto=format&fit=crop&w=800&q=80",
-                    gallery: [
-                        "https://images.unsplash.com/photo-1600596542815-e328d4de4bf7?auto=format&fit=crop&w=1200&q=80",
-                        "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80",
-                        "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1200&q=80"
-                    ],
-                    rera: "WF-VIL-3321",
-                    possession: "June 2026",
-                    amenities: ["Private Boat Dock", "Deck", "BBQ Area", "Security", "Smart Lighting", "Garden"],
-                    mapQuery: "lake+como+italy"
-                }
+                // {
+                //     id: 4,
+                //     title: "Kyra Skyline Residences",
+                //     location: "Downtown",
+                //     type: "Residential",
+                //     status: "Ready to Move",
+                //     price: "$600,000",
+                //     sqft: "1500 sq.ft",
+                //     image: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=800&q=80",
+                //     gallery: [
+                //         "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=1200&q=80",
+                //         "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=1200&q=80",
+                //          "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=1200&q=80"
+                //     ],
+                //     rera: "DT-RES-8822",
+                //     possession: "Immediate",
+                //     amenities: ["Sky Lounge", "Infinity Pool", "Concierge", "Gym", "Spa", "Valet"],
+                //     mapQuery: "chicago+downtown"
+                // },
+                //  {
+                //     id: 5,
+                //     title: "Kyra Lakeside Manor",
+                //     location: "Waterfront",
+                //     type: "Villa",
+                //     status: "Under Construction",
+                //     price: "$950,000",
+                //     sqft: "2800 sq.ft",
+                //     image: "https://images.unsplash.com/photo-1600596542815-e328d4de4bf7?auto=format&fit=crop&w=800&q=80",
+                //     gallery: [
+                //         "https://images.unsplash.com/photo-1600596542815-e328d4de4bf7?auto=format&fit=crop&w=1200&q=80",
+                //         "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80",
+                //         "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1200&q=80"
+                //     ],
+                //     rera: "WF-VIL-3321",
+                //     possession: "June 2026",
+                //     amenities: ["Private Boat Dock", "Deck", "BBQ Area", "Security", "Smart Lighting", "Garden"],
+                //     mapQuery: "lake+como+italy"
+                // }
             ];
 
             // --- DOM ELEMENTS ---
@@ -1037,7 +1037,7 @@
                 // Populate Details
                 els.detail.title.textContent = p.title;
                 els.detail.loc.textContent = p.location;
-                els.detail.price.textContent = `Starts from ${p.price}`;
+                els.detail.price.textContent = `Location : ${p.price}`;
                 els.detail.status.textContent = p.status;
                 els.detail.rera.textContent = p.rera;
                 els.detail.possession.textContent = p.possession;
