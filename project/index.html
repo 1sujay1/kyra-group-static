@@ -9,6 +9,7 @@
     <meta property="og:title" content="Kyra Group Real Estate Projects">
     <meta property="og:description" content="Find your dream property with Kyra Group.">
     <meta property="og:type" content="website">
+    <link rel="stylesheet" href="/assets/css/common.css">
 
     <style>
         /* =========================================
@@ -601,15 +602,8 @@
     <!-- Notification Toast -->
     <div id="toast" class="notification">OTP sent successfully!</div>
 
-    <!-- Header -->
-    <header>
-        <div class="container nav-wrapper">
-            <a href="#" class="logo" onclick="app.showProjects()">KYRA<span style="color:var(--text-dark)">GROUP</span></a>
-            <nav>
-                <button class="btn btn-primary" onclick="document.querySelector('.kyra-form-col').scrollIntoView({behavior: 'smooth'})">Enquire</button>
-            </nav>
-        </div>
-    </header>
+     <!-- Header Container for Dynamic Insertion -->
+    <div id="header-container"></div>
 
     <main>
         <!-- VIEW 1: PROJECTS GRID -->
@@ -845,16 +839,14 @@
         </section>
     </main>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2024 Kyra Group Real Estate. All rights reserved.</p>
-        </div>
-    </footer>
+    <!-- Footer Container for Dynamic Insertion -->
+    <div id="footer-container"></div>
 
     <!-- =========================================
        7. JAVASCRIPT LOGIC
        ========================================= -->
-    <script>
+<script src="/assets/js/common.js"></script>
+    <script src="/assets/js/config.js"></script>    <script>
         const app = (function() {
             // --- DATA ---
             const projects = [
