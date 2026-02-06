@@ -12,7 +12,6 @@ function generateHeader() {
           <li><a href="/project/">Projects</a></li>
           <li><a href="/gallery">Gallery</a></li>
           <li><a href="/contact/">Contact</a></li>
-          <li><a href="/job/">Careers</a></li>
         </ul>
         <button class="btn btn-primary open-callback-modal">
           Get Callback
@@ -751,7 +750,7 @@ function initializeCallbackModal() {
   const callbackModal = document.getElementById("callbackModal");
   const openModalBtns = document.querySelectorAll(".open-callback-modal");
   const closeModalBtn = document.querySelector(".callback-modal-close");
-  const callbackForm = document.getElementById("contact-form2");
+  //   const callbackForm = document.getElementById("contact-form2");
 
   // Open modal
   if (openModalBtns) {
@@ -796,25 +795,102 @@ function initializeCallbackModal() {
   });
 
   // Form submission handling
-  if (callbackForm) {
-    callbackForm.addEventListener("submit", (e) => {
-      e.preventDefault();
-      const submitBtn = callbackForm.querySelector(".btn-submit");
-      const originalText = submitBtn.innerText;
-      submitBtn.innerText = "Sending...";
-      submitBtn.disabled = true;
+  //   if (callbackForm) {
+  //     callbackForm.addEventListener("submit", (e) => {
+  //       e.preventDefault();
+  //       const submitBtn = callbackForm.querySelector(".btn-submit");
+  //       const originalText = submitBtn.innerText;
+  //       submitBtn.innerText = "Sending...";
+  //       submitBtn.disabled = true;
 
-      // Simulate API call
-      setTimeout(() => {
-        callbackForm.innerHTML = `
-          <div style="text-align: center; padding: 20px 0;">
-            <div style="width: 60px; height: 60px; background: var(--primary-green); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; font-size: 28px;">✓</div>
-            <h3 style="margin-bottom: 8px;">Thank You!</h3>
-            <p style="color: var(--text-light);">We'll get back to you within 24 hours.</p>
-          </div>
-        `;
-        setTimeout(closeCallbackModal, 2500);
-      }, 1500);
-    });
-  }
+  //       // Simulate API call
+  //       setTimeout(() => {
+  //         callbackForm.innerHTML = `
+  //           <div style="text-align: center; padding: 20px 0;">
+  //             <div style="width: 60px; height: 60px; background: var(--primary-green); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; font-size: 28px;">✓</div>
+  //             <h3 style="margin-bottom: 8px;">Thank You!</h3>
+  //             <p style="color: var(--text-light);">We'll get back to you within 24 hours.</p>
+  //           </div>
+  //         `;
+  //         setTimeout(closeCallbackModal, 2500);
+  //       }, 1500);
+  //     });
+  //   }
 }
+document.addEventListener("DOMContentLoaded", function () {
+  var bookingForm = document.getElementById("contact-form2");
+  if (!bookingForm) return;
+  var successMsg = document.getElementById("success_message_col2");
+  var errorMsg = document.getElementById("error_message2");
+  var submitBtn = document.getElementById("contact_form_btn2");
+  bookingForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    if (successMsg) {
+      successMsg.textContent = "";
+      successMsg.style.display = "none";
+    }
+    if (errorMsg) {
+      errorMsg.textContent = "";
+      errorMsg.style.display = "none";
+    }
+    console.log("Form data:", bookingForm);
+    var name = bookingForm.name.value.trim();
+    var email = bookingForm.email.value.trim();
+    var mobile = bookingForm.querySelector("[name=mobile]")?.value.trim() || "";
+    console.log("Mobile:", mobile);
+    var message = bookingForm.message?.value?.trim() || "";
+    console.log({ name, email, mobile, message });
+    console.log("Submitting form...");
+    console.log("Using BaseURL:", BaseURL);
+    console.log(submitBtn);
+    if (!name || !email || !mobile) {
+      if (errorMsg) {
+        errorMsg.style.display = "block";
+        errorMsg.style.color = "#d32f2f";
+        errorMsg.textContent = "Please fill all required fields.";
+      }
+      return;
+    }
+    submitBtn.disabled = true;
+    var originalText = submitBtn.innerHTML;
+    submitBtn.innerHTML = "Submitting...";
+    fetch(`${BaseURL}/api/v1/kyra/contact`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        project: "KYRA_GROUP_INDIA",
+        name,
+        email,
+        phone: mobile,
+        message,
+      }),
+    })
+      .then(function (res) {
+        if (res.status !== 200) {
+          throw new Error("Failed to submit. Please try again.");
+        }
+        return res.json();
+      })
+      .then(function (data) {
+        if (successMsg) {
+          successMsg.style.display = "block";
+          successMsg.style.color = "#388e3c";
+          successMsg.textContent = "Thank you! Your request has been sent.";
+        }
+        bookingForm.reset();
+      })
+      .catch(function (err) {
+        if (errorMsg) {
+          errorMsg.style.display = "block";
+          errorMsg.style.color = "#d32f2f";
+          errorMsg.textContent =
+            err.message || "Submission failed. Please try again.";
+        }
+      })
+      .finally(function () {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalText;
+      });
+  });
+});

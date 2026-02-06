@@ -1,9 +1,9 @@
 document.addEventListener("DOMContentLoaded", function () {
-  var bookingForm = document.getElementById("contact-form1");
+  var bookingForm = document.getElementById("contact-form2");
   if (!bookingForm) return;
-  var successMsg = document.getElementById("success_message_col1");
-  var errorMsg = document.getElementById("error_message1");
-  var submitBtn = document.getElementById("contact_form_btn1");
+  var successMsg = document.getElementById("success_message_col2");
+  var errorMsg = document.getElementById("error_message2");
+  var submitBtn = document.getElementById("contact_form_btn2");
   bookingForm.addEventListener("submit", function (e) {
     e.preventDefault();
 

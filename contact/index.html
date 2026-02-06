@@ -515,14 +515,14 @@
 
         <!-- Form -->
         <article class="contact-form-container reveal">
-          <form id="leadForm" novalidate>
+          <form id="contact-form2" novalidate>
             <div class="form-row">
               <div class="form-group">
                 <label for="fullName" class="form-label">Full Name</label>
                 <input
                   type="text"
                   id="fullName"
-                  name="fullName"
+                  name="name"
                   class="form-input"
                   placeholder="Enter Name"
                   required
@@ -536,7 +536,7 @@
                 <input
                   type="tel"
                   id="phone"
-                  name="phone"
+                  name="mobile"
                   class="form-input"
                   placeholder="Mobile Number "
                   required
@@ -563,16 +563,6 @@
             </div>
 
             <div class="form-group">
-              <label for="interest" class="form-label">Interested In</label>
-              <select id="interest" name="interest" class="form-input">
-                <option value="buying">Farm Land</option>
-                <option value="selling">Plots</option>
-                <!-- <option value="investing">Investment Portfolio</option>
-                            <option value="rental">Luxury Rental</option> -->
-              </select>
-            </div>
-
-            <div class="form-group">
               <label for="message" class="form-label">Your Message</label>
               <textarea
                 id="message"
@@ -583,22 +573,16 @@
               ></textarea>
             </div>
 
-            <div class="checkbox-group">
-              <input type="checkbox" id="newsletter" name="newsletter" />
-              <label
-                for="newsletter"
-                style="font-size: 0.85rem; color: var(--text-muted)"
-              >
-                Sign me up for the weekly market update and exclusive off-market
-                listings.
-              </label>
-            </div>
-
-            <button type="submit" class="btn btn-submit" id="submitBtn">
+            <button type="submit" class="btn btn-submit" id="contact_form_btn2">
               <span class="btn-text">Send Message</span>
               <div class="spinner" id="btnSpinner"></div>
             </button>
-
+            <div
+              id="success_message_col2"
+              class="mt-2"
+              style="margin-top: 10px"
+            ></div>
+            <div id="error_message2" class="error"></div>
             <!-- Honeypot for spam -->
             <div style="display: none">
               <input type="text" name="honeypot" id="honeypot" />
@@ -667,95 +651,96 @@
         .forEach((el) => observer.observe(el));
 
       // Form Validation Logic
-      const form = document.getElementById("leadForm");
-      const submitBtn = document.getElementById("submitBtn");
-      const btnSpinner = document.getElementById("btnSpinner");
-      const btnText = submitBtn.querySelector(".btn-text");
-      const successOverlay = document.getElementById("success-overlay");
+      //   const form = document.getElementById("leadForm");
+      //   const submitBtn = document.getElementById("submitBtn");
+      //   const btnSpinner = document.getElementById("btnSpinner");
+      //   const btnText = submitBtn.querySelector(".btn-text");
+      //   const successOverlay = document.getElementById("success-overlay");
 
-      const inputs = {
-        fullName: document.getElementById("fullName"),
-        email: document.getElementById("email"),
-        phone: document.getElementById("phone"),
-      };
+      //   const inputs = {
+      //     fullName: document.getElementById("fullName"),
+      //     email: document.getElementById("email"),
+      //     phone: document.getElementById("phone"),
+      //   };
 
-      const errors = {
-        fullName: document.getElementById("nameError"),
-        email: document.getElementById("emailError"),
-        phone: document.getElementById("phoneError"),
-      };
+      //   const errors = {
+      //     fullName: document.getElementById("nameError"),
+      //     email: document.getElementById("emailError"),
+      //     phone: document.getElementById("phoneError"),
+      //   };
 
-      const validateEmail = (email) => {
-        return String(email)
-          .toLowerCase()
-          .match(
-            /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-          );
-      };
+      //   const validateEmail = (email) => {
+      //     return String(email)
+      //       .toLowerCase()
+      //       .match(
+      //         /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+      //       );
+      //   };
 
-      const validatePhone = (phone) => {
-        // Basic regex for 7-15 digits
-        return phone.match(
-          /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im,
-        );
-      };
+      //   const validatePhone = (phone) => {
+      //     // Basic regex for 7-15 digits
+      //     return phone.match(
+      //       /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im,
+      //     );
+      //   };
 
-      const toggleError = (id, show) => {
-        inputs[id].classList.toggle("error", show);
-        errors[id].style.display = show ? "block" : "none";
-      };
+      //   const toggleError = (id, show) => {
+      //     inputs[id].classList.toggle("error", show);
+      //     errors[id].style.display = show ? "block" : "none";
+      //   };
 
-      // Real-time validation
-      Object.keys(inputs).forEach((key) => {
-        inputs[key].addEventListener("blur", () => {
-          let isInvalid = false;
-          if (key === "fullName")
-            isInvalid = inputs[key].value.trim().length < 2;
-          if (key === "email") isInvalid = !validateEmail(inputs[key].value);
-          if (key === "phone") isInvalid = !validatePhone(inputs[key].value);
+      //   // Real-time validation
+      //   Object.keys(inputs).forEach((key) => {
+      //     inputs[key].addEventListener("blur", () => {
+      //       let isInvalid = false;
+      //       if (key === "fullName")
+      //         isInvalid = inputs[key].value.trim().length < 2;
+      //       if (key === "email") isInvalid = !validateEmail(inputs[key].value);
+      //       if (key === "phone") isInvalid = !validatePhone(inputs[key].value);
 
-          toggleError(key, isInvalid);
-        });
+      //       toggleError(key, isInvalid);
+      //     });
 
-        inputs[key].addEventListener("input", () => {
-          toggleError(key, false);
-        });
-      });
+      //     inputs[key].addEventListener("input", () => {
+      //       toggleError(key, false);
+      //     });
+      //   });
 
-      form.addEventListener("submit", async (e) => {
-        e.preventDefault();
+      //   form.addEventListener("submit", async (e) => {
+      //     e.preventDefault();
 
-        // Honeypot check
-        if (document.getElementById("honeypot").value) return;
+      //     // Honeypot check
+      //     if (document.getElementById("honeypot").value) return;
 
-        // Final Validation
-        const isNameValid = inputs.fullName.value.trim().length >= 2;
-        const isEmailValid = validateEmail(inputs.email.value);
-        const isPhoneValid = validatePhone(inputs.phone.value);
+      //     // Final Validation
+      //     const isNameValid = inputs.fullName.value.trim().length >= 2;
+      //     const isEmailValid = validateEmail(inputs.email.value);
+      //     const isPhoneValid = validatePhone(inputs.phone.value);
 
-        toggleError("fullName", !isNameValid);
-        toggleError("email", !isEmailValid);
-        toggleError("phone", !isPhoneValid);
+      //     toggleError("fullName", !isNameValid);
+      //     toggleError("email", !isEmailValid);
+      //     toggleError("phone", !isPhoneValid);
 
-        if (isNameValid && isEmailValid && isPhoneValid) {
-          // Show loading state
-          submitBtn.disabled = true;
-          btnText.style.display = "none";
-          btnSpinner.style.display = "block";
+      //     if (isNameValid && isEmailValid && isPhoneValid) {
+      //       // Show loading state
+      //       submitBtn.disabled = true;
+      //       btnText.style.display = "none";
+      //       btnSpinner.style.display = "block";
 
-          // Simulate API Call
-          setTimeout(() => {
-            form.style.display = "none";
-            successOverlay.style.display = "block";
-            window.scrollTo({
-              top: form.offsetTop - 100,
-              behavior: "smooth",
-            });
-          }, 1500);
-        }
-      });
+      //       // Simulate API Call
+      //       setTimeout(() => {
+      //         form.style.display = "none";
+      //         successOverlay.style.display = "block";
+      //         window.scrollTo({
+      //           top: form.offsetTop - 100,
+      //           behavior: "smooth",
+      //         });
+      //       }, 1500);
+      //     }
+      //   });
     </script>
-    <script src="../assets/js/common.js"></script>
-    <script src="../assets/js/config.js"></script>
+    <script src="/assets/js/config.js"></script>
+    <script src="/assets/js/common.js"></script>
+    <script src="/assets/js/contact.js"></script>
   </body>
 </html>
