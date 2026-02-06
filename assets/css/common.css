@@ -483,7 +483,7 @@ header.scrolled {
 /* Banner Info Cards */
 .banner-info {
   position: absolute;
-  bottom: 80px;
+  bottom: 40px;
   left: 50px;
   display: flex;
   gap: 20px;
@@ -746,16 +746,29 @@ footer {
   }
 
   .banner-info {
-    bottom: 120px;
-    left: 20px;
-    right: 20px;
-    justify-content: center;
+    bottom: 100px;
+    left: 16px;
+    right: 16px;
+    justify-content: space-between;
     flex-wrap: wrap;
+    gap: 12px;
   }
 
   .info-card {
-    flex: 1;
-    min-width: auto;
+    flex: 1 1 calc(33.333% - 8px);
+    min-width: 80px;
+    padding: 12px 8px;
+    font-size: 0.8rem;
+  }
+
+  .info-card .number {
+    font-size: 1.2rem;
+    margin-bottom: 2px;
+  }
+
+  .info-card .label {
+    font-size: 0.7rem;
+    line-height: 1.2;
   }
 
   .nav-container {
@@ -847,6 +860,38 @@ footer {
     padding: 10px !important;
   }
 
+  /* Banner info cards for small mobile screens */
+  .banner-info {
+    bottom: 80px;
+    left: 12px;
+    right: 12px;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 8px;
+  }
+
+  .info-card {
+    flex: 1 1 auto;
+    min-width: 70px;
+    max-width: calc(33.333% - 6px);
+    padding: 8px 4px;
+    border-radius: 8px;
+  }
+
+  .info-card .number {
+    font-size: 1rem;
+    margin-bottom: 2px;
+    line-height: 1;
+  }
+
+  .info-card .label {
+    font-size: 0.6rem;
+    line-height: 1.1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
   .footer-grid {
     grid-template-columns: 1fr;
   }
@@ -857,6 +902,29 @@ footer {
 
   .callback-modal h3 {
     font-size: 18px;
+  }
+}
+
+@media (max-width: 360px) {
+  .banner-info {
+    bottom: 70px;
+    left: 8px;
+    right: 8px;
+    gap: 6px;
+  }
+
+  .info-card {
+    min-width: 60px;
+    padding: 6px 2px;
+    font-size: 0.7rem;
+  }
+
+  .info-card .number {
+    font-size: 0.9rem;
+  }
+
+  .info-card .label {
+    font-size: 0.55rem;
   }
 }
 
