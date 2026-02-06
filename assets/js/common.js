@@ -10,6 +10,7 @@ function generateHeader() {
           <li><a href="/">Home</a></li>
           <li><a href="/about/">About</a></li>
           <li><a href="/project/">Projects</a></li>
+          <li><a href="/gallery">Gallery</a></li>
           <li><a href="/contact/">Contact</a></li>
           <li><a href="/job/">Careers</a></li>
         </ul>
@@ -305,9 +306,363 @@ function insertFooter() {
   }
 }
 
-// Initialize header, footer and modal on DOM load
+// Hero Banner Component Generator
+function generateHeroBanner() {
+  const bannerImages = [
+    {
+      src: "/assets/portalImages/DJI_0012.JPG",
+      title: "Premium Farm Lands",
+      subtitle:
+        "Invest in fertile agricultural lands with guaranteed returns and legal clarity",
+    },
+    {
+      src: "/assets/portalImages/DJI_0024.JPG",
+      title: "Scenic Plot Developments",
+      subtitle:
+        "Beautiful residential plots surrounded by nature and modern amenities",
+    },
+    {
+      src: "/assets/portalImages/DJI_0036.JPG",
+      title: "Agricultural Excellence",
+      subtitle: "High-yield farm lands with water source and road connectivity",
+    },
+    {
+      src: "/assets/portalImages/DJI_0039.JPG",
+      title: "Investment Opportunities",
+      subtitle: "Secure your future with our legally verified land investments",
+    },
+    {
+      src: "/assets/portalImages/DJI_0066.JPG",
+      title: "Developed Infrastructure",
+      subtitle:
+        "Ready-to-build plots with all essential amenities and clear titles",
+    },
+  ];
+
+  const bannerHTML = `
+    <section class="hero-banner" id="heroBanner">
+      <div class="banner-slider" id="bannerSlider">
+        ${bannerImages
+          .map(
+            (image, index) => `
+          <div class="banner-slide ${index === 0 ? "active" : ""}">
+            <img src="${image.src}" alt="${image.title}" loading="${index === 0 ? "eager" : "lazy"}">
+            <div class="banner-content">
+              <h1>${image.title}</h1>
+              <p>${image.subtitle}</p>
+              <div class="banner-cta">
+                <a href="/project/" class="cta-primary">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+                  </svg>
+                  View Projects
+                </a>
+                <a href="/contact/" class="cta-secondary">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                  </svg>
+                  Contact Us
+                </a>
+              </div>
+            </div>
+          </div>
+        `,
+          )
+          .join("")}
+      </div>
+      
+      <!-- Navigation Controls -->
+      <button class="banner-control prev" id="bannerPrev">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+        </svg>
+      </button>
+      <button class="banner-control next" id="bannerNext">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+        </svg>
+      </button>
+      
+      <!-- Dot Navigation -->
+      <div class="banner-nav" id="bannerNav">
+        ${bannerImages
+          .map(
+            (_, index) => `
+          <div class="nav-dot ${index === 0 ? "active" : ""}" data-slide="${index}"></div>
+        `,
+          )
+          .join("")}
+      </div>
+      
+      <!-- Info Cards -->
+      <div class="banner-info">
+        <div class="info-card">
+          <div class="number">500+</div>
+          <div class="label">Happy Customers</div>
+        </div>
+        <div class="info-card">
+          <div class="number">15+</div>
+          <div class="label">Years Experience</div>
+        </div>
+        <div class="info-card">
+          <div class="number">1000+</div>
+          <div class="label">Acres Developed</div>
+        </div>
+      </div>
+    </section>
+  `;
+
+  return bannerHTML;
+}
+
+// Insert hero banner dynamically
+function insertHeroBanner() {
+  const bannerContainer = document.getElementById("banner-container");
+  if (bannerContainer) {
+    bannerContainer.innerHTML = generateHeroBanner();
+    initializeHeroBanner();
+  }
+}
+
+// Hero Banner Functionality with Touch Support
+function initializeHeroBanner() {
+  const banner = document.getElementById("heroBanner");
+  const slider = document.getElementById("bannerSlider");
+  const slides = slider.querySelectorAll(".banner-slide");
+  const prevBtn = document.getElementById("bannerPrev");
+  const nextBtn = document.getElementById("bannerNext");
+  const navDots = document.querySelectorAll(".nav-dot");
+
+  let currentSlide = 0;
+  let isAnimating = false;
+  let autoSlideInterval;
+
+  // Touch/Swipe variables
+  let startX = 0;
+  let startY = 0;
+  let deltaX = 0;
+  let deltaY = 0;
+  let isSwiping = false;
+
+  // Auto-slide functionality
+  function startAutoSlide() {
+    autoSlideInterval = setInterval(() => {
+      if (!isAnimating) {
+        nextSlide();
+      }
+    }, 5000);
+  }
+
+  function stopAutoSlide() {
+    clearInterval(autoSlideInterval);
+  }
+
+  // Slide navigation
+  function goToSlide(index) {
+    if (isAnimating || index === currentSlide) return;
+
+    isAnimating = true;
+
+    // Remove active classes
+    slides[currentSlide].classList.remove("active");
+    navDots[currentSlide].classList.remove("active");
+
+    // Update current slide
+    currentSlide = index;
+
+    // Add active classes
+    slides[currentSlide].classList.add("active");
+    navDots[currentSlide].classList.add("active");
+
+    // Apply transform
+    const translateX = -currentSlide * 100;
+    slider.style.transform = `translateX(${translateX}%)`;
+
+    setTimeout(() => {
+      isAnimating = false;
+    }, 600);
+  }
+
+  function nextSlide() {
+    const nextIndex = (currentSlide + 1) % slides.length;
+    goToSlide(nextIndex);
+  }
+
+  function prevSlide() {
+    const prevIndex = (currentSlide - 1 + slides.length) % slides.length;
+    goToSlide(prevIndex);
+  }
+
+  // Touch event handlers
+  function handleTouchStart(e) {
+    const touch = e.touches[0];
+    startX = touch.clientX;
+    startY = touch.clientY;
+    isSwiping = true;
+    stopAutoSlide();
+  }
+
+  function handleTouchMove(e) {
+    if (!isSwiping) return;
+
+    e.preventDefault();
+    const touch = e.touches[0];
+    deltaX = touch.clientX - startX;
+    deltaY = touch.clientY - startY;
+
+    // Visual feedback during swipe
+    const currentTranslateX = -currentSlide * 100;
+    const swipeOffset = (deltaX / slider.offsetWidth) * 100;
+    slider.style.transform = `translateX(${currentTranslateX + swipeOffset}%)`;
+  }
+
+  function handleTouchEnd() {
+    if (!isSwiping) return;
+
+    isSwiping = false;
+
+    // Determine swipe direction and threshold
+    const swipeThreshold = 50;
+    const abseDeltaX = Math.abs(deltaX);
+    const absDeltaY = Math.abs(deltaY);
+
+    // Reset transform
+    const currentTranslateX = -currentSlide * 100;
+    slider.style.transform = `translateX(${currentTranslateX}%)`;
+
+    // Check if it's a horizontal swipe
+    if (abseDeltaX > absDeltaY && abseDeltaX > swipeThreshold) {
+      if (deltaX > 0) {
+        prevSlide();
+      } else {
+        nextSlide();
+      }
+    }
+
+    // Reset values
+    deltaX = 0;
+    deltaY = 0;
+    startAutoSlide();
+  }
+
+  // Mouse event handlers for desktop
+  function handleMouseDown(e) {
+    startX = e.clientX;
+    startY = e.clientY;
+    isSwiping = true;
+    stopAutoSlide();
+    slider.style.cursor = "grabbing";
+  }
+
+  function handleMouseMove(e) {
+    if (!isSwiping) return;
+
+    e.preventDefault();
+    deltaX = e.clientX - startX;
+    deltaY = e.clientY - startY;
+
+    const currentTranslateX = -currentSlide * 100;
+    const swipeOffset = (deltaX / slider.offsetWidth) * 100;
+    slider.style.transform = `translateX(${currentTranslateX + swipeOffset}%)`;
+  }
+
+  function handleMouseUp() {
+    if (!isSwiping) return;
+
+    isSwiping = false;
+    slider.style.cursor = "grab";
+
+    const swipeThreshold = 50;
+    const abseDeltaX = Math.abs(deltaX);
+    const absDeltaY = Math.abs(deltaY);
+
+    const currentTranslateX = -currentSlide * 100;
+    slider.style.transform = `translateX(${currentTranslateX}%)`;
+
+    if (abseDeltaX > absDeltaY && abseDeltaX > swipeThreshold) {
+      if (deltaX > 0) {
+        prevSlide();
+      } else {
+        nextSlide();
+      }
+    }
+
+    deltaX = 0;
+    deltaY = 0;
+    startAutoSlide();
+  }
+
+  // Event listeners
+  if (prevBtn) {
+    prevBtn.addEventListener("click", () => {
+      stopAutoSlide();
+      prevSlide();
+      startAutoSlide();
+    });
+  }
+
+  if (nextBtn) {
+    nextBtn.addEventListener("click", () => {
+      stopAutoSlide();
+      nextSlide();
+      startAutoSlide();
+    });
+  }
+
+  // Dot navigation
+  navDots.forEach((dot, index) => {
+    dot.addEventListener("click", () => {
+      stopAutoSlide();
+      goToSlide(index);
+      startAutoSlide();
+    });
+  });
+
+  // Touch events
+  slider.addEventListener("touchstart", handleTouchStart, { passive: false });
+  slider.addEventListener("touchmove", handleTouchMove, { passive: false });
+  slider.addEventListener("touchend", handleTouchEnd);
+
+  // Mouse events for desktop
+  slider.addEventListener("mousedown", handleMouseDown);
+  slider.addEventListener("mousemove", handleMouseMove);
+  slider.addEventListener("mouseup", handleMouseUp);
+  slider.addEventListener("mouseleave", handleMouseUp);
+
+  // Keyboard navigation
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowLeft") {
+      stopAutoSlide();
+      prevSlide();
+      startAutoSlide();
+    } else if (e.key === "ArrowRight") {
+      stopAutoSlide();
+      nextSlide();
+      startAutoSlide();
+    }
+  });
+
+  // Pause on hover
+  banner.addEventListener("mouseenter", stopAutoSlide);
+  banner.addEventListener("mouseleave", startAutoSlide);
+
+  // Initialize auto-slide
+  startAutoSlide();
+
+  // Preload next images
+  const imageLoader = new Image();
+  slides.forEach((slide, index) => {
+    if (index > 0) {
+      const img = slide.querySelector("img");
+      imageLoader.src = img.src;
+    }
+  });
+}
+
+// Initialize banner on DOM load
 document.addEventListener("DOMContentLoaded", function () {
   insertHeader();
+  insertHeroBanner();
   insertCallbackModal();
   insertFooter();
 });

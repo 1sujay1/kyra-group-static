@@ -43,6 +43,7 @@
     <!-- Preload hero background images -->
     <link rel="preload" as="image" href="assets/image/kyra banner1.webp" />
     <link rel="preload" as="image" href="assets/image/kyra banner2.webp" />
+    <link rel="stylesheet" href="assets/css/common.css" />
     <link rel="stylesheet" href="assets/css/index.css" />
 
     <script type="application/ld+json">
@@ -120,57 +121,8 @@
     <!-- Header Container for Dynamic Insertion -->
     <div id="header-container"></div>
 
-    <!-- Hero -->
-    <section class="hero">
-      <!-- Carousel Slides -->
-      <div class="hero-carousel">
-        <div class="hero-slide active"></div>
-        <div class="hero-slide"></div>
-        <div class="hero-slide"></div>
-        <div class="hero-slide"></div>
-      </div>
-
-      <div class="container">
-        <div class="hero-content">
-          <span class="badge">Trusted Since 2016</span>
-          <h1>Premium Land Developments in Tamil Nadu & Kerala</h1>
-          <p>
-            Discover legally approved plots, premium farm land communities, and
-            resort developments with 100% clear titles and world-class
-            infrastructure.
-          </p>
-          <div
-            style="
-              display: flex;
-              gap: 15px;
-              flex-wrap: wrap;
-              justify-content: center;
-            "
-          >
-            <a href="#offers" class="btn btn-primary">View Projects</a>
-            <a
-              href="tel:+919000000000"
-              class="btn"
-              style="
-                border: 2px solid white;
-                color: white;
-                background: rgba(255, 255, 255, 0.1);
-                backdrop-filter: blur(10px);
-              "
-              >Call Now</a
-            >
-          </div>
-        </div>
-      </div>
-
-      <!-- Carousel Indicators -->
-      <div class="hero-indicators">
-        <button class="hero-indicator active" data-slide="0"></button>
-        <button class="hero-indicator" data-slide="1"></button>
-        <button class="hero-indicator" data-slide="2"></button>
-        <button class="hero-indicator" data-slide="3"></button>
-      </div>
-    </section>
+    <!-- Premium Farm Land Banner Container -->
+    <div id="banner-container"></div>
 
     <!-- About Section -->
     <section id="about" class="section-padding">
@@ -929,86 +881,6 @@
     </a>
 
     <script>
-      // Hero Carousel
-      const heroSlides = document.querySelectorAll(".hero-slide");
-      const heroIndicators = document.querySelectorAll(".hero-indicator");
-      let heroCurrentSlide = 0;
-      let heroAutoPlay;
-
-      function goToHeroSlide(index) {
-        heroSlides[heroCurrentSlide].classList.remove("active");
-        heroIndicators[heroCurrentSlide].classList.remove("active");
-        heroCurrentSlide = index;
-        if (heroCurrentSlide >= heroSlides.length) heroCurrentSlide = 0;
-        if (heroCurrentSlide < 0) heroCurrentSlide = heroSlides.length - 1;
-        heroSlides[heroCurrentSlide].classList.add("active");
-        heroIndicators[heroCurrentSlide].classList.add("active");
-
-        // Preload next slide for smooth transition
-        setTimeout(preloadNextSlide, 100);
-      }
-
-      function nextHeroSlide() {
-        goToHeroSlide(heroCurrentSlide + 1);
-      }
-
-      // Auto-play carousel (slower for real estate)
-      function startHeroAutoPlay() {
-        heroAutoPlay = setInterval(nextHeroSlide, 6000); // 6 seconds for better viewing
-      }
-
-      function stopHeroAutoPlay() {
-        clearInterval(heroAutoPlay);
-      }
-
-      startHeroAutoPlay();
-
-      // Indicator clicks with preloading
-      heroIndicators.forEach((indicator, index) => {
-        indicator.addEventListener("click", () => {
-          stopHeroAutoPlay();
-          goToHeroSlide(index);
-          startHeroAutoPlay();
-        });
-      });
-
-      // Image optimization and lazy loading
-      function optimizeImages() {
-        const slides = document.querySelectorAll(".hero-slide");
-        slides.forEach((slide, index) => {
-          // Add loading class for better UX
-          slide.classList.add("loading");
-
-          // Create image element to test loading
-          const img = new Image();
-          img.onload = function () {
-            slide.classList.remove("loading");
-          };
-
-          // Get background image URL from computed styles
-          const bgImage = window.getComputedStyle(slide).backgroundImage;
-          const urlMatch = bgImage.match(/url\(["']?([^"'\)]+)["']?\)/);
-          if (urlMatch) {
-            img.src = urlMatch[1];
-          }
-        });
-      }
-
-      // Initialize image optimization
-      document.addEventListener("DOMContentLoaded", optimizeImages);
-
-      // Preload next slide image for smoother transitions
-      function preloadNextSlide() {
-        const nextIndex = (heroCurrentSlide + 1) % heroSlides.length;
-        const nextSlide = heroSlides[nextIndex];
-        const bgImage = window.getComputedStyle(nextSlide).backgroundImage;
-        const urlMatch = bgImage.match(/url\(["']?([^"'\)]+)["']?\)/);
-        if (urlMatch) {
-          const img = new Image();
-          img.src = urlMatch[1];
-        }
-      }
-
       // 1. Header Scroll Effect
       const header = document.getElementById("main-header");
       window.addEventListener("scroll", () => {
