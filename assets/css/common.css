@@ -1,0 +1,630 @@
+/* ===== COMMON HEADER, FOOTER & MODAL STYLES ===== */
+
+/* Base Styles */
+html {
+  scroll-behavior: smooth;
+}
+
+/* CSS Variables */
+:root {
+  --primary-green: #2d7a4a;
+  --dark-green: #1b4d2e;
+  --light-green: #e9f2ed;
+  --accent-gold: #c5a059;
+  --text-dark: #1a1a1a;
+  --text-light: #666666;
+  --white: #ffffff;
+  --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  color: var(--text-dark);
+  line-height: 1.6;
+  overflow-x: hidden;
+  background-color: var(--white);
+}
+
+h1,
+h2,
+h3,
+.brand-font {
+  font-family: "Playfair Display", serif;
+}
+
+/* Main content spacing for fixed header */
+main {
+  padding-top: 80px; /* Account for fixed header height */
+}
+
+/* --- Global Components --- */
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: var(--transition);
+  border: none;
+  font-size: 14px;
+}
+
+.btn-primary {
+  background-color: var(--primary-green);
+  color: var(--white);
+}
+
+.btn-primary:hover {
+  background-color: var(--dark-green);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(45, 122, 74, 0.3);
+}
+
+/* --- Header Styles --- */
+header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: var(--transition);
+}
+
+header.scrolled {
+  background: var(--white);
+  box-shadow: var(--shadow);
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 64px;
+  padding: 0;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  gap: 12px;
+}
+
+.logo img {
+  height: 72px;
+  width: auto;
+  object-fit: contain;
+}
+
+.logo-text {
+  font-family: "Playfair Display", serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--primary-green);
+  line-height: 1.2;
+}
+
+.logo-text span {
+  display: block;
+  font-family: "Inter", sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-light);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.nav-links {
+  display: flex;
+  gap: 28px;
+  list-style: none;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: rgb(3, 32, 3);
+  font-weight: 800;
+  font-size: 20px;
+  transition: var(--transition);
+}
+
+.nav-links a:hover {
+  color: var(--primary-green);
+}
+
+.mobile-menu-btn {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+.mobile-menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  display: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.mobile-menu-overlay.active {
+  display: block;
+  opacity: 1;
+}
+
+.nav-links.mobile-active {
+  position: fixed !important;
+  top: 0 !important;
+  left: -300px !important;
+  width: 300px !important;
+  height: 100vh !important;
+  background: linear-gradient(135deg, #ffffff 0%, #f8fffe 100%) !important;
+  flex-direction: column !important;
+  padding: 70px 20px 20px 20px !important;
+  box-shadow: 2px 0 20px rgba(0, 0, 0, 0.12) !important;
+  z-index: 1000 !important;
+  transition: left 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+  overflow-y: auto !important;
+  align-items: flex-start !important;
+  justify-content: flex-start !important;
+  border-right: 1px solid #e5f2ea !important;
+}
+
+.nav-links.mobile-active.show {
+  left: 0 !important;
+}
+
+.nav-links.mobile-active li {
+  margin: 0 0 8px 0 !important;
+  width: 100% !important;
+  list-style: none !important;
+  position: relative !important;
+}
+
+.nav-links.mobile-active li a {
+  display: flex !important;
+  align-items: center !important;
+  padding: 14px 18px !important;
+  font-size: 16px !important;
+  font-weight: 500 !important;
+  color: #2c3e50 !important;
+  text-decoration: none !important;
+  border-radius: 8px !important;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+  border: 1px solid transparent !important;
+  text-align: left !important;
+  line-height: 1.4 !important;
+  min-height: 48px !important;
+  background: rgba(255, 255, 255, 0.6) !important;
+  backdrop-filter: blur(10px) !important;
+}
+
+.nav-links.mobile-active li a::before {
+  content: '' !important;
+  position: absolute !important;
+  left: 0 !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  width: 4px !important;
+  height: 0 !important;
+  background: var(--primary-green) !important;
+  border-radius: 0 2px 2px 0 !important;
+  transition: height 0.3s ease !important;
+}
+
+.nav-links.mobile-active li a:hover {
+  background: var(--light-green) !important;
+  color: var(--primary-green) !important;
+  transform: translateX(8px) !important;
+  border-color: var(--primary-green) !important;
+  box-shadow: 0 4px 12px rgba(45, 122, 74, 0.15) !important;
+}
+
+.nav-links.mobile-active li a:hover::before {
+  height: 24px !important;
+}
+
+.nav-links.mobile-active li a:active {
+  transform: translateX(6px) scale(0.98) !important;
+}
+
+/* --- Footer Styles --- */
+footer {
+  background: #111;
+  color: #999;
+  padding: 80px 0 30px;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+  margin-bottom: 60px;
+}
+
+.footer-col h4 {
+  color: white;
+  margin-bottom: 24px;
+}
+
+.footer-col ul {
+  list-style: none;
+}
+
+.footer-col ul li {
+  margin-bottom: 12px;
+}
+
+.footer-col ul a {
+  color: #999;
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.footer-col ul a:hover {
+  color: var(--primary-green);
+}
+
+.footer-bottom {
+  padding-top: 30px;
+  border-top: 1px solid #222;
+  text-align: center;
+  font-size: 14px;
+}
+
+.social-icons {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.social-icons a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: #222;
+  border-radius: 50%;
+  color: #999;
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.social-icons a:hover {
+  background: var(--primary-green);
+  color: white;
+  transform: translateY(-3px);
+}
+
+.social-icons svg {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+}
+
+/* --- Callback Modal Styles --- */
+.callback-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 2000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.callback-modal-overlay.active {
+  display: flex;
+  opacity: 1;
+}
+
+.callback-modal {
+  background: var(--white);
+  border-radius: 10px;
+  max-width: 400px;
+  width: 100%;
+  padding: 24px;
+  position: relative;
+  transform: translateY(20px);
+  transition: transform 0.3s ease;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+}
+
+.callback-modal-overlay.active .callback-modal {
+  transform: translateY(0);
+}
+
+.callback-modal-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 28px;
+  height: 28px;
+  border: none;
+  background: var(--light-green);
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 16px;
+  color: var(--text-dark);
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.callback-modal-close:hover {
+  background: var(--primary-green);
+  color: var(--white);
+}
+
+.callback-modal h3 {
+  font-size: 20px;
+  margin-bottom: 4px;
+  color: var(--text-dark);
+}
+
+.callback-modal p {
+  color: var(--text-light);
+  margin-bottom: 16px;
+  font-size: 13px;
+}
+
+.callback-form .form-group {
+  margin-bottom: 12px;
+}
+
+.callback-form label {
+  display: block;
+  font-size: 12px;
+  font-weight: 500;
+  margin-bottom: 4px;
+  color: var(--text-dark);
+}
+
+.callback-form input,
+.callback-form textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  font-size: 13px;
+  font-family: inherit;
+  transition: var(--transition);
+  background: #fafafa;
+}
+
+.callback-form input:focus,
+.callback-form textarea:focus {
+  outline: none;
+  border-color: var(--primary-green);
+  background: var(--white);
+  box-shadow: 0 0 0 3px rgba(45, 122, 74, 0.1);
+}
+
+.callback-form textarea {
+  resize: vertical;
+  min-height: 60px;
+}
+
+.callback-form .btn-submit {
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  margin-top: 4px;
+}
+
+/* --- Mobile Responsive Styles --- */
+@media (max-width: 768px) {
+  .nav-container {
+    height: 64px;
+  }
+
+  .logo {
+    gap: 10px;
+  }
+
+  .logo img {
+    height: 56px;
+  }
+
+  .logo-text {
+    font-size: 18px;
+  }
+
+  .logo-text span {
+    font-size: 9px;
+  }
+
+  .nav-links {
+    display: none;
+  }
+
+  .mobile-menu-btn {
+    display: block;
+    font-size: 26px;
+    padding: 8px;
+  }
+
+  /* Mobile-specific navigation styles */
+  .nav-links.mobile-active {
+    width: 300px !important;
+    left: -300px !important;
+    padding: 70px 16px 20px 16px !important;
+  }
+
+  .nav-links.mobile-active li {
+    margin: 0 0 6px 0 !important;
+  }
+
+  .nav-links.mobile-active li a {
+    padding: 12px 16px !important;
+    font-size: 15px !important;
+    min-height: 44px !important;
+    display: flex !important;
+    align-items: center !important;
+  }
+
+  .footer-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-container {
+    height: 60px;
+    padding: 0 16px;
+  }
+
+  /* Enhanced mobile menu for small screens */
+  .nav-links.mobile-active {
+    width: 100vw !important;
+    left: -100vw !important;
+    padding: 60px 16px 20px 16px !important;
+  }
+
+  .nav-links.mobile-active.show {
+    left: 0 !important;
+  }
+
+  .nav-links.mobile-active li {
+    margin: 0 0 4px 0 !important;
+  }
+
+  .nav-links.mobile-active li a {
+    padding: 14px 20px !important;
+    font-size: 16px !important;
+    min-height: 48px !important;
+    font-weight: 500 !important;
+    border-radius: 6px !important;
+  }
+
+  .mobile-menu-btn {
+    font-size: 28px !important;
+    padding: 10px !important;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .callback-modal {
+    padding: 20px;
+  }
+
+  .callback-modal h3 {
+    font-size: 18px;
+  }
+}
+
+/* --- Floating Action Button Styles --- */
+.scroll-to-top {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 48px;
+  height: 48px;
+  background: var(--primary-green);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  z-index: 1000;
+}
+
+.scroll-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.scroll-to-top:hover {
+  background: var(--dark-green);
+  transform: translateY(-3px);
+}
+
+.scroll-to-top svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+
+/* Floating WhatsApp Button */
+.whatsapp-btn {
+  position: fixed;
+  bottom: 90px;
+  right: 30px;
+  width: 56px;
+  height: 56px;
+  background: #25d366;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-decoration: none;
+  box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+  transition: all 0.3s ease;
+  z-index: 999;
+  animation: pulse 2s infinite;
+}
+
+.whatsapp-btn:hover {
+  background: #128c7e;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(37, 211, 102, 0.6);
+}
+
+.whatsapp-btn svg {
+  width: 28px;
+  height: 28px;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(37, 211, 102, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+  }
+}
+/* End of styles */

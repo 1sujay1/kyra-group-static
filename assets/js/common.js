@@ -4,14 +4,14 @@ function generateHeader() {
     <header id="main-header">
       <div class="container nav-container">
         <a href="#" class="logo">
-          <img src="assets/image/logokyra.png" alt="KYRA GROUP" />
+          <img src="/assets/image/logokyra.png" alt="KYRA GROUP" />
         </a>
         <ul class="nav-links">
-          <li style="color: #0e863c"><a href="#">Home</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#offers">Projects</a></li>
-          <li><a href="#portfolio">Career</a></li>
-          <li><a href="#gallery">Contact</a></li>
+          <li><a href="/">Home</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/project/">Projects</a></li>
+          <li><a href="/contact/">Contact</a></li>
+          <li><a href="/job/">Careers</a></li>
         </ul>
         <button class="btn btn-primary open-callback-modal">
           Get Callback
@@ -42,39 +42,124 @@ function initializeMobileMenu() {
   const mobileOverlay = document.querySelector(".mobile-menu-overlay");
   let mobileMenuOpen = false;
 
+  console.log("Initializing mobile menu...");
+  console.log("Mobile button:", mobileBtn);
+  console.log("Nav links:", navLinks);
+  console.log("Mobile overlay:", mobileOverlay);
+
   function toggleMobileMenu() {
+    console.log("Toggling mobile menu, current state:", mobileMenuOpen);
     mobileMenuOpen = !mobileMenuOpen;
 
     if (mobileMenuOpen) {
+      console.log("Opening left drawer");
+
+      // Force inline styles to make drawer visible
+      navLinks.style.position = "fixed";
+      navLinks.style.top = "0";
+      navLinks.style.left = "-300px";
+      navLinks.style.width = "300px";
+      navLinks.style.height = "100vh";
+      navLinks.style.background = "white";
+      navLinks.style.flexDirection = "column";
+      navLinks.style.padding = "70px 16px 20px 16px";
+      navLinks.style.boxShadow = "2px 0 15px rgba(0, 0, 0, 0.15)";
+      navLinks.style.zIndex = "9999";
+      navLinks.style.transition = "left 0.3s ease";
+      navLinks.style.overflowY = "auto";
+      navLinks.style.margin = "0";
+      navLinks.style.listStyle = "none";
+      navLinks.style.display = "flex";
+      navLinks.style.alignItems = "flex-start";
+      navLinks.style.justifyContent = "flex-start";
+
+      console.log("Applied inline styles to drawer");
+
+      // Add classes
       navLinks.classList.add("mobile-active");
       mobileOverlay.classList.add("active");
       document.body.style.overflow = "hidden";
       mobileBtn.innerHTML = "✕";
+      mobileBtn.style.color = "#2d7a4a";
 
-      // Add show class after a brief delay for animation
+      // Slide in the drawer
       setTimeout(() => {
+        navLinks.style.left = "0";
         navLinks.classList.add("show");
+        console.log("Drawer should now be visible at left: 0");
       }, 10);
-    } else {
-      navLinks.classList.remove("show");
 
+      // Style the navigation links - compact design
+      const links = navLinks.querySelectorAll("li");
+      links.forEach((li) => {
+        li.style.margin = "0 0 6px 0";
+        li.style.width = "100%";
+        li.style.listStyle = "none";
+
+        const anchor = li.querySelector("a");
+        if (anchor) {
+          anchor.style.display = "flex";
+          anchor.style.alignItems = "center";
+          anchor.style.padding = "12px 16px";
+          anchor.style.fontSize = "15px";
+          anchor.style.fontWeight = "500";
+          anchor.style.color = "#333";
+          anchor.style.textDecoration = "none";
+          anchor.style.borderRadius = "6px";
+          anchor.style.transition = "all 0.3s ease";
+          anchor.style.border = "1px solid transparent";
+          anchor.style.textAlign = "left";
+          anchor.style.minHeight = "44px";
+          anchor.style.lineHeight = "1.4";
+        }
+      });
+    } else {
+      console.log("Closing left drawer");
+      navLinks.style.left = "-300px";
+      navLinks.classList.remove("show");
+      mobileBtn.innerHTML = "☰";
+      mobileBtn.style.color = "";
+
+      // Remove classes and styles after animation completes
       setTimeout(() => {
         navLinks.classList.remove("mobile-active");
         mobileOverlay.classList.remove("active");
         document.body.style.overflow = "";
-        mobileBtn.innerHTML = "☰";
+
+        // Reset all inline styles
+        navLinks.style.cssText = "";
+        const links = navLinks.querySelectorAll("li");
+        links.forEach((li) => {
+          li.style.cssText = "";
+          const anchor = li.querySelector("a");
+          if (anchor) {
+            anchor.style.cssText = "";
+          }
+        });
       }, 300);
     }
   }
 
   if (mobileBtn) {
-    mobileBtn.addEventListener("click", toggleMobileMenu);
+    console.log("Adding click listener to mobile button");
+    mobileBtn.addEventListener("click", (e) => {
+      console.log("Mobile button clicked");
+      e.preventDefault();
+      e.stopPropagation();
+      toggleMobileMenu();
+    });
+  } else {
+    console.error("Mobile button not found!");
   }
 
   // Close mobile menu when clicking overlay
   if (mobileOverlay) {
-    mobileOverlay.addEventListener("click", () => {
-      if (mobileMenuOpen) toggleMobileMenu();
+    mobileOverlay.addEventListener("click", (e) => {
+      console.log("Overlay clicked");
+      if (mobileMenuOpen) {
+        e.preventDefault();
+        toggleMobileMenu();
+      }
     });
   }
 
@@ -82,7 +167,10 @@ function initializeMobileMenu() {
   if (navLinks) {
     navLinks.querySelectorAll("a").forEach((link) => {
       link.addEventListener("click", () => {
-        if (mobileMenuOpen) toggleMobileMenu();
+        console.log("Nav link clicked");
+        if (mobileMenuOpen) {
+          toggleMobileMenu();
+        }
       });
     });
   }
@@ -90,6 +178,15 @@ function initializeMobileMenu() {
   // Close mobile menu on window resize if screen becomes larger
   window.addEventListener("resize", () => {
     if (window.innerWidth > 768 && mobileMenuOpen) {
+      console.log("Window resized, closing mobile menu");
+      toggleMobileMenu();
+    }
+  });
+
+  // Close mobile menu on escape key
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && mobileMenuOpen) {
+      console.log("Escape key pressed");
       toggleMobileMenu();
     }
   });

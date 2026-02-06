@@ -28,6 +28,9 @@
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
 
+    <!-- Common CSS for header, footer and shared components -->
+    <link rel="stylesheet" href="../assets/css/common.css" />
+
     <!-- LocalBusiness Schema -->
     <script type="application/ld+json">
       {
@@ -449,26 +452,10 @@
     </style>
   </head>
   <body>
-    <nav>
-      <div class="container nav-content">
-        <a href="#" class="logo">LUXE ESTATES</a>
-        <div class="nav-links">
-          <!-- Placeholder for nav items -->
-        </div>
-      </div>
-    </nav>
+    <!-- Header Container for Dynamic Insertion -->
+    <div id="header-container"></div>
 
     <main>
-      <header class="hero">
-        <div class="container">
-          <h1 class="reveal">Get In Touch</h1>
-          <p class="reveal">
-            Whether you're looking for your dream home or a high-yield
-            investment, our dedicated advisors are ready to guide you home.
-          </p>
-        </div>
-      </header>
-
       <section class="container contact-wrapper">
         <!-- Sidebar Info -->
         <aside class="contact-info reveal">
@@ -655,18 +642,8 @@
         </div>
       </section>
     </main>
-
-    <footer>
-      <div class="container">
-        <p>
-          &copy; 2024 Luxe Estates & Co. Real Estate Brokerage. All Rights
-          Reserved.
-        </p>
-        <p style="margin-top: 0.5rem; font-size: 0.8rem">
-          Equal Housing Opportunity | Licensed in California #12345678
-        </p>
-      </div>
-    </footer>
+    <!-- Footer Container for Dynamic Insertion -->
+    <div id="footer-container"></div>
 
     <script>
       // Initialize Icons
@@ -778,5 +755,7 @@
         }
       });
     </script>
+    <script src="../assets/js/common.js"></script>
+    <script src="../assets/js/config.js"></script>
   </body>
 </html>
