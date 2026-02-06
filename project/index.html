@@ -151,7 +151,135 @@
         }
 
         /* =========================================
-           4. PROJECTS PAGE (GRID VIEW)
+           4. PROJECTS BANNER
+           ========================================= */
+        .projects-banner {
+            background: linear-gradient(135deg, rgba(16, 89, 54, 0.85) 0%, rgba(26, 143, 88, 0.85) 100%), url('/assets/portalImages/DJI_0066.JPG') center/cover no-repeat;
+            color: var(--white);
+            padding: 1rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .projects-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        .banner-content {
+            /* position: relative; */
+            z-index: 2;
+            width: 100%;
+        }
+
+        .projects-banner h1 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            line-height: 1.2;
+        }
+
+        .projects-banner p {
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            opacity: 0.95;
+            max-width: 450px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.4;
+        }
+
+        .banner-stats {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .banner-stats .stat-item {
+            text-align: center;
+        }
+
+        .banner-stats .stat-number {
+            display: block;
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.2rem;
+            color: var(--white);
+        }
+
+        .banner-stats .stat-label {
+            font-size: 0.7rem;
+            opacity: 0.9;
+            font-weight: 500;
+        }
+
+        @media (max-width: 768px) {
+            .projects-banner {
+                padding: 0.75rem 0;
+                height: 150px;
+            }
+            
+            .projects-banner h1 {
+                font-size: 1.25rem;
+            }
+            
+            .projects-banner p {
+                font-size: 0.8rem;
+                margin-bottom: 0.75rem;
+            }
+            
+            .banner-stats {
+                gap: 1rem;
+            }
+            
+            .banner-stats .stat-number {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .projects-banner {
+                height: 120px;
+                padding: 0.5rem 0;
+            }
+            
+            .projects-banner h1 {
+                font-size: 1.1rem;
+                margin-bottom: 0.25rem;
+            }
+            
+            .projects-banner p {
+                display: none;
+            }
+            
+            .banner-stats {
+                gap: 0.75rem;
+            }
+            
+            .banner-stats .stat-number {
+                font-size: 0.9rem;
+            }
+            
+            .banner-stats .stat-label {
+                font-size: 0.65rem;
+            }
+        }
+
+        /* =========================================
+           5. PROJECTS PAGE (GRID VIEW)
            ========================================= */
         .filters-section {
             background-color: var(--white);
@@ -604,6 +732,30 @@
 
      <!-- Header Container for Dynamic Insertion -->
     <div id="header-container"></div>
+
+    <!-- Small Projects Banner -->
+    <section class="projects-banner">
+        <div class="container">
+            <div class="banner-content">
+                <h1>Our Premium Projects</h1>
+                <p>Discover exceptional real estate opportunities crafted with precision and designed for modern living</p>
+                <div class="banner-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">15+</span>
+                        <span class="stat-label">Projects</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">1000+</span>
+                        <span class="stat-label">Happy Families</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">5000+</span>
+                        <span class="stat-label">Units Delivered</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <main>
         <!-- VIEW 1: PROJECTS GRID -->
