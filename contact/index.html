@@ -161,18 +161,162 @@
         font-size: 1.1rem;
       }
 
+      /* Contact Banner */
+      .contact-banner {
+        background:
+          linear-gradient(
+            135deg,
+            rgba(15, 23, 42, 0.85) 0%,
+            rgba(14, 165, 233, 0.8) 100%
+          ),
+          url("/assets/portalImages/DJI_0040.JPG") center/cover no-repeat;
+        color: var(--white);
+        padding: 1rem 0;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        height: 305px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .contact-banner::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.3);
+        z-index: 1;
+      }
+
+      .contact-banner-content {
+        position: relative;
+        z-index: 2;
+        width: 100%;
+      }
+
+      .contact-banner h1 {
+        font-size: 1.75rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        line-height: 1.2;
+        color: var(--white);
+      }
+
+      .contact-banner p {
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
+        opacity: 0.95;
+        max-width: 450px;
+        margin-left: auto;
+        margin-right: auto;
+        line-height: 1.4;
+        color: var(--white);
+      }
+
+      .contact-banner-stats {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        flex-wrap: wrap;
+      }
+
+      .contact-banner-stats .stat-item {
+        text-align: center;
+      }
+
+      .contact-banner-stats .stat-number {
+        display: block;
+        font-size: 1.25rem;
+        font-weight: 700;
+        margin-bottom: 0.2rem;
+        color: var(--white);
+      }
+
+      .contact-banner-stats .stat-label {
+        font-size: 0.7rem;
+        opacity: 0.9;
+        font-weight: 500;
+        color: var(--white);
+      }
+
+      @media (max-width: 768px) {
+        .contact-banner {
+          padding: 0.75rem 0;
+          height: 200px;
+        }
+
+        .contact-banner h1 {
+          font-size: 1.25rem;
+        }
+
+        .contact-banner p {
+          font-size: 0.8rem;
+          margin-bottom: 0.75rem;
+        }
+
+        .contact-banner-stats {
+          gap: 1rem;
+        }
+
+        .contact-banner-stats .stat-number {
+          font-size: 1rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .contact-banner {
+          height: 230px;
+          padding: 0.5rem 0;
+        }
+
+        .contact-banner h1 {
+          font-size: 1.1rem;
+          margin-bottom: 0.25rem;
+        }
+
+        .contact-banner p {
+          display: none;
+        }
+
+        .contact-banner-stats {
+          gap: 0.75rem;
+        }
+
+        .contact-banner-stats .stat-number {
+          font-size: 0.9rem;
+        }
+
+        .contact-banner-stats .stat-label {
+          font-size: 0.65rem;
+        }
+      }
+
       /* Contact Grid */
       .contact-wrapper {
         display: grid;
         grid-template-columns: 1fr;
-        gap: 3rem;
-        padding: 3rem 0 5rem;
+        gap: 2rem;
+        padding: 2rem 0 3rem;
+      }
+
+      @media (min-width: 768px) {
+        .contact-wrapper {
+          gap: 2.5rem;
+          padding: 2.5rem 0 4rem;
+        }
       }
 
       @media (min-width: 1024px) {
         .contact-wrapper {
           grid-template-columns: 1fr 1.2fr;
           align-items: start;
+          gap: 3rem;
+          padding: 3rem 0 5rem;
         }
       }
 
@@ -180,31 +324,50 @@
       .contact-info {
         display: flex;
         flex-direction: column;
-        gap: 2rem;
+        gap: 1.5rem;
       }
 
-      .info-card {
+      @media (min-width: 768px) {
+        .contact-info {
+          gap: 2rem;
+        }
+      }
+
+      .info-card2 {
         background: var(--white);
-        padding: 2rem;
+        padding: 1.5rem;
         border-radius: var(--radius);
         box-shadow: var(--shadow-sm);
         transition: var(--transition);
         border: 1px solid #f1f5f9;
       }
 
-      .info-card:hover {
+      @media (min-width: 768px) {
+        .info-card2 {
+          padding: 2rem;
+        }
+      }
+
+      .info-card2:hover {
         transform: translateY(-5px);
         box-shadow: var(--shadow-md);
       }
 
       .info-item {
         display: flex;
-        gap: 1.25rem;
-        margin-bottom: 1.5rem;
+        gap: 1rem;
+        margin-bottom: 1rem;
       }
 
       .info-item:last-child {
         margin-bottom: 0;
+      }
+
+      @media (min-width: 768px) {
+        .info-item {
+          gap: 1.25rem;
+          margin-bottom: 1.5rem;
+        }
       }
 
       .icon-box {
@@ -240,9 +403,16 @@
       /* CTA Buttons */
       .btn-group {
         display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 1rem;
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
         margin-top: 1rem;
+      }
+
+      @media (min-width: 480px) {
+        .btn-group {
+          grid-template-columns: 1fr 1fr;
+          gap: 1rem;
+        }
       }
 
       .btn {
@@ -270,7 +440,9 @@
         background-color: #128c7e;
         transform: scale(1.02);
       }
-
+      .info-card2 {
+        width: 100% !important;
+      }
       .btn-call {
         background-color: var(--primary);
         color: white;
@@ -284,14 +456,32 @@
       /* Form Styling */
       .contact-form-container {
         background: var(--white);
-        padding: 2.5rem;
+        padding: 1.5rem;
         border-radius: var(--radius);
         box-shadow: var(--shadow-md);
       }
 
+      @media (min-width: 768px) {
+        .contact-form-container {
+          padding: 2rem;
+        }
+      }
+
+      @media (min-width: 1024px) {
+        .contact-form-container {
+          padding: 2.5rem;
+        }
+      }
+
       .form-group {
-        margin-bottom: 1.5rem;
+        margin-bottom: 1rem;
         position: relative;
+      }
+
+      @media (min-width: 768px) {
+        .form-group {
+          margin-bottom: 1.5rem;
+        }
       }
 
       .form-label {
@@ -330,16 +520,28 @@
 
       .form-row {
         display: grid;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr;
         gap: 1rem;
       }
 
-      @media (max-width: 640px) {
+      @media (min-width: 640px) {
+        .form-row {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+
+      @media (max-width: 480px) {
         .form-row {
           grid-template-columns: 1fr;
         }
         .btn-group {
           grid-template-columns: 1fr;
+        }
+        .contact-form-container {
+          padding: 1rem;
+        }
+        .info-card2 {
+          padding: 1rem;
         }
       }
 
@@ -455,11 +657,38 @@
     <!-- Header Container for Dynamic Insertion -->
     <div id="header-container"></div>
 
-    <main>
+    <!-- Contact Banner -->
+    <section class="contact-banner">
+      <div class="container">
+        <div class="contact-banner-content">
+          <h1>Get in Touch</h1>
+          <p>
+            Connect with our expert team for premium real estate solutions and
+            personalized service
+          </p>
+          <div class="contact-banner-stats">
+            <div class="stat-item">
+              <span class="stat-number">24/7</span>
+              <span class="stat-label">Support</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">500+</span>
+              <span class="stat-label">Happy Clients</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">10+</span>
+              <span class="stat-label">Years Experience</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <main style="padding-top: 0">
       <section class="container contact-wrapper">
         <!-- Sidebar Info -->
         <aside class="contact-info reveal">
-          <div class="info-card">
+          <div class="info-card2">
             <div class="info-item">
               <div class="icon-box"><i data-lucide="map-pin"></i></div>
               <div class="info-content">
@@ -506,7 +735,7 @@
             </div>
           </div>
 
-          <div class="info-card">
+          <div class="info-card2">
             <h3>Working Hours</h3>
             <p style="margin-top: 0.5rem">9:00 AM - 6:00 PM</p>
             <!-- <p>Sat - Sun: By Appointment</p> -->
