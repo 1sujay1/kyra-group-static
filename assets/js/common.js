@@ -204,7 +204,7 @@ function generateFooter() {
             >
             <p style="margin-top: 20px">
               Building legacies since 2010. We specialize in ethically sourced,
-              legally strong real estate developments in Tamil Nadu and Kerala.
+              legally strong real estate developments in Tamil Nadu, Kerala and South India.
             </p>
             <div class="social-icons">
               <a
