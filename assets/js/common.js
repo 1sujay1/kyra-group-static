@@ -13,9 +13,17 @@ function generateHeader() {
           <li><a href="/gallery">Gallery</a></li>
           <li><a href="/contact/">Contact</a></li>
         </ul>
-        <button class="btn btn-primary open-callback-modal">
-          Get Callback
-        </button>
+        <div class="header-actions">
+          <button class="btn btn-primary open-callback-modal">
+            Get Callback
+          </button>
+          <button class="btn btn-secondary open-brochure-modal animate-pulse">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="margin-right: 8px;">
+              <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z"/>
+            </svg>
+            Download Brochure
+          </button>
+        </div>
         <button class="mobile-menu-btn">☰</button>
       </div>
       <div class="mobile-menu-overlay"></div>
@@ -663,6 +671,7 @@ document.addEventListener("DOMContentLoaded", function () {
   insertHeader();
   insertHeroBanner();
   insertCallbackModal();
+  insertBrochureModal();
   insertFooter();
 });
 
@@ -733,6 +742,65 @@ function generateCallbackModal() {
   return modalHTML;
 }
 
+// Brochure Modal Component Generator
+function generateBrochureModal() {
+  const modalHTML = `
+    <div class="brochure-modal-overlay" id="brochureModal">
+      <div class="brochure-modal">
+        <button class="brochure-modal-close">&times;</button>
+        <h3>Download Our Brochure</h3>
+        <p>Get detailed information about our premium land developments and investment opportunities. Fill in your details to download our comprehensive brochure.</p>
+        <form class="brochure-form" id="brochure-form">
+          <div class="form-group">
+            <label for="brochure-name">Full Name *</label>
+            <input
+              type="text"
+              id="brochure-name"
+              name="name"
+              placeholder="Enter your name"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="brochure-email">Email Address *</label>
+            <input
+              type="email"
+              id="brochure-email"
+              name="email"
+              placeholder="Enter your email"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="brochure-mobile">Mobile Number *</label>
+            <input
+              type="tel"
+              id="brochure-mobile"
+              name="mobile"
+              placeholder="Enter your mobile number"
+              required
+            />
+          </div>
+          <button
+            id="brochure_form_btn"
+            type="submit"
+            class="btn btn-primary btn-submit"
+          >
+            Download Brochure
+          </button>
+          <div
+            id="brochure_success_message"
+            class="mt-2"
+            style="margin-top: 10px"
+          ></div>
+          <div id="brochure_error_message" class="error"></div>
+        </form>
+      </div>
+    </div>
+  `;
+  return modalHTML;
+}
+
 // Insert callback modal dynamically
 function insertCallbackModal() {
   // Create modal container at end of body
@@ -743,6 +811,18 @@ function insertCallbackModal() {
 
   // Initialize modal functionality after insertion
   initializeCallbackModal();
+}
+
+// Insert brochure modal dynamically
+function insertBrochureModal() {
+  // Create modal container at end of body
+  const brochureModalContainer = document.createElement("div");
+  brochureModalContainer.id = "brochure-modal-container";
+  brochureModalContainer.innerHTML = generateBrochureModal();
+  document.body.appendChild(brochureModalContainer);
+
+  // Initialize modal functionality after insertion
+  initializeBrochureModal();
 }
 
 // Callback Modal Functionality
@@ -816,6 +896,55 @@ function initializeCallbackModal() {
   //       }, 1500);
   //     });
   //   }
+}
+
+// Brochure Modal Functionality
+function initializeBrochureModal() {
+  const brochureModal = document.getElementById("brochureModal");
+  const openModalBtns = document.querySelectorAll(".open-brochure-modal");
+  const closeModalBtn = document.querySelector(".brochure-modal-close");
+
+  // Open modal
+  if (openModalBtns) {
+    openModalBtns.forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
+        if (brochureModal) {
+          brochureModal.classList.add("active");
+          document.body.style.overflow = "hidden";
+        }
+      });
+    });
+  }
+
+  // Close modal function
+  function closeBrochureModal() {
+    if (brochureModal) {
+      brochureModal.classList.remove("active");
+      document.body.style.overflow = "";
+    }
+  }
+
+  // Close modal events
+  if (closeModalBtn) {
+    closeModalBtn.addEventListener("click", closeBrochureModal);
+  }
+
+  if (brochureModal) {
+    brochureModal.addEventListener("click", (e) => {
+      if (e.target === brochureModal) closeBrochureModal();
+    });
+  }
+
+  document.addEventListener("keydown", (e) => {
+    if (
+      e.key === "Escape" &&
+      brochureModal &&
+      brochureModal.classList.contains("active")
+    ) {
+      closeBrochureModal();
+    }
+  });
 }
 document.addEventListener("DOMContentLoaded", function () {
   var bookingForm = document.getElementById("contact-form2");
@@ -891,6 +1020,93 @@ document.addEventListener("DOMContentLoaded", function () {
       .finally(function () {
         submitBtn.disabled = false;
         submitBtn.innerHTML = originalText;
+      });
+  });
+});
+
+// Brochure Form Handling
+document.addEventListener("DOMContentLoaded", function () {
+  var brochureForm = document.getElementById("brochure-form");
+  if (!brochureForm) return;
+  var brochureSuccessMsg = document.getElementById("brochure_success_message");
+  var brochureErrorMsg = document.getElementById("brochure_error_message");
+  var brochureSubmitBtn = document.getElementById("brochure_form_btn");
+  brochureForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    if (brochureSuccessMsg) {
+      brochureSuccessMsg.textContent = "";
+      brochureSuccessMsg.style.display = "none";
+    }
+    if (brochureErrorMsg) {
+      brochureErrorMsg.textContent = "";
+      brochureErrorMsg.style.display = "none";
+    }
+    console.log("Brochure Form data:", brochureForm);
+    var name = brochureForm.name.value.trim();
+    var email = brochureForm.email.value.trim();
+    var mobile =
+      brochureForm.querySelector("[name=mobile]")?.value.trim() || "";
+    console.log({ name, email, mobile });
+    console.log("Submitting brochure form...");
+    console.log("Using BaseURL:", BaseURL);
+    if (!name || !email || !mobile) {
+      if (brochureErrorMsg) {
+        brochureErrorMsg.style.display = "block";
+        brochureErrorMsg.style.color = "#d32f2f";
+        brochureErrorMsg.textContent = "Please fill all required fields.";
+      }
+      return;
+    }
+    brochureSubmitBtn.disabled = true;
+    var originalText = brochureSubmitBtn.innerHTML;
+    brochureSubmitBtn.innerHTML = "Downloading...";
+    fetch(`${BaseURL}/api/v1/kyra/contact`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        project: "KYRA_GROUP_INDIA",
+        name,
+        email,
+        phone: mobile,
+        message: "Brochure Download Request",
+      }),
+    })
+      .then(function (res) {
+        if (res.status !== 200) {
+          throw new Error("Failed to submit. Please try again.");
+        }
+        return res.json();
+      })
+      .then(function (data) {
+        if (brochureSuccessMsg) {
+          brochureSuccessMsg.style.display = "block";
+          brochureSuccessMsg.style.color = "#388e3c";
+          brochureSuccessMsg.textContent =
+            "Thank you! Your brochure download will start shortly.";
+        }
+        brochureForm.reset();
+
+        // Trigger brochure download
+        const link = document.createElement("a");
+        link.href = "/assets/docs/pdf/brochure.pdf";
+        link.download = "KYRA_Group_Brochure.pdf";
+        link.style.display = "none";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      })
+      .catch(function (err) {
+        if (brochureErrorMsg) {
+          brochureErrorMsg.style.display = "block";
+          brochureErrorMsg.style.color = "#d32f2f";
+          brochureErrorMsg.textContent =
+            err.message || "Submission failed. Please try again.";
+        }
+      })
+      .finally(function () {
+        brochureSubmitBtn.disabled = false;
+        brochureSubmitBtn.innerHTML = originalText;
       });
   });
 });
