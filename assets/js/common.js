@@ -318,7 +318,7 @@ function generateHeroBanner() {
   const bannerImages = [
     {
       src: "assets/portalImages/DJI_0012.JPG",
-      title: "Premium Farm Lands",
+      title: "Premium Farm Landss",
       subtitle:
         "Invest in fertile agricultural lands with guaranteed returns and legal clarity",
     },
