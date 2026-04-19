@@ -15,7 +15,7 @@ function generateHeader() {
         </ul>
         <div class="header-actions">
           <button class="btn btn-primary open-callback-modal">
-            Get Callback Now
+            Get Callback
           </button>
           <button class="btn btn-secondary open-brochure-modal animate-pulse">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="margin-right: 8px;">
