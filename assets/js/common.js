@@ -4,7 +4,7 @@ function generateHeader() {
     <header id="main-header">
       <div class="container nav-container">
         <a href="#" class="logo">
-          <img src="/assets/image/logokyra.png" alt="KYRA GROUP" />
+          <img src="assets/image/logokyra.png" alt="KYRA GROUP" />
         </a>
         <ul class="nav-links">
           <li><a href="/">Home</a></li>
@@ -317,29 +317,29 @@ function insertFooter() {
 function generateHeroBanner() {
   const bannerImages = [
     {
-      src: "/assets/portalImages/DJI_0012.JPG",
+      src: "assets/portalImages/DJI_0012.JPG",
       title: "Premium Farm Lands",
       subtitle:
         "Invest in fertile agricultural lands with guaranteed returns and legal clarity",
     },
     {
-      src: "/assets/portalImages/DJI_0024.JPG",
+      src: "assets/portalImages/DJI_0024.JPG",
       title: "Scenic Plot Developments",
       subtitle:
         "Beautiful residential plots surrounded by nature and modern amenities",
     },
     {
-      src: "/assets/portalImages/DJI_0036.JPG",
+      src: "assets/portalImages/DJI_0036.JPG",
       title: "Agricultural Excellence",
       subtitle: "High-yield farm lands with water source and road connectivity",
     },
     {
-      src: "/assets/portalImages/DJI_0039.JPG",
+      src: "assets/portalImages/DJI_0039.JPG",
       title: "Investment Opportunities",
       subtitle: "Secure your future with our legally verified land investments",
     },
     {
-      src: "/assets/portalImages/DJI_0066.JPG",
+      src: "assets/portalImages/DJI_0066.JPG",
       title: "Developed Infrastructure",
       subtitle:
         "Ready-to-build plots with all essential amenities and clear titles",
@@ -1089,7 +1089,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Trigger brochure download
         const link = document.createElement("a");
-        link.href = "/assets/docs/pdf/brochure.pdf";
+        link.href = "assets/docs/pdf/brochure.pdf";
         link.download = "KYRA_Group_Brochure.pdf";
         link.style.display = "none";
         document.body.appendChild(link);
