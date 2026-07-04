@@ -4,7 +4,7 @@ function generateHeader() {
     <header id="main-header">
       <div class="container nav-container">
         <a href="#" class="logo">
-          <img src="/assets/image/logo2.png" alt="KYRA GROUP" />
+          <img src="/assets/image/logo.png" alt="KYRA GROUP" />
         </a>
         <ul class="nav-links">
           <li><a href="/">Home</a></li>
