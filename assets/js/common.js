@@ -317,29 +317,29 @@ function insertFooter() {
 function generateHeroBanner() {
   const bannerImages = [
     {
-      src: "assets/portalImages/DJI_0012.JPG",
+      src: "assets/portalImages/DJI_0012.webp",
       title: "Premium Farm Landss",
       subtitle:
         "Invest in fertile agricultural lands with guaranteed returns and legal clarity",
     },
     {
-      src: "assets/portalImages/DJI_0024.JPG",
+      src: "assets/portalImages/DJI_0024.webp",
       title: "Scenic Plot Developments",
       subtitle:
         "Beautiful residential plots surrounded by nature and modern amenities",
     },
     {
-      src: "assets/portalImages/DJI_0036.JPG",
+      src: "assets/portalImages/DJI_0036.webp",
       title: "Agricultural Excellence",
       subtitle: "High-yield farm lands with water source and road connectivity",
     },
     {
-      src: "assets/portalImages/DJI_0039.JPG",
+      src: "assets/portalImages/DJI_0039.webp",
       title: "Investment Opportunities",
       subtitle: "Secure your future with our legally verified land investments",
     },
     {
-      src: "assets/portalImages/DJI_0066.JPG",
+      src: "assets/portalImages/DJI_0040.webp",
       title: "Developed Infrastructure",
       subtitle:
         "Ready-to-build plots with all essential amenities and clear titles",
