@@ -513,15 +513,18 @@ function initializeHeroBanner() {
   function handleTouchMove(e) {
     if (!isSwiping) return;
 
-    e.preventDefault();
     const touch = e.touches[0];
     deltaX = touch.clientX - startX;
     deltaY = touch.clientY - startY;
 
-    // Visual feedback during swipe
-    const currentTranslateX = -currentSlide * 100;
-    const swipeOffset = (deltaX / slider.offsetWidth) * 100;
-    slider.style.transform = `translateX(${currentTranslateX + swipeOffset}%)`;
+    // Only block native scrolling when the user is swiping horizontally.
+    if (Math.abs(deltaX) > Math.abs(deltaY)) {
+      e.preventDefault();
+
+      const currentTranslateX = -currentSlide * 100;
+      const swipeOffset = (deltaX / slider.offsetWidth) * 100;
+      slider.style.transform = `translateX(${currentTranslateX + swipeOffset}%)`;
+    }
   }
 
   function handleTouchEnd() {
