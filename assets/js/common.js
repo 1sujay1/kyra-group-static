@@ -986,7 +986,12 @@ function initializeVideoModal() {
 
   if (videoModal) {
     videoModal.addEventListener("click", (e) => {
-      if (e.target === videoModal) closeVideoModal();
+      if (
+        e.target === videoModal ||
+        e.target.classList.contains("video-modal-overlay")
+      ) {
+        closeVideoModal();
+      }
     });
   }
 

@@ -186,20 +186,38 @@
     <div id="banner-container"></div>
 
     <!-- Video Modal -->
-    <div class="video-modal-overlay" id="videoModal">
-      <div class="video-modal-fullscreen">
-        <button class="video-modal-close" aria-label="Close video">&times;</button>
+    <div
+      class="video-modal"
+      id="videoModal"
+      aria-hidden="true"
+      role="dialog"
+      aria-modal="true"
+    >
+      <div class="video-modal-overlay"></div>
+      <div class="video-modal-content">
+        <button class="video-modal-close" aria-label="Close video">
+          &times;
+        </button>
         <div class="video-container-fullscreen">
           <iframe
             id="youtube-player"
             width="100%"
             height="100%"
-            src="https://youtu.be/v8BsVr_vejM?si=xzVWhxWxxalgvQMe"
+            src=""
             title="KYRA GROUP - Premium Land Development"
             frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
-            allowfullscreen>
-          </iframe>
+            allow="
+              accelerometer;
+              autoplay;
+              clipboard-write;
+              encrypted-media;
+              gyroscope;
+              picture-in-picture;
+              web-share;
+              fullscreen;
+            "
+            allowfullscreen
+          ></iframe>
         </div>
       </div>
     </div>
@@ -657,9 +675,8 @@
                 </video>
                 <div class="video-overlay">
                   <button
-                    class="play-btn"
+                    class="play-btn video-play-btn"
                     type="button"
-                    onclick="openVideoModal(this)"
                     aria-label="Open video in modal"
                   >
                     <svg
@@ -686,9 +703,8 @@
                 </video>
                 <div class="video-overlay">
                   <button
-                    class="play-btn"
+                    class="play-btn video-play-btn"
                     type="button"
-                    onclick="openVideoModal(this)"
                     aria-label="Open video in modal"
                   >
                     <svg
@@ -715,9 +731,8 @@
                 </video>
                 <div class="video-overlay">
                   <button
-                    class="play-btn"
+                    class="play-btn video-play-btn"
                     type="button"
-                    onclick="openVideoModal(this)"
                     aria-label="Open video in modal"
                   >
                     <svg
@@ -741,46 +756,6 @@
         </div>
       </div>
     </section>
-
-    <div
-      class="video-modal"
-      id="videoModal"
-      aria-hidden="true"
-      role="dialog"
-      aria-modal="true"
-    >
-      <div class="video-modal-overlay" id="videoModalOverlay"></div>
-      <div class="video-modal-content">
-        <button
-          class="video-modal-close"
-          id="videoModalClose"
-          aria-label="Close video"
-        >
-          &times;
-        </button>
-        <div class="video-modal-player">
-          <video
-            id="videoModalPlayer"
-            controls
-            playsinline
-            preload="metadata"
-            muted
-          ></video>
-          <div class="video-modal-actions">
-            <button class="video-tool-btn" id="videoMuteBtn" type="button">
-              Unmute
-            </button>
-            <button
-              class="video-tool-btn"
-              id="videoFullscreenBtn"
-              type="button"
-            >
-              Fullscreen
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
 
     <!-- Gallery Section -->
     <section id="gallery" class="section-padding" style="background: #f8fcf9">
@@ -1332,75 +1307,6 @@
         if (videoCurrentIndex > 0) {
           videoCurrentIndex--;
           scrollVideoIndex(videoCurrentIndex);
-        }
-      });
-
-      // 5. Video Modal Player
-      const videoModal = document.getElementById("videoModal");
-      const videoModalPlayer = document.getElementById("videoModalPlayer");
-      const videoModalClose = document.getElementById("videoModalClose");
-      const videoModalOverlay = document.getElementById("videoModalOverlay");
-      const videoMuteBtn = document.getElementById("videoMuteBtn");
-      const videoFullscreenBtn = document.getElementById("videoFullscreenBtn");
-
-      function openVideoModal(button) {
-        const card = button.closest(".video-card");
-        const source = card.querySelector("video source").getAttribute("src");
-        videoModalPlayer.src = source;
-        videoModalPlayer.muted = true;
-        videoModalPlayer.controls = true;
-        videoModalPlayer.play().catch(() => {
-          // Auto-play fallback if browser blocks it.
-        });
-        videoMuteBtn.textContent = "Unmute";
-        videoModal.classList.add("active");
-        document.body.style.overflow = "hidden";
-        videoModal.setAttribute("aria-hidden", "false");
-      }
-
-      function closeVideoModal() {
-        videoModal.classList.remove("active");
-        videoModalPlayer.pause();
-        videoModalPlayer.removeAttribute("src");
-        videoModalPlayer.load();
-        if (document.fullscreenElement) {
-          document.exitFullscreen();
-        } else if (document.webkitFullscreenElement) {
-          document.webkitExitFullscreen();
-        }
-        document.body.style.overflow = "";
-        videoModal.setAttribute("aria-hidden", "true");
-      }
-
-      function toggleVideoMute() {
-        videoModalPlayer.muted = !videoModalPlayer.muted;
-        videoMuteBtn.textContent = videoModalPlayer.muted ? "Unmute" : "Mute";
-      }
-
-      function enterVideoFullscreen() {
-        if (videoModalPlayer.requestFullscreen) {
-          videoModalPlayer.requestFullscreen();
-        } else if (videoModalPlayer.webkitRequestFullscreen) {
-          videoModalPlayer.webkitRequestFullscreen();
-        } else if (videoModalPlayer.msRequestFullscreen) {
-          videoModalPlayer.msRequestFullscreen();
-        }
-      }
-
-      videoModalClose.addEventListener("click", closeVideoModal);
-      videoModalOverlay.addEventListener("click", closeVideoModal);
-      videoMuteBtn.addEventListener("click", (event) => {
-        event.stopPropagation();
-        toggleVideoMute();
-      });
-      videoFullscreenBtn.addEventListener("click", (event) => {
-        event.stopPropagation();
-        enterVideoFullscreen();
-      });
-
-      document.addEventListener("keydown", (event) => {
-        if (event.key === "Escape" && videoModal.classList.contains("active")) {
-          closeVideoModal();
         }
       });
 
