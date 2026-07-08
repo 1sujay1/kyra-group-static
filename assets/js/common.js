@@ -370,11 +370,7 @@ function generateHeroBanner() {
                   </svg>
                   Contact Us
                 </a>
-                <button class="play-button-animated open-video-modal" title="Play Video">
-                  <svg width="60" height="60" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M8 5v14l11-7z"/>
-                  </svg>
-                </button>
+           
               </div>
             </div>
           </div>
@@ -956,21 +952,23 @@ function initializeBrochureModal() {
 // Video Modal Functionality
 function initializeVideoModal() {
   const videoModal = document.getElementById("videoModal");
-  const openVideoModalBtns = document.querySelectorAll(".open-video-modal");
+  const openVideoModalBtns = document.querySelectorAll(".video-play-btn");
   const closeVideoModalBtn = document.querySelector(".video-modal-close");
   const iframe = document.getElementById("youtube-player");
   const youtubeUrl = "https://www.youtube.com/embed/v8BsVr_vejM";
 
   function openVideoModal() {
     if (!videoModal || !iframe) return;
-    iframe.src = `${youtubeUrl}?autoplay=1&mute=1&rel=0&playsinline=1`;
+    iframe.src = `${youtubeUrl}?autoplay=1&mute=1&rel=0&playsinline=1&loop=1&playlist=v8BsVr_vejM`;
     videoModal.classList.add("active");
+    videoModal.setAttribute("aria-hidden", "false");
     document.body.style.overflow = "hidden";
   }
 
   function closeVideoModal() {
     if (!videoModal || !iframe) return;
     videoModal.classList.remove("active");
+    videoModal.setAttribute("aria-hidden", "true");
     document.body.style.overflow = "";
     iframe.src = "";
   }
