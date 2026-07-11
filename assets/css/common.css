@@ -46,7 +46,7 @@ main {
 
 /* --- Global Components --- */
 .container {
-  max-width: 1280px;
+  max-width: 1280px !important;
   margin: 0 auto;
   padding: 0 24px;
 }
@@ -55,14 +55,16 @@ main {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 8px 16px;
-  border-radius: 6px;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
   font-weight: 600;
   text-decoration: none;
-  cursor: pointer;
   transition: var(--transition);
+  cursor: pointer;
   border: none;
-  font-size: 14px;
+  font-size: 0.95rem;
+  min-height: 44px;
 }
 
 .btn-primary {
@@ -87,6 +89,14 @@ main {
   transform: translateY(-2px);
   box-shadow: 0 5px 15px rgba(245, 158, 11, 0.3);
 } */
+
+.section-padding {
+  padding: 100px 0;
+}
+
+.text-center {
+  text-align: center;
+}
 
 /* --- Header Styles --- */
 header {
@@ -148,6 +158,18 @@ header.scrolled {
   display: flex;
   gap: 28px;
   list-style: none;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: rgb(3, 32, 3);
+  font-weight: 800;
+  font-size: 20px;
+  transition: var(--transition);
+}
+
+.nav-links a:hover {
+  color: var(--primary-green);
 }
 
 .header-actions {
@@ -1111,6 +1133,7 @@ footer {
 
   .nav-links.mobile-active.show {
     left: 0 !important;
+    transform: translateY(0);
   }
 
   .nav-links.mobile-active li {

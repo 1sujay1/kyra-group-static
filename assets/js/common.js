@@ -3,8 +3,8 @@ function generateHeader() {
   const headerHTML = `
     <header id="main-header">
       <div class="container nav-container">
-        <a href="#" class="logo">
-          <img src="assets/portalImages/logo.png" alt="KYRA GROUP" />
+        <a href="/" class="logo">
+          <img src="/assets/portalImages/logo.png" alt="KYRA GROUP" />
         </a>
         <ul class="nav-links">
           <li><a href="/">Home</a></li>
