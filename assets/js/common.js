@@ -295,8 +295,7 @@ function generateFooter() {
         </div>
         <div class="footer-bottom">
           <p>
-            &copy; 2025 KYRA GROUP. All Rights Reserved. Designed for High
-            Performance.
+            &copy; 2025 KYRA GROUP. All Rights Reserved.
           </p>
         </div>
       </div>
