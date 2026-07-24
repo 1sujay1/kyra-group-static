@@ -11,9 +11,7 @@
 
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
-    <!-- Tailwind CSS for utility Layout -->
-    <script src="https://cdn.tailwindcss.com"></script>
-
+    <link rel="stylesheet" href="/assets/css/common.css" />
     <style>
       :root {
         --primary: #1a202c;
@@ -225,25 +223,20 @@
     </style>
   </head>
   <body>
-    <!-- Header Section -->
-    <header class="bg-white border-b border-gray-100 py-12">
-      <div class="container mx-auto px-4 text-center">
-        <nav
-          class="mb-4 text-sm font-medium uppercase tracking-widest text-gray-500"
-        >
-          <a href="#" class="hover:text-amber-600 transition-colors">Home</a>
-          <span class="mx-2">/</span>
-          <span class="text-gray-900">News & Events</span>
-        </nav>
-        <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-          Latest Insights & Events
-        </h1>
-        <p class="max-w-2xl mx-auto text-gray-600">
-          Discover the pulse of the real estate market, upcoming exclusive
-          showcases, and professional development seminars.
-        </p>
+    <!-- Header Container for Dynamic Insertion -->
+    <div id="header-container"></div>
+    <!-- News Hero Banner -->
+    <section class="page-hero" style="background-image: url('/assets/portalImages/DJI_0024.webp');">
+      <div class="container">
+        <div class="page-hero-content">
+          <span class="page-hero-badge">UPDATES & INSIGHTS</span>
+          <h1>Latest News & Media</h1>
+          <p>
+            Stay informed with the latest project announcements, real estate market insights, and development milestones from Kyra Group.
+          </p>
+        </div>
       </div>
-    </header>
+    </section>
 
     <main class="container mx-auto px-4 py-12">
       <!-- Search and Filter Controls -->
@@ -334,11 +327,9 @@
           "@type": "Place",
           "name": "Elite Realty Group HQ"
         }
-      }
     </script>
 
     <script>
-      // Mock Data - In a production environment, this would come from a CMS/API
       const eventData = [
         {
           id: 1,
@@ -515,5 +506,10 @@
         lucide.createIcons();
       };
     </script>
+
+    <!-- Footer Container for Dynamic Insertion -->
+    <div id="footer-container"></div>
+
+    <script src="/assets/js/common.js"></script>
   </body>
 </html>

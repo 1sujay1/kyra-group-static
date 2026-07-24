@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Siragiri Velavan Nagar | Kyra Group</title>
+    <meta name="description" content="Siragiri Velavan Nagar in Ammapettai, Erode - Premium DTCP approved residential plot layout by Kyra Group.">
+    <link rel="icon" type="image/png" href="/assets/image/faviconkyra.png">
+
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Global CSS -->
+    <link rel="stylesheet" href="/assets/css/common.css">
+
+    <style>
+        .project-detail-hero {
+            position: relative;
+            width: 100%;
+            height: 65vh;
+            min-height: 420px;
+            overflow: hidden;
+            background: #000;
+        }
+
+        .project-hero-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.75) contrast(1.05);
+            transition: transform 0.8s ease;
+        }
+
+        .project-hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.75) 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+            color: #ffffff;
+        }
+
+        .project-title-heading {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.2rem, 4.5vw, 3.8rem);
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.8);
+            margin-bottom: 0.25rem;
+            line-height: 1.15;
+            color: #ffffff;
+        }
+
+        .plots-sale-banner-text {
+            color: #facc15;
+            font-weight: 900;
+            font-size: clamp(2rem, 4vw, 3.2rem);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            text-shadow: 0 4px 15px rgba(0,0,0,0.9), 0 0 25px rgba(250, 204, 21, 0.4);
+            margin-top: 1.25rem;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .metrics-bar {
+            background: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+            border-left: 5px solid var(--primary-green);
+            padding: 1.75rem;
+        }
+
+        .amenity-card {
+            background: #ffffff;
+            border: 1px solid #f1f5f9;
+            border-radius: 16px;
+            padding: 1.75rem 1rem;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .amenity-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(45, 122, 74, 0.15);
+            border-color: var(--primary-green);
+        }
+
+        .amenity-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(45, 122, 74, 0.1);
+            color: var(--primary-green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 0.85rem;
+            transition: all 0.3s ease;
+        }
+
+        .amenity-card:hover .amenity-icon {
+            background: var(--primary-green);
+            color: #ffffff;
+            transform: scale(1.1);
+        }
+
+        .callback-card {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 2.25rem;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.06);
+            border: 1px solid #e2e8f0;
+        }
+
+        .form-input-custom {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            transition: border-color 0.2s ease;
+            background: #f8fafc;
+        }
+
+        .form-input-custom:focus {
+            outline: none;
+            border-color: var(--primary-green);
+            background: #ffffff;
+            box-shadow: 0 0 0 3px rgba(45, 122, 74, 0.15);
+        }
+
+        /* Video Player & Pulse Animation */
+        @keyframes playPulse {
+            0% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7); }
+            70% { box-shadow: 0 0 0 25px rgba(255, 255, 255, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
+        }
+
+        .play-btn-pulse {
+            animation: playPulse 2s infinite;
+        }
+
+        /* Gallery Card Animations */
+        .gallery-item {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-6px);
+        }
+
+        /* Lightbox Modal */
+        .lightbox-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 99999;
+            background: rgba(0, 0, 0, 0.92);
+            backdrop-filter: blur(10px);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox-modal.active {
+            display: flex;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900">
+
+    <!-- Header Container for Common Nav Bar -->
+    <div id="header-container"></div>
+
+    <!-- Project Hero Image Banner Slider (Matching Screenshot) -->
+    <section class="project-detail-hero" style="margin-top: 70px;">
+        <img id="heroSliderImage" src="/assets/image/sirigiri.png" alt="Siragiri Velavan Nagar" class="project-hero-img">
+        <div class="project-hero-overlay">
+            <h1 class="project-title-heading">SIRAGIRI VELAVAN<br>NAGAR</h1>
+            <p class="text-xl md:text-2xl font-serif text-slate-200 mt-2">Ammapettai, Erode</p>
+            <div class="plots-sale-banner-text">PLOTS FOR SALE</div>
+        </div>
+
+        <!-- Slider Arrow Controls -->
+        <div class="absolute bottom-6 right-6 flex gap-3 z-10">
+            <button onclick="prevSlide()" class="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/20 hover:bg-green-700 text-white flex items-center justify-center backdrop-blur-md border border-white/30 transition-all">
+                <i data-lucide="chevron-left" class="w-5 h-5 md:w-6 md:h-6"></i>
+            </button>
+            <button onclick="nextSlide()" class="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/20 hover:bg-green-700 text-white flex items-center justify-center backdrop-blur-md border border-white/30 transition-all">
+                <i data-lucide="chevron-right" class="w-5 h-5 md:w-6 md:h-6"></i>
+            </button>
+        </div>
+    </section>
+
+    <!-- Back Navigation Bar -->
+    <nav class="bg-white border-b border-slate-200 py-3.5 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 flex items-center justify-between">
+            <a href="/project/" class="inline-flex items-center gap-2 text-sm font-semibold text-slate-700 hover:text-green-700 transition-colors">
+                <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                <span>Back to Projects</span>
+            </a>
+            <span class="text-xs font-bold uppercase tracking-wider text-green-800 bg-green-50 px-3 py-1 rounded-full border border-green-200">Erode • DTCP Approved</span>
+        </div>
+    </nav>
+
+    <main class="py-16">
+        <div class="max-w-7xl mx-auto px-4">
+
+            <!-- Quick Overview & Details -->
+            <div class="mb-16">
+                <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
+                    <div>
+                        <span class="inline-block bg-green-100 text-green-800 font-bold text-xs px-3.5 py-1.5 rounded-full uppercase tracking-wider mb-2">Sold Out / On Sale</span>
+                        <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900">Siragiri Velavan Nagar</h2>
+                        <p class="text-slate-600 font-medium mt-1">Erode <span class="text-slate-400">• Price/Details: Ammapettai</span></p>
+                    </div>
+                    <div>
+                        <button class="open-brochure-modal bg-emerald-800 hover:bg-emerald-900 text-white font-bold text-sm px-6 py-3 rounded-xl shadow-lg hover:shadow-emerald-900/30 transition-all flex items-center gap-2">
+                            <i data-lucide="download" class="w-4 h-4"></i>
+                            <span>Download Brochure PDF</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Metrics Bar (Matching Screenshot) -->
+                <div class="metrics-bar grid grid-cols-2 md:grid-cols-4 gap-6 text-center md:text-left">
+                    <div>
+                        <span class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-1">RERA Approval</span>
+                        <span class="text-lg font-bold text-slate-900">DT/R/PS/0045</span>
+                    </div>
+                    <div>
+                        <span class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-1">Possession Date</span>
+                        <span class="text-lg font-bold text-slate-900">Dec 2026</span>
+                    </div>
+                    <div>
+                        <span class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-1">Total Area</span>
+                        <span class="text-lg font-bold text-slate-900">1200 - 1800 sq.ft</span>
+                    </div>
+                    <div>
+                        <span class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-1">Developer</span>
+                        <span class="text-lg font-bold text-slate-900">Kyra Group</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- World Class Amenities (Matching Screenshot) -->
+            <section class="mb-20">
+                <h3 class="text-2xl font-bold text-slate-900 mb-8 pb-3 border-b-2 border-slate-200 relative">
+                    World Class Amenities
+                    <span class="absolute bottom-0 left-0 w-16 h-0.5 bg-green-700"></span>
+                </h3>
+
+                <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6">
+                    <!-- Swimming Pool -->
+                    <div class="amenity-card">
+                        <div class="amenity-icon">
+                            <i data-lucide="waves" class="w-6 h-6"></i>
+                        </div>
+                        <span class="text-sm font-semibold text-slate-800">Swimming Pool</span>
+                    </div>
+
+                    <!-- Gym -->
+                    <div class="amenity-card">
+                        <div class="amenity-icon">
+                            <i data-lucide="dumbbell" class="w-6 h-6"></i>
+                        </div>
+                        <span class="text-sm font-semibold text-slate-800">Gym</span>
+                    </div>
+
+                    <!-- Roof Garden -->
+                    <div class="amenity-card">
+                        <div class="amenity-icon">
+                            <i data-lucide="flower-2" class="w-6 h-6"></i>
+                        </div>
+                        <span class="text-sm font-semibold text-slate-800">Roof Garden</span>
+                    </div>
+
+                    <!-- 24/7 Security -->
+                    <div class="amenity-card">
+                        <div class="amenity-icon">
+                            <i data-lucide="shield-check" class="w-6 h-6"></i>
+                        </div>
+                        <span class="text-sm font-semibold text-slate-800">24/7 Security</span>
+                    </div>
+
+                    <!-- Parking -->
+                    <div class="amenity-card">
+                        <div class="amenity-icon">
+                            <i data-lucide="car" class="w-6 h-6"></i>
+                        </div>
+                        <span class="text-sm font-semibold text-slate-800">Parking</span>
+                    </div>
+
+                    <!-- Smart Home -->
+                    <div class="amenity-card">
+                        <div class="amenity-icon">
+                            <i data-lucide="cpu" class="w-6 h-6"></i>
+                        </div>
+                        <span class="text-sm font-semibold text-slate-800">Smart Home</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Walkthrough Video Section (Below Amenities) -->
+            <section class="mb-20 reveal">
+                <div class="flex flex-wrap items-center justify-between gap-4 mb-8 pb-3 border-b-2 border-slate-200 relative">
+                    <h3 class="text-2xl font-bold text-slate-900 relative">
+                        Project Walkthrough Video
+                        <span class="absolute -bottom-3.5 left-0 w-16 h-0.5 bg-green-700"></span>
+                    </h3>
+                    <span class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-emerald-800 bg-emerald-100 px-3.5 py-1.5 rounded-full border border-emerald-200 shadow-sm">
+                        <i data-lucide="video" class="w-4 h-4"></i>
+                        <span>4K Aerial Drone Tour</span>
+                    </span>
+                </div>
+
+                <div class="relative w-full h-[400px] md:h-[500px] rounded-2xl overflow-hidden shadow-2xl group border border-slate-200">
+                    <img src="/assets/portalImages/DJI_0024.webp" alt="Siragiri Velavan Nagar Walkthrough Video Thumbnail" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/20 flex flex-col items-center justify-center p-6 text-center">
+                        <button onclick="openVideoModal()" class="w-20 h-20 md:w-24 md:h-24 bg-white/90 hover:bg-white text-green-800 rounded-full flex items-center justify-center shadow-2xl play-btn-pulse transition-all transform hover:scale-110 mb-4">
+                            <i data-lucide="play" class="w-10 h-10 md:w-12 md:h-12 fill-current translate-x-1"></i>
+                        </button>
+                        <h4 class="text-2xl md:text-3xl font-extrabold text-white mb-2 shadow-sm">Experience Siragiri Velavan Nagar</h4>
+                        <p class="text-sm md:text-base text-slate-200 max-w-xl font-medium">Watch the complete site walkthrough showing DTCP plot boundaries, blacktop internal roads, and surrounding connectivity in Ammapettai, Erode.</p>
+                        <div class="mt-4 flex items-center gap-4 text-xs font-bold text-white/80 bg-black/40 backdrop-blur-md px-4 py-2 rounded-full border border-white/20">
+                            <span>Duration: 02:45 mins</span>
+                            <span>•</span>
+                            <span>Ultra HD 4K</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Animated Gallery & Lightbox Section -->
+            <section class="mb-20 reveal">
+                <div class="mb-8 pb-3 border-b-2 border-slate-200 relative">
+                    <h3 class="text-2xl font-bold text-slate-900 relative">
+                        Project Photo Gallery & Masterplan
+                        <span class="absolute -bottom-3.5 left-0 w-16 h-0.5 bg-green-700"></span>
+                    </h3>
+                </div>
+
+                <!-- Gallery Cards Grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="galleryGrid">
+                    <!-- Photo 1: Drone -->
+                    <div class="gallery-item drone group relative rounded-2xl overflow-hidden shadow-lg border border-slate-200 cursor-pointer" onclick="openLightbox('/assets/image/sirigiri.png', 'Siragiri Velavan Nagar Aerial View')">
+                        <img src="/assets/image/sirigiri.png" alt="Siragiri Velavan Nagar Aerial View" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-5 text-white">
+                            <span class="text-xs font-bold text-amber-400 uppercase tracking-widest">Drone View</span>
+                            <h5 class="text-base font-bold">Sunset Aerial View</h5>
+                        </div>
+                    </div>
+
+                    <!-- Photo 2: Drone 2 -->
+                    <div class="gallery-item drone group relative rounded-2xl overflow-hidden shadow-lg border border-slate-200 cursor-pointer" onclick="openLightbox('/assets/portalImages/DJI_0024.webp', 'Layout Boundary & Internal Roads')">
+                        <img src="/assets/portalImages/DJI_0024.webp" alt="Layout Boundary & Internal Roads" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-5 text-white">
+                            <span class="text-xs font-bold text-amber-400 uppercase tracking-widest">Drone View</span>
+                            <h5 class="text-base font-bold">Layout Boundary & Internal Roads</h5>
+                        </div>
+                    </div>
+
+                    <!-- Photo 3: Infra -->
+                    <div class="gallery-item infra group relative rounded-2xl overflow-hidden shadow-lg border border-slate-200 cursor-pointer" onclick="openLightbox('/assets/image/velan nagar 1000.png', 'Development Site Layout')">
+                        <img src="/assets/image/velan nagar 1000.png" alt="Development Site Layout" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-5 text-white">
+                            <span class="text-xs font-bold text-amber-400 uppercase tracking-widest">Infrastructure</span>
+                            <h5 class="text-base font-bold">Blacktop Road & Gated Layout</h5>
+                        </div>
+                    </div>
+
+                    <!-- Photo 4: Plan -->
+                    <div class="gallery-item plan group relative rounded-2xl overflow-hidden shadow-lg border border-slate-200 cursor-pointer" onclick="openLightbox('/assets/portalImages/DJI_0039.webp', 'DTCP Approved Master Plan')">
+                        <img src="/assets/portalImages/DJI_0039.webp" alt="DTCP Approved Master Plan" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-5 text-white">
+                            <span class="text-xs font-bold text-amber-400 uppercase tracking-widest">Layout Plan</span>
+                            <h5 class="text-base font-bold">DTCP Approved Master Plot Plan</h5>
+                        </div>
+                    </div>
+
+                    <!-- Photo 5: Infra -->
+                    <div class="gallery-item infra group relative rounded-2xl overflow-hidden shadow-lg border border-slate-200 cursor-pointer" onclick="openLightbox('/assets/portalImages/DJI_0066.JPG', 'Surrounding Connectivity')">
+                        <img src="/assets/portalImages/DJI_0066.JPG" alt="Surrounding Connectivity" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-5 text-white">
+                            <span class="text-xs font-bold text-amber-400 uppercase tracking-widest">Infrastructure</span>
+                            <h5 class="text-base font-bold">Surrounding Green Landscape</h5>
+                        </div>
+                    </div>
+
+                    <!-- Photo 6: Drone -->
+                    <div class="gallery-item drone group relative rounded-2xl overflow-hidden shadow-lg border border-slate-200 cursor-pointer" onclick="openLightbox('/assets/image/pro1.webp', 'Plots Boundary View')">
+                        <img src="/assets/image/pro1.webp" alt="Plots Boundary View" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-5 text-white">
+                            <span class="text-xs font-bold text-amber-400 uppercase tracking-widest">Drone View</span>
+                            <h5 class="text-base font-bold">Individual Plot Fencing & Markings</h5>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Location Map Section (Matching Screenshot) -->
+            <section class="mb-20">
+                <h3 class="text-2xl font-bold text-slate-900 mb-8 pb-3 border-b-2 border-slate-200 relative">
+                    Location Map
+                    <span class="absolute bottom-0 left-0 w-16 h-0.5 bg-green-700"></span>
+                </h3>
+
+                <div class="w-full h-96 rounded-2xl overflow-hidden shadow-lg border border-slate-200">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3910.828233777598!2d77.7274!3d11.4589!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTHCsDI3JzMyLjAiTiA3N8KwNDMnMzguNiJF!5e0!3m2!1sen!2sin!4v1650000000000!5m2!1sen!2sin" 
+                        width="100%" 
+                        height="100%" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy"
+                        title="Ammapettai Erode Location Map">
+                    </iframe>
+                </div>
+            </section>
+
+            <!-- Story & Request a Callback Form Section (Matching Screenshot) -->
+            <section class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+                
+                <!-- Left Story Column -->
+                <div class="lg:col-span-7">
+                    <h3 class="text-2xl font-bold text-green-800 mb-6">Here's why you should call Kyra home!</h3>
+                    
+                    <div class="space-y-4 text-slate-600 leading-relaxed text-sm md:text-base">
+                        <p>
+                            While the spectacular architecture and green-canopied streets reflect the beauty of our developments, Kyra Group is much more than that.
+                        </p>
+                        <p>
+                            Known by a myriad of names—the Green Developer, the Innovation Hub, the Trusted Partner and so on—it is a brand where centuries-old reliability waits with cutting-edge technology, revealing a unique tapestry of community enveloped in nature.
+                        </p>
+                        <p>
+                            In other words, Kyra Group is a unique medley of past, present, and future, making it the perfect place to call home.
+                        </p>
+                        <p>
+                            The Kyra Group has been leading the city's real estate development for over 10 years, shaping its skyline with state-of-the-art infrastructure, one landmark after another.
+                        </p>
+                    </div>
+
+                    <!-- Highlights List -->
+                    <div class="mt-8 grid grid-cols-2 gap-4">
+                        <div class="flex items-center gap-3 p-4 rounded-xl bg-white border border-slate-100 shadow-sm">
+                            <i data-lucide="check-circle" class="w-5 h-5 text-green-600 flex-shrink-0"></i>
+                            <span class="text-xs font-semibold text-slate-800">100% Clear Legal Title</span>
+                        </div>
+                        <div class="flex items-center gap-3 p-4 rounded-xl bg-white border border-slate-100 shadow-sm">
+                            <i data-lucide="check-circle" class="w-5 h-5 text-green-600 flex-shrink-0"></i>
+                            <span class="text-xs font-semibold text-slate-800">DTCP Approved Layout</span>
+                        </div>
+                        <div class="flex items-center gap-3 p-4 rounded-xl bg-white border border-slate-100 shadow-sm">
+                            <i data-lucide="check-circle" class="w-5 h-5 text-green-600 flex-shrink-0"></i>
+                            <span class="text-xs font-semibold text-slate-800">Blacktop Internal Roads</span>
+                        </div>
+                        <div class="flex items-center gap-3 p-4 rounded-xl bg-white border border-slate-100 shadow-sm">
+                            <i data-lucide="check-circle" class="w-5 h-5 text-green-600 flex-shrink-0"></i>
+                            <span class="text-xs font-semibold text-slate-800">24/7 Water & Utility Setup</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Callback Form Column (Matching Screenshot) -->
+                <div class="lg:col-span-5">
+                    <div class="callback-card">
+                        <h4 class="text-xl font-bold text-slate-900 mb-6">Request a Callback</h4>
+                        
+                        <form id="projectCallbackForm" class="space-y-5">
+                            <div>
+                                <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1">Your Name*</label>
+                                <input type="text" name="name" required placeholder="Enter Your Name" class="form-input-custom">
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1">Mobile*</label>
+                                <input type="tel" name="mobile" required placeholder="Your Mobile" class="form-input-custom">
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1">Your Email*</label>
+                                <input type="email" name="email" required placeholder="Enter Your Email" class="form-input-custom">
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1">Message</label>
+                                <textarea name="message" rows="3" placeholder="Enter Your Message" class="form-input-custom"></textarea>
+                            </div>
+
+                            <button type="submit" class="w-full py-3.5 px-6 rounded-xl border-2 border-green-700 text-green-800 hover:bg-green-700 hover:text-white font-bold text-sm uppercase tracking-wider transition-all">
+                                SUBMIT
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Footer Container -->
+    <div id="footer-container"></div>
+
+    <!-- Lightbox Modal -->
+    <div id="lightboxModal" class="lightbox-modal p-4" onclick="closeLightbox()">
+        <div class="relative max-w-5xl w-full text-center" onclick="event.stopPropagation()">
+            <button onclick="closeLightbox()" class="absolute -top-12 right-0 text-white hover:text-amber-400 font-bold text-xl bg-white/10 hover:bg-white/20 rounded-full w-10 h-10 flex items-center justify-center transition-all">✕</button>
+            <img id="lightboxImage" src="" alt="Gallery Preview" class="max-h-[80vh] mx-auto rounded-2xl shadow-2xl border border-white/20">
+            <h4 id="lightboxCaption" class="text-white text-lg font-bold mt-4 font-serif"></h4>
+        </div>
+    </div>
+
+    <!-- Video Modal -->
+    <div id="videoModal" class="lightbox-modal p-4" onclick="closeVideoModal()">
+        <div class="relative max-w-4xl w-full bg-black rounded-2xl overflow-hidden shadow-2xl border border-white/20" onclick="event.stopPropagation()">
+            <button onclick="closeVideoModal()" class="absolute top-4 right-4 text-white hover:text-amber-400 font-bold text-xl bg-black/60 hover:bg-black rounded-full w-10 h-10 flex items-center justify-center z-20 transition-all">✕</button>
+            <div class="relative pb-[56.25%] h-0">
+                <iframe id="videoIframe" class="absolute top-0 left-0 w-full h-full" src="" title="Siragiri Velavan Nagar Walkthrough Video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="/assets/js/common.js"></script>
+    <script>
+        lucide.createIcons();
+
+        // Image Gallery Slider
+        const sliderImages = [
+            "/assets/image/sirigiri.png",
+            "/assets/image/velan nagar 1000.png",
+            "/assets/portalImages/DJI_0024.webp",
+            "/assets/portalImages/DJI_0039.webp"
+        ];
+        let currentSlide = 0;
+
+        function updateSlide() {
+            const imgEl = document.getElementById("heroSliderImage");
+            if (imgEl) {
+                imgEl.style.opacity = "0.4";
+                setTimeout(() => {
+                    imgEl.src = sliderImages[currentSlide];
+                    imgEl.style.opacity = "1";
+                }, 200);
+            }
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % sliderImages.length;
+            updateSlide();
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + sliderImages.length) % sliderImages.length;
+            updateSlide();
+        }
+
+        // Gallery Filter Logic
+        function filterGallery(category, btn) {
+            document.querySelectorAll('.gallery-tab').forEach(t => {
+                t.classList.remove('bg-green-800', 'text-white');
+                t.classList.add('bg-slate-100', 'text-slate-700');
+            });
+            btn.classList.remove('bg-slate-100', 'text-slate-700');
+            btn.classList.add('bg-green-800', 'text-white');
+
+            const items = document.querySelectorAll('.gallery-item');
+            items.forEach(item => {
+                if (category === 'all' || item.classList.contains(category)) {
+                    item.style.display = 'block';
+                    item.style.opacity = '1';
+                    item.style.transform = 'scale(1)';
+                } else {
+                    item.style.opacity = '0';
+                    item.style.transform = 'scale(0.95)';
+                    setTimeout(() => { item.style.display = 'none'; }, 200);
+                }
+            });
+        }
+
+        // Lightbox Functions
+        function openLightbox(imgUrl, caption) {
+            document.getElementById('lightboxImage').src = imgUrl;
+            document.getElementById('lightboxCaption').textContent = caption;
+            document.getElementById('lightboxModal').classList.add('active');
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightboxModal').classList.remove('active');
+        }
+
+        // Video Modal Functions
+        function openVideoModal() {
+            document.getElementById('videoIframe').src = "https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ?autoplay=1";
+            document.getElementById('videoModal').classList.add('active');
+        }
+
+        function closeVideoModal() {
+            document.getElementById('videoIframe').src = "";
+            document.getElementById('videoModal').classList.remove('active');
+        }
+
+        // Scroll Reveal Observer
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Callback Form Submission
+        document.getElementById("projectCallbackForm")?.addEventListener("submit", function(e) {
+            e.preventDefault();
+            alert("Thank you! Your callback request for Siragiri Velavan Nagar has been received.");
+            this.reset();
+        });
+    </script>
+</body>
+</html>

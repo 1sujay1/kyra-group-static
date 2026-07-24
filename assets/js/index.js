@@ -74,4 +74,30 @@ document.addEventListener("DOMContentLoaded", function () {
         submitBtn.innerHTML = originalText;
       });
   });
+
+  // Homepage Gallery Filter Tabs Functionality
+  var galleryTabs = document.querySelectorAll(".home-gallery-tab");
+  var galleryGridItems = document.querySelectorAll("#homeGalleryGrid .gallery-item");
+
+  if (galleryTabs.length > 0 && galleryGridItems.length > 0) {
+    galleryTabs.forEach(function (tab) {
+      tab.addEventListener("click", function () {
+        var filter = tab.getAttribute("data-home-filter");
+
+        galleryTabs.forEach(function (t) { t.classList.remove("active"); });
+        tab.classList.add("active");
+
+        galleryGridItems.forEach(function (item) {
+          var category = item.getAttribute("data-home-category") || "";
+          if (filter === "all" || category.indexOf(filter) !== -1) {
+            item.style.display = "block";
+            item.classList.add("fade-in");
+          } else {
+            item.style.display = "none";
+            item.classList.remove("fade-in");
+          }
+        });
+      });
+    });
+  }
 });

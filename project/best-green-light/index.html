@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Best Green Light (Green Acres) | Kyra Group</title>
+    <meta name="description" content="Best Green Light in Pollachi, Coimbatore - Premium farmland layout planted with high-yield fruit crops by Kyra Group.">
+    <link rel="icon" type="image/png" href="/assets/image/faviconkyra.png">
+
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Global CSS -->
+    <link rel="stylesheet" href="/assets/css/common.css">
+
+    <style>
+        .project-detail-hero {
+            position: relative;
+            width: 100%;
+            height: 65vh;
+            min-height: 420px;
+            overflow: hidden;
+            background: #000;
+        }
+
+        .project-hero-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.75) contrast(1.05);
+            transition: transform 0.8s ease;
+        }
+
+        .project-hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.75) 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+            color: #ffffff;
+        }
+
+        .project-title-heading {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.2rem, 4.5vw, 3.8rem);
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.8);
+            margin-bottom: 0.25rem;
+            line-height: 1.15;
+            color: #ffffff;
+        }
+
+        .plots-sale-banner-text {
+            color: #facc15;
+            font-weight: 900;
+            font-size: clamp(1.8rem, 3.8vw, 3rem);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            text-shadow: 0 4px 15px rgba(0,0,0,0.9), 0 0 25px rgba(250, 204, 21, 0.4);
+            margin-top: 1.25rem;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .metrics-bar {
+            background: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+            border-left: 5px solid var(--primary-green);
+            padding: 1.75rem;
+        }
+
+        .amenity-card {
+            background: #ffffff;
+            border: 1px solid #f1f5f9;
+            border-radius: 16px;
+            padding: 1.75rem 1rem;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .amenity-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(45, 122, 74, 0.15);
+            border-color: var(--primary-green);
+        }
+
+        .amenity-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(45, 122, 74, 0.1);
+            color: var(--primary-green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 0.85rem;
+            transition: all 0.3s ease;
+        }
+
+        .amenity-card:hover .amenity-icon {
+            background: var(--primary-green);
+            color: #ffffff;
+            transform: scale(1.1);
+        }
+
+        .callback-card {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 2.25rem;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.06);
+            border: 1px solid #e2e8f0;
+        }
+
+        .form-input-custom {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            transition: border-color 0.2s ease;
+            background: #f8fafc;
+        }
+
+        .form-input-custom:focus {
+            outline: none;
+            border-color: var(--primary-green);
+            background: #ffffff;
+            box-shadow: 0 0 0 3px rgba(45, 122, 74, 0.15);
+        }
+
+        /* Video Player & Pulse Animation */
+        @keyframes playPulse {
+            0% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7); }
+            70% { box-shadow: 0 0 0 25px rgba(255, 255, 255, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
+        }
+
+        .play-btn-pulse { animation: playPulse 2s infinite; }
+
+        .lightbox-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 99999;
+            background: rgba(0, 0, 0, 0.92);
+            backdrop-filter: blur(10px);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox-modal.active { display: flex; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900">
+
+    <!-- Header Container for Common Nav Bar -->
+    <div id="header-container"></div>
+
+    <!-- Project Hero Image Banner Slider -->
+    <section class="project-detail-hero" style="margin-top: 70px;">
+        <img id="heroSliderImage" src="/assets/image/sirigiri.png" alt="Best Green Light Pollachi" class="project-hero-img">
+        <div class="project-hero-overlay">
+            <h1 class="project-title-heading">BEST GREEN LIGHT<br><span class="text-amber-400 font-sans text-xl md:text-2xl font-bold tracking-widest uppercase">GREEN ACRES</span></h1>
+            <p class="text-xl md:text-2xl font-serif text-slate-200 mt-2">Pollachi, Coimbatore</p>
+            <div class="plots-sale-banner-text">SUCCESSFULLY DELIVERED</div>
+        </div>
+
+        <!-- Slider Arrow Controls -->
+        <div class="absolute bottom-6 right-6 flex gap-3 z-10">
+            <button onclick="prevSlide()" class="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/20 hover:bg-green-700 text-white flex items-center justify-center backdrop-blur-md border border-white/30 transition-all">
+                <i data-lucide="chevron-left" class="w-5 h-5 md:w-6 md:h-6"></i>
+            </button>
+            <button onclick="nextSlide()" class="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/20 hover:bg-green-700 text-white flex items-center justify-center backdrop-blur-md border border-white/30 transition-all">
+                <i data-lucide="chevron-right" class="w-5 h-5 md:w-6 md:h-6"></i>
+            </button>
+        </div>
+    </section>
+
+    <!-- Back Navigation Bar -->
+    <nav class="bg-white border-b border-slate-200 py-3.5 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 flex items-center justify-between">
+            <a href="/project/" class="inline-flex items-center gap-2 text-sm font-semibold text-slate-700 hover:text-green-700 transition-colors">
+                <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                <span>Back to Projects</span>
+            </a>
+            <span class="text-xs font-bold uppercase tracking-wider text-green-800 bg-green-50 px-3 py-1 rounded-full border border-green-200">Pollachi • Agricultural Farmland</span>
+        </div>
+    </nav>
+
+    <main class="py-16">
+        <div class="max-w-7xl mx-auto px-4">
+
+            <!-- Quick Overview & Details -->
+            <div class="mb-16">
+                <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
+                    <div>
+                        <span class="inline-block bg-emerald-100 text-emerald-800 font-bold text-xs px-3.5 py-1.5 rounded-full uppercase tracking-wider mb-2">Successfully Delivered</span>
+                        <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900">Best Green Light (Green Acres)</h2>
+                        <p class="text-slate-600 font-medium mt-1">Pollachi, Coimbatore <span class="text-slate-400">• High-Yield Fruit Farm Layout</span></p>
+                    </div>
+                    <div>
+                        <button class="open-brochure-modal bg-emerald-800 hover:bg-emerald-900 text-white font-bold text-sm px-6 py-3 rounded-xl shadow-lg hover:shadow-emerald-900/30 transition-all flex items-center gap-2">
+                            <i data-lucide="download" class="w-4 h-4"></i>
+                            <span>Download Brochure PDF</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Metrics Bar -->
+                <div class="metrics-bar grid grid-cols-2 md:grid-cols-4 gap-6 text-center md:text-left">
+                    <div>
+                        <span class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-1">Clear Title</span>
+                        <span class="text-lg font-bold text-slate-900">100% Verified</span>
+                    </div>
+                    <div>
+                        <span class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-1">Status</span>
+                        <span class="text-lg font-bold text-emerald-700">Delivered</span>
+                    </div>
+                    <div>
+                        <span class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-1">Unit Sizes</span>
+                        <span class="text-lg font-bold text-slate-900">quarter - 1 Acre</span>
+                    </div>
+                    <div>
+                        <span class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-1">Developer</span>
+                        <span class="text-lg font-bold text-slate-900">Kyra Group</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- World Class Amenities -->
+            <section class="mb-20">
+                <h3 class="text-2xl font-bold text-slate-900 mb-8 pb-3 border-b-2 border-slate-200 relative">
+                    Farmstead Amenities
+                    <span class="absolute bottom-0 left-0 w-16 h-0.5 bg-green-700"></span>
+                </h3>
+
+                <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6">
+                    <div class="amenity-card">
+                        <div class="amenity-icon"><i data-lucide="shield-check" class="w-6 h-6"></i></div>
+                        <span class="text-sm font-semibold text-slate-800">24/7 Security</span>
+                    </div>
+                    <div class="amenity-card">
+                        <div class="amenity-icon"><i data-lucide="car" class="w-6 h-6"></i></div>
+                        <span class="text-sm font-semibold text-slate-800">Parking Space</span>
+                    </div>
+                    <div class="amenity-card">
+                        <div class="amenity-icon"><i data-lucide="sun" class="w-6 h-6"></i></div>
+                        <span class="text-sm font-semibold text-slate-800">Street Lighting</span>
+                    </div>
+                    <div class="amenity-card">
+                        <div class="amenity-icon"><i data-lucide="video" class="w-6 h-6"></i></div>
+                        <span class="text-sm font-semibold text-slate-800">CCTV Surveillance</span>
+                    </div>
+                    <div class="amenity-card">
+                        <div class="amenity-icon"><i data-lucide="fence" class="w-6 h-6"></i></div>
+                        <span class="text-sm font-semibold text-slate-800">Compound Fencing</span>
+                    </div>
+                    <div class="amenity-card">
+                        <div class="amenity-icon"><i data-lucide="droplet" class="w-6 h-6"></i></div>
+                        <span class="text-sm font-semibold text-slate-800">Drip Irrigation</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Walkthrough Video Section -->
+            <section class="mb-20 reveal">
+                <div class="flex flex-wrap items-center justify-between gap-4 mb-8 pb-3 border-b-2 border-slate-200 relative">
+                    <h3 class="text-2xl font-bold text-slate-900 relative">
+                        Project Walkthrough Video
+                        <span class="absolute -bottom-3.5 left-0 w-16 h-0.5 bg-green-700"></span>
+                    </h3>
+                    <span class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-emerald-800 bg-emerald-100 px-3.5 py-1.5 rounded-full border border-emerald-200 shadow-sm">
+                        <i data-lucide="video" class="w-4 h-4"></i>
+                        <span>Pollachi Farm Tour</span>
+                    </span>
+                </div>
+
+                <div class="relative w-full h-[400px] md:h-[500px] rounded-2xl overflow-hidden shadow-2xl group border border-slate-200">
+                    <img src="/assets/image/pro2.webp" alt="Best Green Light Video Walkthrough" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/20 flex flex-col items-center justify-center p-6 text-center">
+                        <button onclick="openVideoModal()" class="w-20 h-20 md:w-24 md:h-24 bg-white/90 hover:bg-white text-green-800 rounded-full flex items-center justify-center shadow-2xl play-btn-pulse transition-all transform hover:scale-110 mb-4">
+                            <i data-lucide="play" class="w-10 h-10 md:w-12 md:h-12 fill-current translate-x-1"></i>
+                        </button>
+                        <h4 class="text-2xl md:text-3xl font-extrabold text-white mb-2 shadow-sm">Experience Best Green Light (Green Acres)</h4>
+                        <p class="text-sm md:text-base text-slate-200 max-w-xl font-medium">Take a tour of our delivered agricultural farmland with mature fruit-bearing trees, drip irrigation, and secure perimeter fencing in Pollachi.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Animated Gallery & Lightbox Section -->
+            <section class="mb-20 reveal">
+                <div class="mb-8 pb-3 border-b-2 border-slate-200 relative">
+                    <h3 class="text-2xl font-bold text-slate-900 relative">
+                        Project Photo Gallery
+                        <span class="absolute -bottom-3.5 left-0 w-16 h-0.5 bg-green-700"></span>
+                    </h3>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="gallery-item group relative rounded-2xl overflow-hidden shadow-lg border border-slate-200 cursor-pointer" onclick="openLightbox('/assets/image/pro2.webp', 'Green Acres Pollachi Aerial View')">
+                        <img src="/assets/image/pro2.webp" alt="Green Acres Aerial View" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-5 text-white">
+                            <h5 class="text-base font-bold">Mature Fruit Plantation & Layout</h5>
+                        </div>
+                    </div>
+                    <div class="gallery-item group relative rounded-2xl overflow-hidden shadow-lg border border-slate-200 cursor-pointer" onclick="openLightbox('/assets/image/pro3.webp', 'Compound Fencing & Entrance')">
+                        <img src="/assets/image/pro3.webp" alt="Compound Fencing" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-5 text-white">
+                            <h5 class="text-base font-bold">Gated Entrance & Compound Fencing</h5>
+                        </div>
+                    </div>
+                    <div class="gallery-item group relative rounded-2xl overflow-hidden shadow-lg border border-slate-200 cursor-pointer" onclick="openLightbox('/assets/portalImages/FarmHouse.JPG', 'Scenic Mountain Backdrop')">
+                        <img src="/assets/portalImages/FarmHouse.JPG" alt="Mountain Backdrop" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-5 text-white">
+                            <h5 class="text-base font-bold">Scenic Mountain Backdrop & Farmhouses</h5>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Location Map Section -->
+            <section class="mb-20">
+                <h3 class="text-2xl font-bold text-slate-900 mb-8 pb-3 border-b-2 border-slate-200 relative">
+                    Location Map
+                    <span class="absolute bottom-0 left-0 w-16 h-0.5 bg-green-700"></span>
+                </h3>
+
+                <div class="w-full h-96 rounded-2xl overflow-hidden shadow-lg border border-slate-200">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d62705.90802773735!2d77.0089!3d10.6586!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba8381640a3d463%3A0xb3514a60155b9e59!2sPollachi%2C%20Tamil%20Nadu!5e0!3m2!1sen!2sin!4v1650000000000!5m2!1sen!2sin" 
+                        width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" title="Pollachi Location Map">
+                    </iframe>
+                </div>
+            </section>
+
+            <!-- Story & Request a Callback Form Section -->
+            <section class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+                <div class="lg:col-span-7">
+                    <h3 class="text-2xl font-bold text-green-800 mb-6">Here's why you should call Kyra home!</h3>
+                    <div class="space-y-4 text-slate-600 leading-relaxed text-sm md:text-base">
+                        <p>Planted with high-yield fruit crops and saplings, rich groundwater, and secure perimeter fencing, Best Green Light in Pollachi offers an exceptional farmland asset for investors and natural living enthusiasts.</p>
+                        <p>Kyra Group ensures 100% legal verification and end-to-end farm management, creating sustainable agricultural returns for a lifetime.</p>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-5">
+                    <div class="callback-card">
+                        <h4 class="text-xl font-bold text-slate-900 mb-6">Request a Callback</h4>
+                        <form id="projectCallbackForm" class="space-y-5">
+                            <div>
+                                <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1">Your Name*</label>
+                                <input type="text" name="name" required placeholder="Enter Your Name" class="form-input-custom">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1">Mobile*</label>
+                                <input type="tel" name="mobile" required placeholder="Your Mobile" class="form-input-custom">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1">Your Email*</label>
+                                <input type="email" name="email" required placeholder="Enter Your Email" class="form-input-custom">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1">Message</label>
+                                <textarea name="message" rows="3" placeholder="Enter Your Message" class="form-input-custom"></textarea>
+                            </div>
+                            <button type="submit" class="w-full py-3.5 px-6 rounded-xl border-2 border-green-700 text-green-800 hover:bg-green-700 hover:text-white font-bold text-sm uppercase tracking-wider transition-all">SUBMIT</button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer Container -->
+    <div id="footer-container"></div>
+
+    <!-- Lightbox Modal -->
+    <div id="lightboxModal" class="lightbox-modal p-4" onclick="closeLightbox()">
+        <div class="relative max-w-5xl w-full text-center" onclick="event.stopPropagation()">
+            <button onclick="closeLightbox()" class="absolute -top-12 right-0 text-white hover:text-amber-400 font-bold text-xl bg-white/10 hover:bg-white/20 rounded-full w-10 h-10 flex items-center justify-center transition-all">✕</button>
+            <img id="lightboxImage" src="" alt="Gallery Preview" class="max-h-[80vh] mx-auto rounded-2xl shadow-2xl border border-white/20">
+            <h4 id="lightboxCaption" class="text-white text-lg font-bold mt-4 font-serif"></h4>
+        </div>
+    </div>
+
+    <!-- Video Modal -->
+    <div id="videoModal" class="lightbox-modal p-4" onclick="closeVideoModal()">
+        <div class="relative max-w-4xl w-full bg-black rounded-2xl overflow-hidden shadow-2xl border border-white/20" onclick="event.stopPropagation()">
+            <button onclick="closeVideoModal()" class="absolute top-4 right-4 text-white hover:text-amber-400 font-bold text-xl bg-black/60 hover:bg-black rounded-full w-10 h-10 flex items-center justify-center z-20 transition-all">✕</button>
+            <div class="relative pb-[56.25%] h-0">
+                <iframe id="videoIframe" class="absolute top-0 left-0 w-full h-full" src="" title="Best Green Light Walkthrough Video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="/assets/js/common.js"></script>
+    <script>
+        lucide.createIcons();
+
+        const sliderImages = [
+            "/assets/image/pro2.webp",
+            "/assets/image/pro3.webp",
+            "/assets/portalImages/FarmHouse.JPG"
+        ];
+        let currentSlide = 0;
+
+        function updateSlide() {
+            const imgEl = document.getElementById("heroSliderImage");
+            if (imgEl) {
+                imgEl.style.opacity = "0.4";
+                setTimeout(() => {
+                    imgEl.src = sliderImages[currentSlide];
+                    imgEl.style.opacity = "1";
+                }, 200);
+            }
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % sliderImages.length;
+            updateSlide();
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + sliderImages.length) % sliderImages.length;
+            updateSlide();
+        }
+
+        function openLightbox(imgUrl, caption) {
+            document.getElementById('lightboxImage').src = imgUrl;
+            document.getElementById('lightboxCaption').textContent = caption;
+            document.getElementById('lightboxModal').classList.add('active');
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightboxModal').classList.remove('active');
+        }
+
+        function openVideoModal() {
+            document.getElementById('videoIframe').src = "https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ?autoplay=1";
+            document.getElementById('videoModal').classList.add('active');
+        }
+
+        function closeVideoModal() {
+            document.getElementById('videoIframe').src = "";
+            document.getElementById('videoModal').classList.remove('active');
+        }
+
+        document.getElementById("projectCallbackForm")?.addEventListener("submit", function(e) {
+            e.preventDefault();
+            alert("Thank you! Your callback request for Best Green Light has been received.");
+            this.reset();
+        });
+    </script>
+</body>
+</html>

@@ -85,11 +85,147 @@
             }
         }
 
+        /* 3D Flip Card Animation for Development Portfolio */
+        .flip-card {
+            background-color: transparent;
+            width: 100%;
+            height: 380px;
+            perspective: 1000px;
+            cursor: pointer;
+        }
+
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.8s cubic-bezier(0.34, 1.4, 0.64, 1);
+            transform-style: preserve-3d;
+        }
+
+        .flip-card:hover .flip-card-inner,
+        .flip-card.flipped .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flip-card-front,
+        .flip-card-back {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border-radius: 1.25rem;
+        }
+
+        .flip-card-front {
+            z-index: 2;
+        }
+
+        .flip-card-back {
+            transform: rotateY(180deg);
+            z-index: 1;
+        }
+
+        /* Kyra Advantage Section Typography & Icon Sizing */
+        .advantage-icon-wrapper {
+            width: 130px !important;
+            height: 130px !important;
+        }
+
+        .kyra-advantage-card h3 {
+            font-size: 1rem !important;
+            line-height: 1.35 !important;
+            font-weight: 700 !important;
+            font-family: var(--font-heading) !important;
+            color: #0f172a !important;
+            margin-bottom: 0.5rem !important;
+            text-align: center !important;
+        }
+
+        .kyra-advantage-card p {
+            font-size: 0.825rem !important;
+            line-height: 1.55 !important;
+            color: #475569 !important;
+            text-align: center !important;
+        }
+
         /* Timeline Zig-Zag desktop */
         @media (min-width: 768px) {
             .timeline-item:nth-child(even) {
                 flex-direction: row-reverse;
             }
+        }
+
+        /* 3D Animated Vision & Mission Cards */
+        .vm-3d-wrapper {
+            perspective: 1000px;
+        }
+
+        .vm-3d-card {
+            transform-style: preserve-3d;
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .vm-3d-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.75s ease;
+        }
+
+        .vm-3d-card:hover::before {
+            left: 100%;
+        }
+
+        .vm-3d-card.vision-3d {
+            background: linear-gradient(135deg, #fffdfa 0%, #fef3c7 100%);
+            border: 1px solid rgba(245, 158, 11, 0.35);
+            box-shadow: 0 15px 35px rgba(245, 158, 11, 0.12), 0 5px 15px rgba(0, 0, 0, 0.03);
+        }
+
+        .vm-3d-card.vision-3d:hover {
+            transform: translateY(-8px) rotateX(4deg) rotateY(-4deg) scale(1.02);
+            box-shadow: 0 25px 50px rgba(245, 158, 11, 0.25), 0 10px 25px rgba(0, 0, 0, 0.05);
+            border-color: rgba(245, 158, 11, 0.6);
+        }
+
+        .vm-3d-card.mission-3d {
+            background: linear-gradient(135deg, #f8fafc 0%, #dbeafe 100%);
+            border: 1px solid rgba(59, 130, 246, 0.35);
+            box-shadow: 0 15px 35px rgba(59, 130, 246, 0.12), 0 5px 15px rgba(0, 0, 0, 0.03);
+        }
+
+        .vm-3d-card.mission-3d:hover {
+            transform: translateY(-8px) rotateX(4deg) rotateY(4deg) scale(1.02);
+            box-shadow: 0 25px 50px rgba(59, 130, 246, 0.25), 0 10px 25px rgba(0, 0, 0, 0.05);
+            border-color: rgba(59, 130, 246, 0.6);
+        }
+
+        @keyframes iconSphereFloat {
+            0%, 100% { transform: translateZ(35px) translateY(0); }
+            50% { transform: translateZ(45px) translateY(-6px); }
+        }
+
+        .vm-3d-icon {
+            transform: translateZ(35px);
+            animation: iconSphereFloat 4s ease-in-out infinite;
+            transition: transform 0.3s ease;
+        }
+
+        .vm-3d-title {
+            transform: translateZ(25px);
+        }
+
+        .vm-3d-text {
+            transform: translateZ(15px);
         }
     </style>
 
@@ -112,28 +248,17 @@
 
     
         <!-- Hero Banner Section -->
-        <section class="relative h-[70vh] flex items-center justify-center overflow-hidden bg-slate-900">
-            <!-- Background Image with Overlay -->
-            <div class="absolute inset-0 z-0">
-                <img src="https://kyragroupindia.com/assets/portalImages/FarmHouse.JPG" 
-                     alt="Real Estate Construction Site" 
-                     class="w-full h-full object-cover opacity-40">
-                <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent"></div>
+        <!-- About Hero Banner -->
+        <section class="page-hero" style="background-image: url('/assets/portalImages/DJI_0040.webp');">
+          <div class="container">
+            <div class="page-hero-content">
+              <span class="page-hero-badge">ABOUT KYRA GROUP</span>
+              <h1>Building Trust & Enduring Value</h1>
+              <p>
+                Transforming carefully selected land into well-planned developments where every investment is positioned for long-term growth and security.
+              </p>
             </div>
-
-            <div class="relative z-10 text-center px-4 max-w-4xl mx-auto">
-                <h1 class="text-white text-5xl md:text-7xl font-bold tracking-tight mb-6 animate-[fadeIn_1.5s_ease-out]">
-                    KYRA GROUP
-                </h1>
-                <p class="text-amber-200 text-xl md:text-2xl font-light tracking-wide animate-[fadeIn_2s_ease-out]">
-                    “Kyra Group transforms carefully selected land into well-planned developments where every investment is positioned for long-term value growth.”
-                </p>
-                <div class="mt-10 animate-bounce">
-                    <a href="#vision-mission" class="text-white/60 hover:text-white transition" aria-label="Scroll Down">
-                        <i data-lucide="chevron-down" class="w-8 h-8 mx-auto"></i>
-                    </a>
-                </div>
-            </div>
+          </div>
         </section>
 
         <!-- Mission Statement Section -->
@@ -157,30 +282,30 @@
                     <h2 class="text-4xl font-bold text-slate-900 reveal">Our Vision & Mission</h2>
                 </div>
 
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                    <!-- Vision -->
-                    <div class="vision-card bg-gradient-to-br from-amber-50 to-amber-100 p-8 rounded-2xl shadow-lg reveal hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch vm-3d-wrapper">
+                    <!-- Vision 3D Card -->
+                    <div class="vm-3d-card vision-3d h-full flex flex-col p-8 md:p-10 rounded-3xl reveal">
                         <div class="flex items-center justify-center mb-6">
-                            <div class="w-16 h-16 bg-amber-500 rounded-full flex items-center justify-center text-white animate-pulse">
-                                <i data-lucide="eye" class="w-8 h-8"></i>
+                            <div class="vm-3d-icon w-20 h-20 bg-gradient-to-tr from-amber-600 to-amber-400 rounded-full flex items-center justify-center text-white shadow-xl shadow-amber-500/30 border-4 border-white/80">
+                                <i data-lucide="eye" class="w-10 h-10"></i>
                             </div>
                         </div>
-                        <h3 class="text-2xl font-semibold text-slate-900 mb-6 text-center">Our Vision</h3>
-                        <p class="text-lg text-slate-700 leading-relaxed text-center">
-                            At Kyra Group, our vision is to build a trusted platform for land investment and community development where every project creates lasting value for generations.
+                        <h3 class="vm-3d-title text-2xl md:text-3xl font-extrabold text-slate-900 mb-4 text-center">Our Vision</h3>
+                        <p class="vm-3d-text text-base md:text-lg text-slate-700 leading-relaxed text-center flex-grow flex items-center justify-center font-medium">
+                            To build South India's most trusted land development platform, creating sustainable farm communities and approved plot layouts that deliver enduring value for generations.
                         </p>
                     </div>
 
-                    <!-- Mission -->
-                    <div class="mission-card bg-gradient-to-br from-blue-50 to-blue-100 p-8 rounded-2xl shadow-lg reveal hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+                    <!-- Mission 3D Card -->
+                    <div class="vm-3d-card mission-3d h-full flex flex-col p-8 md:p-10 rounded-3xl reveal">
                         <div class="flex items-center justify-center mb-6">
-                            <div class="w-16 h-16 bg-blue-500 rounded-full flex items-center justify-center text-white animate-bounce">
-                                <i data-lucide="target" class="w-8 h-8"></i>
+                            <div class="vm-3d-icon w-20 h-20 bg-gradient-to-tr from-blue-600 to-blue-400 rounded-full flex items-center justify-center text-white shadow-xl shadow-blue-500/30 border-4 border-white/80">
+                                <i data-lucide="target" class="w-10 h-10"></i>
                             </div>
                         </div>
-                        <h3 class="text-2xl font-semibold text-slate-900 mb-6 text-center">Our Mission</h3>
-                        <p class="text-lg text-slate-700 leading-relaxed text-center">
-                            Our mission is to transform carefully selected land into thoughtfully planned developments that combine secure ownership, strategic locations, and strong infrastructure — enabling our investors to experience long-term growth and confidence in their investment.
+                        <h3 class="vm-3d-title text-2xl md:text-3xl font-extrabold text-slate-900 mb-4 text-center">Our Mission</h3>
+                        <p class="vm-3d-text text-base md:text-lg text-slate-700 leading-relaxed text-center flex-grow flex items-center justify-center font-medium">
+                            To transform prime land into master-planned developments with 100% legal clarity, robust infrastructure, and strategic locations that ensure secure, high-yield growth for investors.
                         </p>
                     </div>
                 </div>
@@ -219,8 +344,7 @@
                             <h3 class="text-5xl font-bold text-slate-300 mb-2">2016</h3>
                             <h4 class="text-xl font-bold text-slate-900 mb-4">The Foundation</h4>
                             <p class="text-slate-600 leading-relaxed">
-                                KYRA began its journey as a focused land consultancy, mastering land acquisition, legal structuring, and site feasibility.
-From day one, the foundation was clear — build on transparency, precision, and execution discipline.
+                                KYRA began its journey as a focused land consultancy, mastering land acquisition, legal structuring, and site feasibility. From day one, the foundation was clear — build on transparency, precision, and execution discipline.
                             </p>
                         </div>
                         <div class="relative flex items-center justify-center my-6 md:my-0">
@@ -240,9 +364,7 @@ From day one, the foundation was clear — build on transparency, precision, and
                             <h3 class="text-5xl font-bold text-slate-300 mb-2">2026</h3>
                             <h4 class="text-xl font-bold text-slate-900 mb-4">Strategic Transformation</h4>
                             <p class="text-slate-600 leading-relaxed">
-                                As scale increased and ambition evolved, four industry professionals united to form a stronger leadership platform.
-This was not about expanding faster.
-It was about building deeper capabilities, stronger systems, and long-term institutional strength.
+                                As scale increased and ambition evolved, four industry professionals united to form a stronger leadership platform. This was not about expanding faster — it was about building deeper capabilities, stronger systems, and long-term institutional strength.
                             </p>
                         </div>
                         <div class="relative flex items-center justify-center my-6 md:my-0 order-2 md:order-1">
@@ -262,15 +384,7 @@ It was about building deeper capabilities, stronger systems, and long-term insti
                             <h3 class="text-5xl font-bold text-amber-700/20 mb-2">PRESENT</h3>
                             <h4 class="text-xl font-bold text-slate-900 mb-4">Defining the Future</h4>
                             <p class="text-slate-600 leading-relaxed">
-                                Today, KYRA GROUP stands as a professionally managed development platform engineered for scale and sustainability.
-We now operate with:
-
-Proven execution capability
-A growing multi-project development pipeline
-
-Clear long-term strategic direction
-
-Infrastructure-first development philosophy
+                                Today, KYRA GROUP stands as a professionally managed development platform engineered for scale and sustainability. We operate with proven execution capability, a growing multi-project development pipeline, clear strategic direction, and an infrastructure-first development philosophy.
                             </p>
                         </div>
                         <div class="relative flex items-center justify-center my-6 md:my-0">
@@ -287,46 +401,136 @@ Infrastructure-first development philosophy
             </div>
         </section>
 
-        <!-- Our Development Portfolio Section -->
+        <!-- Our Development Portfolio Section (Interactive 3D Flip Cards) -->
         <section id="portfolio" class="py-24 bg-white">
             <div class="max-w-6xl mx-auto px-4">
                 <div class="text-center mb-16">
                     <h2 class="text-4xl font-bold text-slate-900 reveal">Our Development Portfolio</h2>
-                    <p class="text-slate-600 mt-4 reveal">Our upcoming developments are designed across three distinctive formats:</p>
+                    <p class="text-slate-600 mt-4 reveal">Hover or tap on any card to discover detailed specifications:</p>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                     <!-- Premium Farm Communities -->
-                    <div class="bg-slate-50 p-8 rounded-2xl reveal">
-                        <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-6 text-green-700 mx-auto">
-                            <i data-lucide="leaf" class="w-8 h-8"></i>
+                    <div class="flip-card reveal">
+                        <div class="flip-card-inner">
+                            <!-- FRONT -->
+                            <div class="flip-card-front bg-gradient-to-br from-green-50 to-white border border-green-200/80 p-8 rounded-2xl shadow-lg flex flex-col items-center justify-between text-center">
+                                <div class="w-20 h-20 bg-green-500 text-white rounded-full flex items-center justify-center mb-4 shadow-lg shadow-green-200">
+                                    <i data-lucide="leaf" class="w-10 h-10"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-2xl font-bold text-slate-900 mb-2" style="font-family: var(--font-heading);">Premium Farm Communities</h3>
+                                    <span class="inline-block text-xs font-bold uppercase tracking-widest text-green-700 bg-green-100 px-4 py-1.5 rounded-full mt-2">Eco & Nature Living</span>
+                                </div>
+                                <div class="text-xs font-semibold text-green-700 flex items-center gap-2 mt-6 bg-green-50 px-4 py-2 rounded-full border border-green-200">
+                                    <span>Hover to Flip & Read Details</span>
+                                    <i data-lucide="rotate-cw" class="w-4 h-4 animate-spin"></i>
+                                </div>
+                            </div>
+                            <!-- BACK -->
+                            <div class="flip-card-back bg-slate-900 text-white p-8 rounded-2xl shadow-2xl flex flex-col justify-between text-center border border-green-500/30">
+                                <div>
+                                    <div class="w-12 h-12 bg-green-500/20 text-green-400 rounded-full flex items-center justify-center mb-4 mx-auto border border-green-500/30">
+                                        <i data-lucide="leaf" class="w-6 h-6"></i>
+                                    </div>
+                                    <h3 class="text-xl font-bold text-white mb-3" style="font-family: var(--font-heading);">Premium Farm Communities</h3>
+                                    <p class="text-sm text-slate-300 leading-relaxed mb-4">
+                                        Carefully curated farm land developments designed for nature-centric living, organic cultivation, and compounding land value appreciation in high-growth green belts.
+                                    </p>
+                                    <ul class="text-xs text-green-300 space-y-1.5 text-left bg-white/5 p-3 rounded-lg border border-white/10">
+                                        <li>✔ Gated boundary security & water access</li>
+                                        <li>✔ Organic soil verification & access roads</li>
+                                        <li>✔ High-yield long-term capital growth</li>
+                                    </ul>
+                                </div>
+                                <a href="/project/" class="inline-flex items-center justify-center gap-2 py-3 px-6 rounded-full bg-green-600 hover:bg-green-500 text-white font-bold text-sm transition-all shadow-lg hover:shadow-green-900/50 mt-4">
+                                    <span>Explore Farm Layouts</span>
+                                    <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                                </a>
+                            </div>
                         </div>
-                        <h3 class="text-xl font-semibold text-slate-900 mb-4 text-center">Premium Farm Communities</h3>
-                        <p class="text-slate-600 text-center">
-                            Carefully curated farm land developments designed for nature-centric living and long-term land appreciation.
-                        </p>
                     </div>
 
                     <!-- Approved Residential Layouts -->
-                    <div class="bg-slate-50 p-8 rounded-2xl reveal">
-                        <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-6 text-blue-700 mx-auto">
-                            <i data-lucide="home" class="w-8 h-8"></i>
+                    <div class="flip-card reveal">
+                        <div class="flip-card-inner">
+                            <!-- FRONT -->
+                            <div class="flip-card-front bg-gradient-to-br from-blue-50 to-white border border-blue-200/80 p-8 rounded-2xl shadow-lg flex flex-col items-center justify-between text-center">
+                                <div class="w-20 h-20 bg-blue-600 text-white rounded-full flex items-center justify-center mb-4 shadow-lg shadow-blue-200">
+                                    <i data-lucide="home" class="w-10 h-10"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-2xl font-bold text-slate-900 mb-2" style="font-family: var(--font-heading);">Approved Residential Layouts</h3>
+                                    <span class="inline-block text-xs font-bold uppercase tracking-widest text-blue-700 bg-blue-100 px-4 py-1.5 rounded-full mt-2">100% Legal & Approved</span>
+                                </div>
+                                <div class="text-xs font-semibold text-blue-700 flex items-center gap-2 mt-6 bg-blue-50 px-4 py-2 rounded-full border border-blue-200">
+                                    <span>Hover to Flip & Read Details</span>
+                                    <i data-lucide="rotate-cw" class="w-4 h-4 animate-spin"></i>
+                                </div>
+                            </div>
+                            <!-- BACK -->
+                            <div class="flip-card-back bg-slate-900 text-white p-8 rounded-2xl shadow-2xl flex flex-col justify-between text-center border border-blue-500/30">
+                                <div>
+                                    <div class="w-12 h-12 bg-blue-500/20 text-blue-400 rounded-full flex items-center justify-center mb-4 mx-auto border border-blue-500/30">
+                                        <i data-lucide="home" class="w-6 h-6"></i>
+                                    </div>
+                                    <h3 class="text-xl font-bold text-white mb-3" style="font-family: var(--font-heading);">Approved Residential Layouts</h3>
+                                    <p class="text-sm text-slate-300 leading-relaxed mb-4">
+                                        Legally compliant residential plot developments with essential infrastructure designed for immediate home construction and risk-free ownership.
+                                    </p>
+                                    <ul class="text-xs text-blue-300 space-y-1.5 text-left bg-white/5 p-3 rounded-lg border border-white/10">
+                                        <li>✔ DTCP / RERA approved master plans</li>
+                                        <li>✔ Blacktop roads, streetlights & drainage</li>
+                                        <li>✔ Immediate title deed registration</li>
+                                    </ul>
+                                </div>
+                                <a href="/project/" class="inline-flex items-center justify-center gap-2 py-3 px-6 rounded-full bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm transition-all shadow-lg hover:shadow-blue-900/50 mt-4">
+                                    <span>Explore Residential Plots</span>
+                                    <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                                </a>
+                            </div>
                         </div>
-                        <h3 class="text-xl font-semibold text-slate-900 mb-4 text-center">Approved Residential Layouts</h3>
-                        <p class="text-slate-600 text-center">
-                            Legally compliant residential plot developments with essential infrastructure designed for secure ownership and future home building.
-                        </p>
                     </div>
 
                     <!-- Resort & Lifestyle Destinations -->
-                    <div class="bg-slate-50 p-8 rounded-2xl reveal">
-                        <div class="w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center mb-6 text-amber-700 mx-auto">
-                            <i data-lucide="palmtree" class="w-8 h-8"></i>
+                    <div class="flip-card reveal">
+                        <div class="flip-card-inner">
+                            <!-- FRONT -->
+                            <div class="flip-card-front bg-gradient-to-br from-amber-50 to-white border border-amber-200/80 p-8 rounded-2xl shadow-lg flex flex-col items-center justify-between text-center">
+                                <div class="w-20 h-20 bg-amber-600 text-white rounded-full flex items-center justify-center mb-4 shadow-lg shadow-amber-200">
+                                    <i data-lucide="palmtree" class="w-10 h-10"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-2xl font-bold text-slate-900 mb-2" style="font-family: var(--font-heading);">Resort & Lifestyle Destinations</h3>
+                                    <span class="inline-block text-xs font-bold uppercase tracking-widest text-amber-700 bg-amber-100 px-4 py-1.5 rounded-full mt-2">Luxury Leisure Living</span>
+                                </div>
+                                <div class="text-xs font-semibold text-amber-700 flex items-center gap-2 mt-6 bg-amber-50 px-4 py-2 rounded-full border border-amber-200">
+                                    <span>Hover to Flip & Read Details</span>
+                                    <i data-lucide="rotate-cw" class="w-4 h-4 animate-spin"></i>
+                                </div>
+                            </div>
+                            <!-- BACK -->
+                            <div class="flip-card-back bg-slate-900 text-white p-8 rounded-2xl shadow-2xl flex flex-col justify-between text-center border border-amber-500/30">
+                                <div>
+                                    <div class="w-12 h-12 bg-amber-500/20 text-amber-400 rounded-full flex items-center justify-center mb-4 mx-auto border border-amber-500/30">
+                                        <i data-lucide="palmtree" class="w-6 h-6"></i>
+                                    </div>
+                                    <h3 class="text-xl font-bold text-white mb-3" style="font-family: var(--font-heading);">Resort & Lifestyle Destinations</h3>
+                                    <p class="text-sm text-slate-300 leading-relaxed mb-4">
+                                        Exclusive resort-style land developments in scenic hill station & coastal locations designed for vacation homes, boutique stays, and high-value tourism appreciation.
+                                    </p>
+                                    <ul class="text-xs text-amber-300 space-y-1.5 text-left bg-white/5 p-3 rounded-lg border border-white/10">
+                                        <li>✔ Panoramic natural views & mountain air</li>
+                                        <li>✔ Resort infrastructure & eco-villas</li>
+                                        <li>✔ High rental yield & vacation asset</li>
+                                    </ul>
+                                </div>
+                                <a href="/project/" class="inline-flex items-center justify-center gap-2 py-3 px-6 rounded-full bg-amber-600 hover:bg-amber-500 text-white font-bold text-sm transition-all shadow-lg hover:shadow-amber-900/50 mt-4">
+                                    <span>Explore Resort Plots</span>
+                                    <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                                </a>
+                            </div>
                         </div>
-                        <h3 class="text-xl font-semibold text-slate-900 mb-4 text-center">Resort & Lifestyle Destinations</h3>
-                        <p class="text-slate-600 text-center">
-                            Exclusive resort-style land developments in scenic locations designed for leisure living and high-value destination investments.
-                        </p>
                     </div>
                 </div>
             </div>
@@ -383,81 +587,56 @@ Infrastructure-first development philosophy
 
 
 
-        <!-- Why Invest With Kyra Section -->
+        <!-- Why Invest With Kyra Section (The Kyra Advantage) -->
         <section id="why-invest" class="py-24 bg-white">
-            <div class="max-w-6xl mx-auto px-4">
+            <div class="max-w-7xl mx-auto px-4">
                 <div class="text-center mb-16">
+                    <div class="flex items-center justify-center gap-4 mb-3 reveal">
+                        <span class="w-12 h-px bg-amber-600/40"></span>
+                        <span class="text-xs font-bold uppercase tracking-widest text-amber-700">THE KYRA ADVANTAGE ICONS</span>
+                        <span class="w-12 h-px bg-amber-600/40"></span>
+                    </div>
                     <h2 class="text-4xl font-bold text-slate-900 reveal">Why Invest With Kyra</h2>
                     <p class="text-lg text-slate-700 leading-relaxed mt-4 reveal max-w-4xl mx-auto">
                         At Kyra Group, we believe land investment should be secure, transparent, and designed for long-term growth. Our developments are built on a disciplined framework that prioritizes investor confidence and sustainable value creation.
                     </p>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Strategic Location Selection -->
-                    <div class="philosophy-card p-8 rounded-2xl text-center reveal">
-                        <div class="w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center mb-6 text-amber-700 mx-auto">
-                            <i data-lucide="map-pin" class="w-8 h-8"></i>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+                    <!-- 1. Strategic Land Selection -->
+                    <div class="kyra-advantage-card p-6 rounded-2xl bg-gradient-to-b from-amber-50/40 to-white border border-amber-100/80 text-center reveal transition-all duration-300 hover:shadow-xl hover:-translate-y-2">
+                        <div class="advantage-icon-wrapper mx-auto mb-5 rounded-full overflow-hidden shadow-md border-4 border-white transition-all duration-300 hover:scale-105 hover:shadow-xl">
+                            <img src="/assets/image/1.png" alt="Strategic Land Selection" class="w-full h-full object-cover">
                         </div>
-                        <h3 class="text-lg font-bold text-slate-900 mb-3">Strategic Location Selection</h3>
-                        <p class="text-sm text-slate-600">
-                            We carefully identify high-growth regions across Tamil Nadu and Kerala where future infrastructure, connectivity, and development potential support long-term land value appreciation.
-                        </p>
+                        <h3>1. Strategic Land Selection</h3>
+                        <p>Finding tomorrow's high-value destinations today.</p>
                     </div>
 
-                    <!-- Verified Legal Security -->
-                    <div class="philosophy-card p-8 rounded-2xl text-center reveal">
-                        <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-6 text-blue-700 mx-auto">
-                            <i data-lucide="shield-check" class="w-8 h-8"></i>
+                    <!-- 2. Trusted Legal Foundation -->
+                    <div class="kyra-advantage-card p-6 rounded-2xl bg-gradient-to-b from-amber-50/40 to-white border border-amber-100/80 text-center reveal transition-all duration-300 hover:shadow-xl hover:-translate-y-2">
+                        <div class="advantage-icon-wrapper mx-auto mb-5 rounded-full overflow-hidden shadow-md border-4 border-white transition-all duration-300 hover:scale-105 hover:shadow-xl">
+                            <img src="/assets/image/2.png" alt="Trusted Legal Foundation" class="w-full h-full object-cover">
                         </div>
-                        <h3 class="text-lg font-bold text-slate-900 mb-3">Verified Legal Security</h3>
-                        <p class="text-sm text-slate-600">
-                            Every Kyra project undergoes rigorous legal due diligence to ensure clear land titles, proper documentation, and compliant approvals — giving investors complete ownership confidence.
-                        </p>
+                        <h3>2. Trusted Legal Foundation</h3>
+                        <p>Every investment secured with complete legal transparency.</p>
                     </div>
 
-                    <!-- Infrastructure-Driven Development -->
-                    <div class="philosophy-card p-8 rounded-2xl text-center reveal">
-                        <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-6 text-green-700 mx-auto">
-                            <i data-lucide="settings" class="w-8 h-8"></i>
+                    <!-- 3. Signature Community Development -->
+                    <div class="kyra-advantage-card p-6 rounded-2xl bg-gradient-to-b from-amber-50/40 to-white border border-amber-100/80 text-center reveal transition-all duration-300 hover:shadow-xl hover:-translate-y-2">
+                        <div class="advantage-icon-wrapper mx-auto mb-5 rounded-full overflow-hidden shadow-md border-4 border-white transition-all duration-300 hover:scale-105 hover:shadow-xl">
+                            <img src="/assets/image/3.png" alt="Signature Community Development" class="w-full h-full object-cover">
                         </div>
-                        <h3 class="text-lg font-bold text-slate-900 mb-3">Infrastructure-Driven Development</h3>
-                        <p class="text-sm text-slate-600">
-                            Our layouts are designed with planned internal roads, drainage systems, utilities, and green spaces to ensure long-term usability and asset value.
-                        </p>
+                        <h3>3. Signature Community Development</h3>
+                        <p>Crafting communities where nature and infrastructure grow together.</p>
                     </div>
 
-                    <!-- Long-Term Value Appreciation -->
-                    <div class="philosophy-card p-8 rounded-2xl text-center reveal">
-                        <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mb-6 text-purple-700 mx-auto">
-                            <i data-lucide="trending-up" class="w-8 h-8"></i>
+                    <!-- 4. Lifetime Asset Partnership -->
+                    <div class="kyra-advantage-card p-6 rounded-2xl bg-gradient-to-b from-amber-50/40 to-white border border-amber-100/80 text-center reveal transition-all duration-300 hover:shadow-xl hover:-translate-y-2">
+                        <div class="advantage-icon-wrapper mx-auto mb-5 rounded-full overflow-hidden shadow-md border-4 border-white transition-all duration-300 hover:scale-105 hover:shadow-xl">
+                            <img src="/assets/image/4.png" alt="Lifetime Asset Partnership" class="w-full h-full object-cover">
                         </div>
-                        <h3 class="text-lg font-bold text-slate-900 mb-3">Long-Term Value Appreciation</h3>
-                        <p class="text-sm text-slate-600">
-                            Kyra developments are planned in locations with strong growth potential, ensuring that your investment benefits from long-term value appreciation.
-                        </p>
-                    </div>
-
-                    <!-- Transparent Development Process -->
-                    <div class="philosophy-card p-8 rounded-2xl text-center reveal">
-                        <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mb-6 text-red-700 mx-auto">
-                            <i data-lucide="eye" class="w-8 h-8"></i>
-                        </div>
-                        <h3 class="text-lg font-bold text-slate-900 mb-3">Transparent Development Process</h3>
-                        <p class="text-sm text-slate-600">
-                            We maintain clear communication with investors through every stage of development, ensuring transparency and trust in every Kyra project.
-                        </p>
-                    </div>
-
-                    <!-- Investor-Focused Approach -->
-                    <div class="philosophy-card p-8 rounded-2xl text-center reveal">
-                        <div class="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center mb-6 text-indigo-700 mx-auto">
-                            <i data-lucide="users" class="w-8 h-8"></i>
-                        </div>
-                        <h3 class="text-lg font-bold text-slate-900 mb-3">Investor-Focused Approach</h3>
-                        <p class="text-sm text-slate-600">
-                            Our goal is not just to sell land but to create lasting value for investors through carefully planned developments and responsible project execution.
-                        </p>
+                        <h3>4. Lifetime Asset Partnership</h3>
+                        <p>Supporting your investment beyond registration.</p>
                     </div>
                 </div>
             </div>

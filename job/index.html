@@ -32,6 +32,8 @@
       rel="stylesheet"
     />
 
+    <link rel="stylesheet" href="/assets/css/common.css" />
+
     <style>
       :root {
         --primary: #1a1a1a;
@@ -448,30 +450,20 @@
     </style>
   </head>
   <body>
-    <nav>
-      <div class="container">
-        <a href="#" class="logo">KYRA</a>
-        <div class="nav-links">
-          <a
-            href="#open-positions"
-            class="btn"
-            style="padding: 0.6rem 1.2rem; font-size: 0.75rem"
-            >View Roles</a
-          >
-        </div>
-      </div>
-    </nav>
+    <!-- Header Container for Dynamic Insertion -->
+    <div id="header-container"></div>
 
     <main>
-      <!-- Hero Section -->
-      <section class="hero">
-        <div class="container hero-content">
-          <h1 class="reveal">Build the Future of Living.</h1>
-          <p class="reveal">
-            Join a team of visionaries redefining the real estate experience
-            through innovation and excellence.
-          </p>
-          <a href="#open-positions" class="btn reveal">Explore Careers</a>
+      <!-- Careers Hero Banner -->
+      <section class="page-hero" style="background-image: url('/assets/portalImages/DJI_0001.webp');">
+        <div class="container">
+          <div class="page-hero-content">
+            <span class="page-hero-badge">CAREERS AT KYRA</span>
+            <h1>Build the Future of Living</h1>
+            <p>
+              Join a passionate team of land developers and real estate visionaries redefining real estate asset creation across South India.
+            </p>
+          </div>
         </div>
       </section>
 
@@ -767,12 +759,10 @@
       </section>
     </main>
 
-    <footer>
-      <div class="container">
-        <p>&copy; 2024 KYRA Real Estate Holdings. All Rights Reserved.</p>
-      </div>
-    </footer>
+    <!-- Footer Container for Dynamic Insertion -->
+    <div id="footer-container"></div>
 
+    <script src="/assets/js/common.js"></script>
     <script>
       // 1. Reveal Animations on Scroll
       const observerOptions = {
