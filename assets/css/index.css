@@ -453,10 +453,13 @@ h3,
 }
 
 .track-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
-  margin-top: 60px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  margin-top: 30px;
+  width: 100%;
 }
 
 .track-item {
@@ -465,7 +468,7 @@ h3,
   align-items: center;
   text-align: center;
   position: relative;
-  padding: 20px;
+  padding: 10px;
   opacity: 0;
   transform: translateY(40px);
 }
