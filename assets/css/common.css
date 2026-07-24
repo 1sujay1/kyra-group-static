@@ -663,8 +663,6 @@ header.scrolled {
   }
 }
 
-
-/* ===== CUSTOM LEAF CURSOR STYLES ===== */
 /* ===== CUSTOM LEAF CURSOR WITH HOVER POSITION CHANGE ===== */
 
 /* 1. Default Leaf Cursor State */
@@ -676,4 +674,70 @@ html, body, input, select, textarea {
 a, button, .btn, .banner-control, .whatsapp-btn, [role="button"] {
   cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='36' height='36' viewBox='0 0 32 32'><g transform='rotate(-25 16 16)'><path d='M26,3 C16,3 10,9 6,17 C4,21 3,25 3,28 C3,28.6 3.4,29 4,29 C4.1,29 4.2,29 4.3,28.9 L10,25 C10,25 12,28 17,28 C25,28 29,20 29,10 C29,5 28,3 26,3 Z M12,22.5 C10,21 8,18 7.5,15.5 C11.5,13.5 17.5,10 24,7.5 C20,13 16,18.5 12,22.5 Z' fill='%23c5a059' stroke='%23ffffff' stroke-width='1.5' stroke-linejoin='round'/><path d='M6,26 L2,30' stroke='%231b4d2e' stroke-width='2.5' stroke-linecap='round'/></g></svg>") 12 2, pointer !important;
 }
-/* End of styles */
+
+/* ===== MODAL POPUP & OVERLAY FIXES ===== */
+
+/* 1. Hide Modal Wrappers by Default */
+.modal,
+.modal-overlay,
+.download-brochure-modal,
+[class*="modal"],
+[id*="modal"],
+[class*="brochure"],
+[id*="brochure"] {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  z-index: 10000;
+  align-items: center;
+  justify-content: center;
+  overflow-y: auto;
+  padding: 20px;
+}
+
+/* 2. Display Modal ONLY when explicitly activated via JavaScript */
+.modal.active,
+.modal.show,
+.modal-overlay.active,
+.download-brochure-modal.active,
+.download-brochure-modal.show,
+[class*="modal"].active,
+[class*="modal"].show,
+[id*="modal"].active,
+[id*="modal"].show {
+  display: flex !important;
+}
+
+/* 3. Center and Restyle the Inner Modal Content Card */
+.modal-content,
+.modal-dialog,
+[class*="modal-content"] {
+  background: #ffffff !important;
+  padding: 32px !important;
+  border-radius: 12px !important;
+  max-width: 500px !important;
+  width: 100% !important;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2) !important;
+  position: relative !important;
+  margin: auto !important;
+}
+
+/* 4. Position the Close (×) Button in the Top Right */
+.modal-close,
+.close-btn,
+[class*="close"] {
+  position: absolute !important;
+  top: 16px !important;
+  right: 16px !important;
+  background: transparent !important;
+  border: none !important;
+  font-size: 24px !important;
+  cursor: pointer !important;
+  color: var(--text-dark) !important;
+}
